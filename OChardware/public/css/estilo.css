@@ -1,0 +1,494 @@
+.exemplo{
+    background: #006eff;
+    border: solid 5px #000;
+}
+
+/* GERAL DO SITE */
+
+header {
+    grid-area: topo;
+}
+
+nav {
+    grid-area: navegacao;
+}
+
+main {
+    grid-area: corpo;
+}
+
+footer {
+    grid-area: rodape;
+}
+
+body{
+    display: grid;
+    margin: 0;
+    /* min-height: 100vh; */
+    grid-template-columns: 1fr;
+    /* grid-template-rows: 80px 60px 1fr 130px; */
+    grid-template-rows: 1fr;
+    grid-template-areas: 'topo''navegacao''corpo''rodape';
+    font-family: 'Inter', sans-serif;
+}
+
+.flex-container{
+    display: flex;
+}
+
+.grid-container{
+    display: grid;
+}
+
+.topo{
+    justify-content: space-between;
+    align-items: center;
+    min-height: 80px;
+    height: 100%;
+}
+
+/* TOPO MOBILE */
+
+.topo-mobile{
+    display: none;
+    justify-content: center;
+}
+
+.logo-mobile{
+    flex-grow: 10;
+}
+
+#mobile-nav{
+    display: none;
+}
+
+#mobile-nav ul{
+    margin: 0;
+    padding: 0;
+}
+
+.menu-dir{
+    flex-direction: column;
+    justify-content: center;
+    margin: 0 20px;
+}
+
+.menu-dir div{
+    width: 35px;
+    height: 5px;
+    background: #fff;
+    margin: 2px 10px;
+}
+
+/* ----------------- */
+
+#topo-pesquisa{
+    flex-grow: 10;
+    box-sizing: border-box;
+}
+
+#topo-pesquisa input[type=text]{
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+}
+
+.topo div{
+    margin: 10px 20px;
+}
+
+.navegacao{
+    justify-content: center;
+    align-items: center;
+    min-height: 60px;
+    height: 100%;
+}
+
+.navegacao ul{
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navegacao ul a{
+    padding: 20px 10px;
+}
+
+.navegacao ul a:hover{
+    background: #e00009;
+}
+
+
+/* ------------------------ */
+
+
+/* Página INDEX */
+.corpo{
+    justify-content: flex-start;
+    flex-direction: column;
+    /*height: 100%;*/
+}
+
+.categorias{
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    gap: 20px;
+    margin: 20px 200px;
+}
+
+.item-g{
+    grid-column-start: 1;
+    /* grid-column-end: span 3; */
+    background: #e00009;
+}
+
+.item-p{
+    background: #b40208;
+}
+
+.banner{
+    height: 45vh;
+    /* background-image: url(C:\Users\leona\Desktop\Pastas\Projetos\TCC-Laravel\OChardware\public\img\pexels-athena-2582932.jpg); */
+    background-image: url(../img/);
+    background-size: cover;
+    background-attachment: fixed;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.secao{
+    justify-content: center;
+    align-items: center;
+    background: #e00009;
+    color: #fff;
+}
+
+.itens{
+    background: #fff;
+    justify-content: space-evenly;
+    align-content: center;
+    flex-wrap: wrap;
+}
+
+.margem{
+    margin: 0 15%;
+}
+
+.produtos{
+    flex-direction: column;
+}
+
+.card{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
+    width: 300px;
+    height: 450px;
+    border-radius: 20px;
+    background: #d6d6d6;
+    padding: 10px;
+    margin: 10px 5px;
+}
+
+.card-img{
+    min-width: 300px;
+    min-height: 250px;
+    justify-content: center;
+    margin-top: 5px;
+}
+
+.card-img img{
+    height: 100%;
+    width: 100%;
+    border-radius: 10px;
+    background: #fff;
+}
+
+.preco{
+    overflow: hidden;
+}
+
+.preco span{
+    display: none;
+}
+
+.comprar span{
+    margin: 10px 5px;
+    display: inline-block;
+    font-size: 2em;
+    font-weight: bold;
+    color: #e00009;
+}
+
+.rodape{
+    flex-direction: column;
+}
+
+.rodape-secao1{
+    flex-direction: column;
+    align-items: center;
+}
+
+.rodape-secao1-info{
+    text-align: center;
+}
+
+.rodape-secao2{
+    /* flex-direction: row; */
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.rodape div{
+    /* flex-grow: 1; */
+    flex-wrap: wrap;
+    /* margin: 20px 40px; */
+}
+
+.grid-container.rodape-secao2-meio {
+    text-align: center;
+}
+
+.rodape-secao1, .rodape-secao2-esquerda, .rodape-secao2-meio, .rodape-secao2-direita {
+    margin: 20px 40px;
+}
+
+.rodape-secao2-meio, .rodape-secao2-direita{
+    grid-template-columns: 1fr;
+}
+
+/* --------------------- */
+
+/* Página PRODUTOS */
+
+.corpo-produtos{
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1fr;
+}
+
+.lateral{
+    min-height: 669px;
+}
+
+.nav-lateral{
+    min-height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    margin: 2vh;
+    background: #d6d6d6;
+    border-radius: 10px;
+}
+
+/* Página LOGIN */
+
+.banner-login{
+    background-image: url(img/pexels-athena-2582932.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    min-height: 150px;
+    flex-direction: column;
+}
+
+.forms{ /*área externa total dos 2 forms */
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
+    /* margin: 5vh 0; */
+    column-gap: 50px;
+}
+
+.form{ /*área interna individual dos forms */
+    flex-direction: column;
+    box-sizing: border-box;
+    margin: 5vh 0;
+}
+
+.form button{
+    width: 50%;
+    margin: 5px 10px 5px 0;
+}
+
+/* Página ITEM */
+
+.corpo-detalhes{
+    min-height: 765px;
+    flex-direction: column;
+}
+
+.detalhes-topo{
+    background: #d6d6d6;
+}
+
+.detalhes-foto-nome{
+    grid-template-columns: 1fr 1.5fr;
+    min-height: 4vh; /*temporário*/
+}
+
+.detalhes-foto{
+    min-width: 358px;
+    min-height: 330px;
+}
+
+.detalhes-foto img{
+    width: 100%;
+}
+
+.detalhes-nome{
+    flex-direction: column;
+}
+
+.detalhes-foto, .detalhes-nome{
+    margin: 2vw;
+}
+
+.detalhes-comentarios-avaliacao{
+    grid-template-columns: 1.5fr 1fr;
+}
+
+/* MEDIA-QUERIES */
+
+@media(max-width: 425px){
+    .banner, .topo, .navegacao,.lateral,.banner-login{
+        display: none;
+    }
+    .produtos{
+        grid-column-end: span 2;
+    }
+    .topo-mobile{
+        display: flex;
+    }
+}
+
+@media(max-width:720px){
+    .detalhes-foto-nome{
+        grid-template-columns: 1fr;
+    }
+    .detalhes-foto{
+        min-width: 400px;
+        justify-content: center;
+    }
+    .detalhes-foto img{
+        width: 400px;
+    }
+}
+
+@media(max-width: 769px){
+    /* SITE GERAL */
+    .rodape, .rodape-secao2{
+        flex-direction: column;
+    }
+
+    /* Página LOGIN */
+    .forms{
+        grid-template-columns: 1fr;
+        row-gap: 5vh;
+    }
+
+    .form button{
+        width: 100%;
+    }
+
+    .rodape-secao2{
+        display: none;
+    }
+
+}
+
+@media(max-width:950px){
+    /* página DETALHES */
+    .margem{
+        margin: 0;
+    }
+}
+
+@media(max-width: 1024px){
+    /* GERAL */
+    .categorias{
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr;
+        margin: 10px;
+    }
+    .card{
+        width: 165px;
+        height: 300px;
+    }
+    .card-img{
+        min-width: 165px;
+        min-height: 165px;
+    }
+    .preco h3{
+        display: none;
+    }
+    .preco span{
+        display: flex;
+    }
+    .comprar span{
+        font-size: 1em;
+    }
+    .comprar button{
+        padding: 0;
+    }
+
+    /* página DETALHES */
+    .corpo-detalhes{
+        margin: 0;
+    }
+
+}
+
+@media(max-width: 1440px){
+    .detalhes-comentarios-avaliacao{
+        grid-template-columns: 1fr;
+    }
+}
+
+
+/* a sem decoration */
+.no-deco-white{
+    text-decoration: none;
+    color: #fff;
+}
+
+/* cores */
+.black{
+    background: #212121;
+    color: #fff;
+}
+
+/* fontes */
+.heading{
+    font-family: 'Passion One', cursive;
+}
+
+.banner-texto{
+    font-size: 3em;
+    color: #fff;
+}
+
+/* BOTÕES */
+.bt-red{
+    width: 100%;
+    padding: 15px 0;
+    font-size: 1em;
+    background: #e00009;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.bt-red:hover{
+    background: #b40208;
+}
+
+/* FORMS */
+.input-full{
+    width: 100%;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: solid 2px #212121;
+    padding: 10px;
+    margin: 5px 10px 5px 0;
+}
