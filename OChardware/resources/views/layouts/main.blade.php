@@ -17,12 +17,12 @@
             <section class="black">
                 <div class="flex-container topo margem">
                     <div>
-                        <a href="#">
+                        <a href="/">
                             <img src="img/logo.png" alt="OverClock">
                         </a>
                     </div>
                     <div id="topo-pesquisa">
-                        <form action="" method="post">
+                        <form action="/produtos" method="post">
                             <input type="text" name="pesquisa" placeholder="Pesquise por produtos...">
                         </form>
                     </div>
@@ -35,7 +35,7 @@
             </section>
                 <section class="flex-container topo-mobile black">
                     <div class="logo-mobile">
-                        <a href="#">
+                        <a href="/">
                             <img src="img/logo.png" alt="OverClock">
                         </a>
                     </div>
@@ -46,28 +46,28 @@
                 <section id="mobile-nav" class="black">
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Processadores</a>
+                            <a class="no-deco-white" href="/produtos">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Memórias</a>
+                            <a class="no-deco-white" href="/produtos">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Monitores</a>
+                            <a class="no-deco-white" href="/produtos">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">HD</a>
+                            <a class="no-deco-white" href="/produtos">HD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">SSD</a>
+                            <a class="no-deco-white" href="/produtos">SSD</a>
                         </li>
                         <li>
                             <a class="no-deco-white" href="produtos.html">Fontes</a>
@@ -80,31 +80,31 @@
                 <div>
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Processadores</a>
+                            <a class="no-deco-white" href="/produtos">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Memórias</a>
+                            <a class="no-deco-white" href="/produtos">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Monitores</a>
+                            <a class="no-deco-white" href="/produtos">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">HD</a>
+                            <a class="no-deco-white" href="/produtos">HD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">SSD</a>
+                            <a class="no-deco-white" href="/produtos">SSD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Fontes</a>
+                            <a class="no-deco-white" href="/produtos">Fontes</a>
                         </li>
                     </ul>
                 </div>
