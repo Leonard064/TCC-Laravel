@@ -3,14 +3,14 @@
     <head>
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
-        <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Overclock® Hardware - Dê um OverClock!</title>
-        <link rel="stylesheet" href="css/estilo.css">
+        <link rel="stylesheet" href="../css/estilo.css">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter&family=Passion+One&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="fontawesome/css/all.css">
+        <link rel="stylesheet" href="../fontawesome/css/all.css">
     </head>
     <body>
         <header>
@@ -18,17 +18,17 @@
                 <div class="flex-container topo margem">
                     <div>
                         <a href="/">
-                            <img src="img/logo.png" alt="OverClock">
+                            <img src="../img/logo.png" alt="OverClock">
                         </a>
                     </div>
                     <div id="topo-pesquisa">
-                        <form action="/produtos" method="post">
+                        <form action="/produtos" method="GET">
                             <input type="text" name="pesquisa" placeholder="Pesquise por produtos...">
                         </form>
                     </div>
                     <div>
                         <span>
-                            <a class="no-deco-white" href="login.html"> Entre ou Cadastre-se</a>
+                            <a class="no-deco-white" href="/login"> Entre ou Cadastre-se</a>
                         </span>
                     </div>
                 </div>
@@ -36,7 +36,7 @@
                 <section class="flex-container topo-mobile black">
                     <div class="logo-mobile">
                         <a href="/">
-                            <img src="img/logo.png" alt="OverClock">
+                            <img src="../img/logo.png" alt="OverClock">
                         </a>
                     </div>
                     <div class="flex-container menu-dir">
@@ -46,31 +46,31 @@
                 <section id="mobile-nav" class="black">
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Processadores</a>
+                            <a class="no-deco-white" href="/produtos/processador">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos/placa_mae">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos/placa_de_video">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Memórias</a>
+                            <a class="no-deco-white" href="/produtos/memoria">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Monitores</a>
+                            <a class="no-deco-white" href="/produtos/monitor">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos/mouse_teclado">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">HD</a>
+                            <a class="no-deco-white" href="/produtos/hd">HD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">SSD</a>
+                            <a class="no-deco-white" href="/produtos/ssd">SSD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos.html">Fontes</a>
+                            <a class="no-deco-white" href="produtos/fonte">Fontes</a>
                         </li>
                     </ul>
                 </section>
@@ -80,31 +80,31 @@
                 <div>
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Processadores</a>
+                            <a class="no-deco-white" href="/produtos/processador">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos/placa_mae">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos/placa_de_video">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Memórias</a>
+                            <a class="no-deco-white" href="/produtos/memoria">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Monitores</a>
+                            <a class="no-deco-white" href="/produtos/monitor">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos/mouse_teclado">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">HD</a>
+                            <a class="no-deco-white" href="/produtos/hd">HD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">SSD</a>
+                            <a class="no-deco-white" href="/produtos/ssd">SSD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos">Fontes</a>
+                            <a class="no-deco-white" href="produtos/fonte">Fontes</a>
                         </li>
                     </ul>
                 </div>
@@ -131,9 +131,9 @@
                     <div class="grid-container rodape-secao2-meio">
                         <div>
                             <h4>Formas de Pagamento</h4>
-                            <img src="img/boleto.png" alt="">
-                            <img src="img/hipercard.png" alt="">
-                            <img src="img/master.png" alt="">
+                            <img src="../img/boleto.png" alt="">
+                            <img src="../img/hipercard.png" alt="">
+                            <img src="../img/master.png" alt="">
                             <!-- <img src="img/paypal.jpg" alt=""> -->
                         </div>
                         <div>

@@ -285,7 +285,7 @@ body{
 /* Página LOGIN */
 
 .banner-login{
-    background-image: url(img/pexels-athena-2582932.jpg);
+    background-image: url(../img/pexels-athena-2582932.jpg);
     background-size: cover;
     background-attachment: fixed;
     min-height: 150px;

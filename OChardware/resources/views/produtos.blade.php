@@ -49,25 +49,40 @@
 
         </div>
         <div class="flex-container produtos">
-            <h2>Resultado para "Todos os Produtos"</h2>
+
+            @if($pesquisa)
+                <h2>Resultados para "{{$pesquisa}}"</h2>
+            @elseif($categoria)
+                <h2>Resultados para "{{$categoria}}"</h2>
+            @endif
+
             <div class="flex-container itens">
-                @for ($i = 0; $i < 6; $i++)
-                <div class="card">
-                    <div class="flex-container card-img">
-                        <a href="#">
-                            <img src="img/b450-aorus-pro-wifi-ddr4.jpg" alt="Overclock-teste">
-                        </a>
-                    </div>
-                    <div class="preco">
-                        <h3>Placa Mãe Gigabyte B450 AORUS PRO WIFI, Chipset B450, AMD AM4, ATX, DDR4</h3>
-                        <span>Placa Mãe Gigabyte B450 AORUS PRO WIFI, Chipset B450, AMD AM4, ATX, DDR4</span>
-                    </div>
-                    <div class="comprar">
-                        <span>R$999,99</span>
-                        <button class="bt-red">Comprar</button>
-                    </div>
-                </div>
-                @endfor
+
+                @if(count($produto) === 0 && $pesquisa)
+                    <h1>A pesquisa não encontrou resultados.</h1>
+                @elseif(count($produto) === 0)
+                    <h1>Não há produtos.</h1>
+                @else
+                    @foreach ($produto as $itens)
+                        <div class="card">
+                            <div class="flex-container card-img">
+                                <a href="/detalhes/{{$itens->id}}">
+                                    <img src="../img/produtos/{{$itens->foto}}" alt="Overclock-teste">
+                                </a>
+                            </div>
+                            <div class="preco">
+                                <h3>{{$itens->nome}}</h3>
+                                <span>{{$itens->nome}}</span>
+                            </div>
+                            <div class="comprar">
+                                <span>R${{$itens->preco}}</span>
+                                <button class="bt-red">Comprar</button>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
+
+
             </div>
         </div>
     </section>
