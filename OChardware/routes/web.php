@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\ProdutoController;
 use App\http\Controllers\UsuarioController;
+use App\Http\Controllers\CarrinhoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,11 +38,26 @@ Route::get('/create-produto',[ProdutoController::class, 'create']);
 
 Route::post('/produtos/create', [ProdutoController::class, 'store']);
 
+//Carrinho
+Route::get('/carrinho',[CarrinhoController::class, 'showCarrinho']);
+
+Route::get('/carrinho/{id}',[CarrinhoController::class, 'addCarrinho']);
 
 //Usuários
 
+//Criação, autenticação e logoff
 Route::get('/login',[UsuarioController::class, 'create']);
 
-Route::get('/entrar',[UsuarioController::class, 'authenticate']);
-
 Route::post('/registrar',[UsuarioController::class, 'store']);
+
+Route::post('/entrar',[UsuarioController::class, 'authenticate']);
+
+Route::get('/logout',[UsuarioController::class, 'logout']);
+
+//Rotas nível usuário
+
+Route::get('/perfil',[UsuarioController::class, 'perfil']);
+
+//Rotas nível Admin
+
+Route::get('/dashboard',[UsuarioController::class, 'dashboard']);

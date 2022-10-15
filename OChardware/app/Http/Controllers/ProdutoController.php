@@ -14,13 +14,18 @@ class ProdutoController extends Controller
         return view('welcome',['produto' => $produto]);
     }
 
+
     public function store(Request $request){
+
+        $valores = $request->all();
         $produto = new Produto;
 
-        $produto->nome = $request->nome;
-        $produto->categoria = $request->categoria;
-        $produto->preco = $request->preco;
-        $produto->descricao = $request->descricao;
+        // $produto->nome = $request->nome;
+        // $produto->categoria = $request->categoria;
+        // $produto->preco = $request->preco;
+        // $produto->descricao = $request->descricao;
+
+        $produto->fill($valores);
 
         if($request->hasFile('foto') && $request->file('foto')->isValid()){
             $requestImage = $request->foto;
@@ -34,9 +39,13 @@ class ProdutoController extends Controller
             return 0;
         }
 
-        $produto->save();
 
-        return redirect('/');
+        try {
+            $produto->save();
+            return redirect('/');
+        } catch (\Exception $e) {
+            //throw $th;
+        }
 
     }
 

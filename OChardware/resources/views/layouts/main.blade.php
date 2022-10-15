@@ -27,9 +27,59 @@
                         </form>
                     </div>
                     <div>
-                        <span>
-                            <a class="no-deco-white" href="/login"> Entre ou Cadastre-se</a>
-                        </span>
+
+                        @if(Auth::user())
+
+                            @if(Auth::user()->tipo == 'user')
+
+                                <div class="grid-container nav-direita">
+                                    <div class="carrinho">
+                                        <span>
+                                            <a class="no-deco-white" href="/carrinho">Carrinho</a>
+                                        </span>
+                                        <i class="fas fa-shopping-cart" ></i>
+                                    </div>
+                                    <div class="perfil">
+                                        <span>
+                                            <a class="no-deco-white" href="/perfil">{{Auth::user()->nome}}</a>
+                                        </span>
+                                    </div>
+                                    <div class="sair">
+                                        <span>
+                                            <a class="no-deco-white" href="/logout">Sair</a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            @endif
+                            @if(Auth::user()->tipo == 'adm')
+
+                                <div class="grid-container nav-direita">
+                                    <div class="carrinho">
+                                        <span>
+                                            {{Auth::user()->nome}}
+                                        </span>
+                                    </div>
+                                    <div class="perfil">
+                                        <span>
+                                            <a class="no-deco-white" href="/dashboard">Config</a>
+                                        </span>
+                                    </div>
+                                    <div class="sair">
+                                        <span>
+                                            <a class="no-deco-white" href="/logout">Sair</a>
+                                        </span>
+                                    </div>
+                                </div>
+
+                            @endif
+
+                        @else
+                            <span>
+                                <a class="no-deco-white" href="/login"> Entre ou Cadastre-se</a>
+                            </span>
+                        @endif
+
                     </div>
                 </div>
             </section>
@@ -70,7 +120,7 @@
                             <a class="no-deco-white" href="/produtos/ssd">SSD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos/fonte">Fontes</a>
+                            <a class="no-deco-white" href="/produtos/fonte">Fontes</a>
                         </li>
                     </ul>
                 </section>
@@ -104,13 +154,23 @@
                             <a class="no-deco-white" href="/produtos/ssd">SSD</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="produtos/fonte">Fontes</a>
+                            <a class="no-deco-white" href="/produtos/fonte">Fontes</a>
                         </li>
                     </ul>
                 </div>
             </section>
         </nav>
         <main>
+            @if($message = Session::get('err'))
+                <div class="flex-container secao">
+                    <h2>{{$message}}</h2>
+                </div>
+            @endif
+            @if($message = Session::get('ok'))
+                <div class="flex-container secao">
+                    <h2>{{$message}}</h2>
+                </div>
+            @endif
             @yield('conteudo')
         </main>
         <footer>

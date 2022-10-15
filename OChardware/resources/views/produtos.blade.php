@@ -63,23 +63,7 @@
                 @elseif(count($produto) === 0)
                     <h1>Não há produtos.</h1>
                 @else
-                    @foreach ($produto as $itens)
-                        <div class="card">
-                            <div class="flex-container card-img">
-                                <a href="/detalhes/{{$itens->id}}">
-                                    <img src="../img/produtos/{{$itens->foto}}" alt="Overclock-teste">
-                                </a>
-                            </div>
-                            <div class="preco">
-                                <h3>{{$itens->nome}}</h3>
-                                <span>{{$itens->nome}}</span>
-                            </div>
-                            <div class="comprar">
-                                <span>R${{$itens->preco}}</span>
-                                <button class="bt-red">Comprar</button>
-                            </div>
-                        </div>
-                    @endforeach
+                    @include('layouts._produtos')
                 @endif
 
 
