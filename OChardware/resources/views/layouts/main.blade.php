@@ -35,9 +35,10 @@
                                 <div class="grid-container nav-direita">
                                     <div class="carrinho">
                                         <span>
-                                            <a class="no-deco-white" href="/carrinho">Carrinho</a>
+                                            <a class="no-deco-white" href="/carrinho">
+                                                <i class="fas fa-shopping-cart" ></i> Carrinho
+                                            </a>
                                         </span>
-                                        <i class="fas fa-shopping-cart" ></i>
                                     </div>
                                     <div class="perfil">
                                         <span>

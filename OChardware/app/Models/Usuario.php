@@ -12,6 +12,15 @@ class Usuario extends Model implements Authenticatable
     protected $table = 'usuarios';
     protected $fillable = ['nome','cpf','email','senha','tipo'];
 
+    /**
+        * Get all of the prod_carrinho for the Usuario
+    */
+    public function prods_carrinho(){
+
+        return $this->hasMany(Prod_Carrinho::class, 'id_usuario');
+
+    }
+
     public function getAuthIdentifierName(){
         return 'email'; //identifica o nome do objeto autenticado
     }

@@ -7,14 +7,21 @@ use App\Models\Produto;
 
 class ProdutoController extends Controller
 {
+
+    //chamada de páginas
     public function index(){
 
         $produto = Produto::all();
 
-        return view('welcome',['produto' => $produto]);
+        return view('index',['produto' => $produto]);
+    }
+
+    public function create(){
+        return view('produtos.create');
     }
 
 
+    //chamadas CRUD
     public function store(Request $request){
 
         $valores = $request->all();
@@ -131,9 +138,6 @@ class ProdutoController extends Controller
 
     }
 
-    public function create(){
-        return view('produtos.create');
-    }
 
 }
 

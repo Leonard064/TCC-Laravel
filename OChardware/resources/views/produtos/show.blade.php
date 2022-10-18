@@ -16,7 +16,11 @@
                     <h3>R${{$produto->preco}}</h3>
                     <h4>Valor em pix/ à vista no cartão</h4>
                     <h4>10x de 99,90 sem juros</h4>
-                    <button class="bt-red">Comprar</button>
+                    <form action="/addCarrinho" method="post">
+                        @csrf
+                        <input type="hidden" name="id" value="{{$produto->id}}">
+                        <button class="bt-red">Comprar</button>
+                    </form>
                 </div>
             </div>
         </section>

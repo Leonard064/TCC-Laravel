@@ -13,8 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('carrinhos', function (Blueprint $table) {
-            $table->id();
+        Schema::table('prod__carrinhos', function (Blueprint $table) {
             $table->timestamps();
         });
     }
@@ -26,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('carrinhos');
+        Schema::table('prod__carrinhos', function (Blueprint $table) {
+            $table->dropColumn('timestamps');
+        });
     }
 };

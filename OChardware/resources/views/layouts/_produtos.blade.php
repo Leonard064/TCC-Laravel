@@ -11,7 +11,11 @@
             </div>
             <div class="comprar">
                 <span>R${{$produto->preco}}</span>
-                <button class="bt-red">Comprar</button>
+                <form action="/addCarrinho" method="post">
+                    @csrf
+                    <input type="hidden" name="id" value="{{$produto->id}}">
+                    <button class="bt-red">Comprar</button>
+                </form>
             </div>
         </div>
     @endforeach
