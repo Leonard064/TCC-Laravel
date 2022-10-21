@@ -41,7 +41,7 @@ class UsuarioController extends Controller
         try{
 
             //checa se já existe um email igual cadastrado no sistema
-            $dbUsuario = Usuario::where('email', $usuario->email)->first();
+            $dbUsuario = Usuario::where('login', $usuario->login)->first();
             if($dbUsuario){
                 $result = ['status' => 'err', 'message' => 'Credencial já existe no banco.'];
             }
@@ -67,10 +67,10 @@ class UsuarioController extends Controller
 
     public function authenticate(Request $request){
 
-        $login = $request->input('email');
+        $login = $request->input('login');
         $senha = $request->input('senha');
 
-        $credential = ['email' => $login, 'password'=> $senha];
+        $credential = ['login' => $login, 'password'=> $senha];
 
         //tenta logar o usuário
         if(Auth::attempt($credential)){

@@ -10,17 +10,27 @@
                     <img src="../img/produtos/{{$produto->foto}}" alt="OverClock">
                 </div>
                 <div class="flex-container detalhes-nome">
-                    <h2>{{$produto->nome}}</h2>
-                    <hr>
-                    <h3>Produto disponível</h3>
-                    <h3>R${{$produto->preco}}</h3>
-                    <h4>Valor em pix/ à vista no cartão</h4>
-                    <h4>10x de 99,90 sem juros</h4>
-                    <form action="/addCarrinho" method="post">
-                        @csrf
-                        <input type="hidden" name="id" value="{{$produto->id}}">
-                        <button class="bt-red">Comprar</button>
-                    </form>
+                    @if($produto->quantidade <= 0)
+
+                        <h2>{{$produto->nome}}</h2>
+                        <h3>OPS! Não possuimos estoque desse produto.</h3>
+
+                    @else
+
+                        <h2>{{$produto->nome}}</h2>
+                        <hr>
+                        <h3>{{$produto->quantidade}} Peças disponíveis</h3>
+                        <h3>R${{$produto->preco}}</h3>
+                        <h4>Valor em pix/ à vista no cartão</h4>
+                        <h4>10x de 99,90 sem juros</h4>
+                        <form action="/addCarrinho" method="post">
+                            @csrf
+                            <input type="hidden" name="id" value="{{$produto->id}}">
+                            <button class="bt-red">Comprar</button>
+                        </form>
+
+                    @endif
+
                 </div>
             </div>
         </section>

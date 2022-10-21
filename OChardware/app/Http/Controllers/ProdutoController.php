@@ -34,25 +34,29 @@ class ProdutoController extends Controller
 
         $produto->fill($valores);
 
-        if($request->hasFile('foto') && $request->file('foto')->isValid()){
-            $requestImage = $request->foto;
-            $extensao = $requestImage->extension();
-            $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+            if($request->hasFile('foto') && $request->file('foto')->isValid()){
+                $requestImage = $request->foto;
+                $extensao = $requestImage->extension();
+                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
 
-            $requestImage->move(public_path('img/produtos'),$nomeFoto);
+                $requestImage->move(public_path('img/produtos'),$nomeFoto);
 
-            $produto->foto = $nomeFoto;
-        }else{
-            return 0;
-        }
+                $produto->foto = $nomeFoto;
+            }else{
+                return 0;
+            }
 
 
-        try {
-            $produto->save();
-            return redirect('/');
-        } catch (\Exception $e) {
-            //throw $th;
-        }
+                try {
+
+                    $produto->save();
+                    return redirect('/');
+
+                } catch (\Exception $e) {
+
+                    echo $th->getMessage();
+
+                }
 
     }
 

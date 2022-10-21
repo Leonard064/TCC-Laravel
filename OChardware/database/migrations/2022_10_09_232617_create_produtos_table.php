@@ -21,6 +21,12 @@ return new class extends Migration
             $table->decimal('preco', 10,2);
             $table->text('descricao');
             $table->string('foto');
+            $table->float('largura');
+            $table->float('altura');
+            $table->float('comprimento');
+            $table->float('peso');
+            $table->integer('quantidade');
+
         });
     }
 

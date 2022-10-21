@@ -27,9 +27,15 @@
 
             <label for="descricao">Descrição: </label>
             <textarea name="descricao" id="descricao" cols="80" rows="10"></textarea>
-
+            <br>
             <label for="foto">Imagem:</label>
             <input type="file" name="foto" id="foto">
+            <br>
+            <input type="text" name="largura" id="largura" placeholder="largura" class="input-full">
+            <input type="text" name="altura" id="altura" placeholder="altura" class="input-full">
+            <input type="text" name="peso" id="peso" placeholder="peso" class="input-full">
+            <input type="text" name="comprimento" id="comprimento" placeholder="comprimento" class="input-full">
+            <input type="text" name="quantidade" id="quantidade" placeholder="quantidade" class="input-full">
 
             <button class="bt-red">Adicionar</button>
         </form>

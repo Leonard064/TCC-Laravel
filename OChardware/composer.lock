@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "ccbd816a07b206f971042295b899d1ba",
+    "content-hash": "802a5ba996b902e9d5156494e514a876",
     "packages": [
         {
             "name": "brick/math",
@@ -432,6 +432,60 @@
                 }
             ],
             "time": "2022-06-18T20:57:19+00:00"
+        },
+        {
+            "name": "escapework/frete",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/EscapeWork/Frete.git",
+                "reference": "15d707677b856e79eed41a445de9007a30ace209"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/EscapeWork/Frete/zipball/15d707677b856e79eed41a445de9007a30ace209",
+                "reference": "15d707677b856e79eed41a445de9007a30ace209",
+                "shasum": ""
+            },
+            "require": {
+                "guzzlehttp/guzzle": "~5.0|~6.0|~7.0",
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpspec/phpspec": "~2.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "0.5-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "EscapeWork\\Frete\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Luís Dalmolin",
+                    "email": "luis.nh@gmail.com"
+                },
+                {
+                    "name": "Eduardo Henrique Kasper",
+                    "email": "ehkasper@gmail.com"
+                }
+            ],
+            "description": "Library pra cálculo de frete",
+            "support": {
+                "issues": "https://github.com/EscapeWork/Frete/issues",
+                "source": "https://github.com/EscapeWork/Frete/tree/1.0.1"
+            },
+            "time": "2022-08-24T10:56:17+00:00"
         },
         {
             "name": "fruitcake/php-cors",

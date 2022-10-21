@@ -10,7 +10,7 @@ class Usuario extends Model implements Authenticatable
 {
     use HasFactory;
     protected $table = 'usuarios';
-    protected $fillable = ['nome','cpf','email','senha','tipo'];
+    protected $fillable = ['login','nome','sobrenome','cpf','email','senha','tipo'];
 
     /**
         * Get all of the prod_carrinho for the Usuario
@@ -22,10 +22,10 @@ class Usuario extends Model implements Authenticatable
     }
 
     public function getAuthIdentifierName(){
-        return 'email'; //identifica o nome do objeto autenticado
+        return 'login'; //identifica o nome do objeto autenticado
     }
     public function getAuthIdentifier(){
-        return $this->email; //retorna o identificador do usuário
+        return $this->login; //retorna o identificador do usuário
     }
     public function getAuthPassword(){
         return $this->senha; //retorna a senha

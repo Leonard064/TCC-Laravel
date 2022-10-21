@@ -42,7 +42,7 @@
                                     </div>
                                     <div class="perfil">
                                         <span>
-                                            <a class="no-deco-white" href="/perfil">{{Auth::user()->nome}}</a>
+                                            <a class="no-deco-white" href="/perfil">{{Auth::user()->login}}</a>
                                         </span>
                                     </div>
                                     <div class="sair">
@@ -215,6 +215,7 @@
         </footer>
     </body>
 </html>
+    @stack('scripts')
 <script>
     function funcao(){
         var x = document.getElementById('mobile-nav')
@@ -227,4 +228,5 @@
             x.style.display = "block"
         }
     }
+
 </script>

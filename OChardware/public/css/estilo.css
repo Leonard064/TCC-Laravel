@@ -289,7 +289,7 @@ body{
 }
 
 .nav-lateral{
-    min-height: 100vh;
+    /* min-height: 100vh; */
     flex-direction: column;
     align-items: center;
     margin: 2vh;

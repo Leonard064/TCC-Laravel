@@ -8,32 +8,21 @@
             <div class="flex-container nav-lateral">
                 <h2>Busca Específica</h2>
                 <form action="" method="post">
-                    <h3>Seção</h3>
-                    <input type="checkbox" name="" id="processador"><label for="processador">Processador</label><br>
-                    <input type="checkbox" name="" id="placa-mae"><label for="placa-mae">Placa-Mãe</label><br>
-                    <input type="checkbox" name="" id="placa-de-video"><label for="placa-de-video">Placa de Vídeo</label><br>
-                    <input type="checkbox" name="" id="memoria"><label for="memoria">Memória</label><br>
-                    <input type="checkbox" name="" id="monitor"><label for="monitor">Monitor</label><br>
-                    <input type="checkbox" name="" id="mouse-teclado"><label for="mouse-teclado">Mouse e Teclado</label><br>
-                    <input type="checkbox" name="" id="hd-ssd"><label for="hd-ssd">HD e SSD</label><br>
-                    <input type="checkbox" name="" id="fonte"><label for="fonte">Fonte</label><br>
 
                     <h3>Marcas</h3>
-                    <input type="checkbox" name="" id="amd"><label for="amd">AMD</label><br>
-                    <input type="checkbox" name="" id="intel"><label for="intel">Intel</label><br>
-                    <input type="checkbox" name="" id="nvidia"><label for="nvidia">Nvidia</label><br>
-                    <input type="checkbox" name="" id="asus"><label for="asus">Asus</label><br>
-                    <input type="checkbox" name="" id="palit"><label for="palit">Palit</label><br>
-                    <input type="checkbox" name="" id="powercolor"><label for="powercolor">Powercolor</label><br>
-                    <input type="checkbox" name="" id="gigabyte"><label for="gigabyte">Gigabyte</label><br>
-                    <input type="checkbox" name="" id="super-frame"><label for="super-frame">Super Frame</label><br>
-                    <input type="checkbox" name="" id="kingston"><label for="kingston">Kingston</label><br>
+                    @for ($i = 0; $i < 9; $i++)
+                        <input type="radio" name="marca" id="marca"><label for="marca">Marca {{$i}}</label><br>
+                    @endfor
 
-                    <h3>Sub-marcas</h3>
-
-                    <input type="checkbox" name="" id="aorus"><label for="aorus">AORUS</label><br>
-                    <input type="checkbox" name="" id="rog"><label for="rog">ROG</label><br>
-                    <input type="checkbox" name="" id="hyperx"><label for="hyperx">HyperX</label><br>
+                    <h3>Seção</h3>
+                    <input type="radio" name="processador" id="processador"><label for="processador">Processador</label><br>
+                    <input type="radio" name="placa-mae" id="placa-mae"><label for="placa-mae">Placas-Mãe</label><br>
+                    <input type="radio" name="placa-de-video" id="placa-de-video"><label for="placa-de-video">Placas de Vídeo</label><br>
+                    <input type="radio" name="" id="memoria"><label for="memoria">Memória</label><br>
+                    <input type="radio" name="" id="monitor"><label for="monitor">Monitor</label><br>
+                    <input type="radio" name="" id="mouse-teclado"><label for="mouse-teclado">Mouse e Teclado</label><br>
+                    <input type="radio" name="" id="hd-ssd"><label for="hd-ssd">HD e SSD</label><br>
+                    <input type="radio" name="" id="fonte"><label for="fonte">Fonte</label><br>
 
                     <h3>Preço</h3>
 
