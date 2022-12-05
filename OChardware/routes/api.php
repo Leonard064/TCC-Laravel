@@ -19,4 +19,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/frete', [FreteController::class,'calculoFrete']);
+Route::post('/frete', [FreteController::class,'calculoFrete']);
