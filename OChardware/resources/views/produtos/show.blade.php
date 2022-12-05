@@ -48,17 +48,73 @@
 
         <div class="grid-container detalhes-comentarios-avaliacao margem">
             <div class="detalhes-comentarios">
-                <h4>comentários</h4>
+                <h3>Comentários</h3>
+
+                @if(count($avaliacao) > 0)
+
+                    @foreach ($avaliacao as $avaliacao)
+                        <div class="grid-container detalhes-foto-nome">
+                            <div>
+
+                                @if($avaliacao->gostou)
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                @else
+                                    <i class="fa-solid fa-thumbs-down"></i>
+                                @endif
+
+                            </div>
+                            <div>
+                                <h4>{{$avaliacao->nome}} {{$avaliacao->sobrenome}}</h4>
+                                <p>{{$avaliacao->texto_avaliacao}}</p>
+                            </div>
+                        </div>
+                    @endforeach
+
+                    {{-- @for ($i = 0; $i < count($avaliacao); $i++)
+                        <div class="grid-container detalhes-foto-nome">
+                            <div>
+
+                                @if($avaliacao[$i]->gostou)
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                @else
+                                    <i class="fa-solid fa-thumbs-down"></i>
+                                @endif
+
+                            </div>
+                            <div>
+                                <h4>{{$teste[$i][0]}}</h4>
+                                <p>{{$avaliacao[$i]->texto_avaliacao}}</p>
+                            </div>
+                        </div>
+                    @endfor --}}
+
+
+                @else
+                    <h4>Ainda não há avaliações para o produto</h4>
+                @endif
+
             </div>
-            <div class="detalhes-avaliacao">
-                <h4>Gostou do produto? deixe sua avaliação</h4>
-                <form action="">
-                    <input type="text" name="" id="" class="input-full" placeholder="Nome"><br>
-                    <input type="text" name="" id="" class="input-full" placeholder="Email"><br>
-                    <label for="texto">Escreva aqui: (máx. 150 caracteres)</label>
-                    <textarea name="" id="texto" cols="80" rows="10"></textarea>
-                </form>
-            </div>
+
+            @if(Auth::check())
+                <div class="detalhes-avaliacao">
+                    <h3>Gostou do produto?</h3>
+                    <form action="/avaliacoes/create" method="post">
+                    @csrf
+
+                        {{-- manda os ids de cliente e produto --}}
+                        <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
+                        <input type="hidden" name="id_produto" value="{{$produto->id}}">
+
+                        <input type="radio" name="gostou" value="1" >Adorei!<br>
+                        <input type="radio" name="gostou" value="0" >Odiei!<br>
+                        <label for="texto">Deixe sua avaliação: (máx. 100 caracteres)</label>
+                        <textarea name="texto_avaliacao" id="texto" cols="80" rows="10"></textarea>
+                        <button class="bt-red">Enviar</button>
+
+                    </form>
+                </div>
+            @endif
+
         </div>
 
     </section>
