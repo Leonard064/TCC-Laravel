@@ -4,6 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Produto;
+use App\Models\Usuario;
+use App\Models\Categoria;
+use App\Models\Marca;
+use App\Models\Avaliacao;
 
 class ProdutoController extends Controller
 {
@@ -17,7 +21,11 @@ class ProdutoController extends Controller
     }
 
     public function create(){
-        return view('produtos.create');
+
+        $categoria = Categoria::all();
+        $marca = Marca::all();
+
+        return view('produtos.create', ['categoria' => $categoria ,'marca' => $marca]);
     }
 
 
@@ -54,7 +62,7 @@ class ProdutoController extends Controller
 
                 } catch (\Exception $e) {
 
-                    echo $th->getMessage();
+                    echo $e->getMessage();
 
                 }
 
@@ -85,60 +93,47 @@ class ProdutoController extends Controller
     //     return view('produtos', ['produto' => $produto, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
     // }
 
-    public function showProdutos($categoria = 0){
+    public function showProdutos($id_categoria = 0){
         $pesquisa = request('pesquisa');
+        $marca = Marca::all();
 
         if($pesquisa){
-            $result = 0;
 
             $produto = Produto::where('nome','like','%'.$pesquisa.'%')->get();
-        }elseif($categoria){
+            $categoria = Categoria::all();
+
+        }elseif($id_categoria){
+
             $pesquisa = 0;
-            $produto = Produto::where('categoria', $categoria)->get();
-
-            switch($categoria){
-                case 'processador':
-                    $result = 'Processadores';
-                    break;
-                case 'placa_mae':
-                    $result = 'Placas-Mãe';
-                    break;
-                case 'placa_de_video':
-                    $result = 'Placas de Vídeo';
-                    break;
-                case 'memoria':
-                    $result = 'Memórias';
-                    break;
-                case 'monitor':
-                    $result = 'Monitores';
-                    break;
-                case 'mouse_teclado':
-                    $result = 'Mouse e Teclado';
-                    break;
-                case 'hd':
-                    $result = 'HDs';
-                    break;
-                case 'ssd':
-                    $result = 'SSDs';
-                    break;
-                case 'fonte':
-                    $result = 'Fontes';
-                    break;
-            }
-
+            $produto = Produto::where('id_categoria', $id_categoria)->get();
+            $categoria = Categoria::where('id', $id_categoria)->get();
 
         }else{
             return 0;
         }
 
-        return view('produtos', ['produto' => $produto, 'categoria' => $result, 'pesquisa' => $pesquisa]);
+        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
 
     }
+
+
 
     public function show($id){
         $produto = Produto::findOrFail($id);
 
-        return view('produtos.show',['produto' => $produto]);
+        $avaliacao = Avaliacao::where('id_produto', $id)
+                                ->join('usuarios','avaliacoes.id_usuario', '=', 'usuarios.id')
+                                ->select('avaliacoes.*','usuarios.nome','usuarios.sobrenome')
+                                ->get();
+
+        // $teste = [];
+
+        // foreach($avaliacao as $avaliacoes){
+        //     array_push($teste, Usuario::where('id', $avaliacoes->id_usuario)->pluck('nome'));
+        // }
+
+
+        return view('produtos.show',['produto' => $produto, 'avaliacao' => $avaliacao]);
 
     }
 
