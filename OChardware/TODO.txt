@@ -1,21 +1,29 @@
 A fazer:
 
-- frete (carrinho)
-- pagamento (carrinho)
+Carrinho e Checkout:
 
-- pedidos
+- frete (carrinho) -> funcional parcial
+    -funcionar com Ajax
 
-- avaliacoes
+- pagamento (carrinho) -> funcional parcial
+    - funcionar com gateway de pagamento
+
+- criação de 2 forms em checkout : com e sem endereço - parcial pronto
+    - criar o com endereço
+
+
+Index e Produtos:
 
 - pesquisa especifica (produtos)
 
-- historico de compras (cliente)
 
-- historico de compras (admin)
+Users:
 
-- tentar trabalhar com inner join
+- alteração de cadastros: usuário
 
-- descobrir como pegar id recem criado
+- inserção de foto de perfil: usuário
+
+- alteração de status de compra: adm
 
 
 
