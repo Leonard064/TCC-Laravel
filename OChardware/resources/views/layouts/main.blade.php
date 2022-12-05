@@ -26,62 +26,74 @@
                             <input type="text" name="pesquisa" placeholder="Pesquise por produtos...">
                         </form>
                     </div>
-                    <div>
 
                         @if(Auth::user())
 
                             @if(Auth::user()->tipo == 'user')
 
-                                <div class="grid-container nav-direita">
-                                    <div class="carrinho">
-                                        <span>
-                                            <a class="no-deco-white" href="/carrinho">
-                                                <i class="fas fa-shopping-cart" ></i> Carrinho
-                                            </a>
-                                        </span>
-                                    </div>
-                                    <div class="perfil">
-                                        <span>
-                                            <a class="no-deco-white" href="/perfil">{{Auth::user()->login}}</a>
-                                        </span>
-                                    </div>
-                                    <div class="sair">
-                                        <span>
-                                            <a class="no-deco-white" href="/logout">Sair</a>
-                                        </span>
-                                    </div>
+                                <div class="grid-container" id="area-nav">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-user red"></i>
+                                    </span>
+                                    <span class="user">
+                                        {{Auth::user()->login}}
+                                    </span>
+                                    <span class="perfil">
+                                        <a class="no-deco-white" href="/perfil"> Perfil</a>
+                                    </span>
+                                    <span class="sair">
+                                        <a class="no-deco-white" href="/logout"> Sair</a>
+                                    </span>
+                                </div>
+
+                                <div id="cart">
+
+                                    <a href="/carrinho">
+                                        <button class="bt-red"><i class="fas fa-shopping-cart" ></i> Carrinho</button>
+                                    </a>
+
                                 </div>
 
                             @endif
                             @if(Auth::user()->tipo == 'adm')
 
-                                <div class="grid-container nav-direita">
-                                    <div class="carrinho">
-                                        <span>
-                                            {{Auth::user()->nome}}
-                                        </span>
-                                    </div>
-                                    <div class="perfil">
-                                        <span>
-                                            <a class="no-deco-white" href="/dashboard">Config</a>
-                                        </span>
-                                    </div>
-                                    <div class="sair">
-                                        <span>
-                                            <a class="no-deco-white" href="/logout">Sair</a>
-                                        </span>
-                                    </div>
+                                <div class="grid-container" id="area-nav">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-user red"></i>
+                                    </span>
+                                    <span class="user">
+                                        Administrador
+                                    </span>
+                                    <span class="perfil">
+                                        <a class="no-deco-white" href="/dashboard"> Configurações</a>
+                                    </span>
+                                    <span class="sair">
+                                        <a class="no-deco-white" href="/logout"> Sair</a>
+                                    </span>
                                 </div>
 
                             @endif
 
                         @else
-                            <span>
-                                <a class="no-deco-white" href="/login"> Entre ou Cadastre-se</a>
-                            </span>
+
+                                <div class="grid-container" id="area-nav">
+                                    <span class="icon">
+                                        <i class="fa-solid fa-user red"></i>
+                                    </span>
+                                    <span class="user">
+                                        Bem-vindo!
+                                    </span>
+                                    <span class="perfil">
+                                        <a class="no-deco-white" href="/login"> Entrar</a>
+                                    </span>
+                                    <span class="sair">
+                                        <a class="no-deco-white" href="/cadastre-se"> Cadastre</a>
+                                    </span>
+                                </div>
+
+
                         @endif
 
-                    </div>
                 </div>
             </section>
                 <section class="flex-container topo-mobile black">
@@ -97,31 +109,28 @@
                 <section id="mobile-nav" class="black">
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="/produtos/processador">Processadores</a>
+                            <a class="no-deco-white" href="/produtos/3">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/placa_mae">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos/4">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/placa_de_video">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos/5">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/memoria">Memórias</a>
+                            <a class="no-deco-white" href="/produtos/6">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/monitor">Monitores</a>
+                            <a class="no-deco-white" href="/produtos/7">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/mouse_teclado">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos/8">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/hd">HD</a>
+                            <a class="no-deco-white" href="/produtos/9">HDs e SSDs</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/ssd">SSD</a>
-                        </li>
-                        <li>
-                            <a class="no-deco-white" href="/produtos/fonte">Fontes</a>
+                            <a class="no-deco-white" href="/produtos/10">Fontes</a>
                         </li>
                     </ul>
                 </section>
@@ -131,31 +140,28 @@
                 <div>
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="/produtos/processador">Processadores</a>
+                            <a class="no-deco-white" href="/produtos/3">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/placa_mae">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos/4">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/placa_de_video">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos/5">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/memoria">Memórias</a>
+                            <a class="no-deco-white" href="/produtos/6">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/monitor">Monitores</a>
+                            <a class="no-deco-white" href="/produtos/7">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/mouse_teclado">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos/8">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/hd">HD</a>
+                            <a class="no-deco-white" href="/produtos/9">HDs e SSDs</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/ssd">SSD</a>
-                        </li>
-                        <li>
-                            <a class="no-deco-white" href="/produtos/fonte">Fontes</a>
+                            <a class="no-deco-white" href="/produtos/10">Fontes</a>
                         </li>
                     </ul>
                 </div>
@@ -163,12 +169,12 @@
         </nav>
         <main>
             @if($message = Session::get('err'))
-                <div class="flex-container secao">
+                <div class="flex-container secao black">
                     <h2>{{$message}}</h2>
                 </div>
             @endif
             @if($message = Session::get('ok'))
-                <div class="flex-container secao">
+                <div class="flex-container secao black">
                     <h2>{{$message}}</h2>
                 </div>
             @endif
@@ -198,7 +204,7 @@
                             <!-- <img src="img/paypal.jpg" alt=""> -->
                         </div>
                         <div>
-                            <h5>2021/2022 - Leonard064.</h5>
+                            <h5>2022/2023 - Leonard064.</h5>
                         </div>
                     </div>
                     <div class="grid-container rodape-secao2-direita">
