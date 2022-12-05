@@ -1,0 +1,21 @@
+A fazer:
+
+- frete (carrinho)
+- pagamento (carrinho)
+
+- pedidos
+
+- avaliacoes
+
+- pesquisa especifica (produtos)
+
+- historico de compras (cliente)
+
+- historico de compras (admin)
+
+- tentar trabalhar com inner join
+
+- descobrir como pegar id recem criado
+
+
+
