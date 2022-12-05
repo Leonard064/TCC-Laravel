@@ -5,11 +5,47 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Produto;
 use App\Models\Prod_Carrinho;
+use App\Models\Endereco;
 use Auth;
 
 
 class Prod_carrinhoController extends Controller
 {
+
+    /* função de pegar os itens do carrinho no banco
+        usada na página de carrinho e checkout */
+    public function carrinhoItens(){
+        try {
+
+            $prod_carrinho = Prod_Carrinho::where('id_usuario', Auth::user()->id)
+                                            ->join('produtos','prod__carrinhos.id_produto', '=','produtos.id')
+                                            ->select('prod__carrinhos.*','produtos.nome','produtos.preco','produtos.foto')
+                                            ->get();
+
+
+            // //isso aqui tudo é só jesus na causa
+            // $prod_carrinho = Prod_Carrinho::where('id_usuario', Auth::user()->id)->get(); //pega todos os itens do carrinho do usuário
+
+            //     $carrinho = []; //inicia um array vazio.
+
+            //     //pra cada item do carrinho ele busca o produto especifico...
+            //     foreach($prod_carrinho as $item_carrinho){
+
+            //         //...e tranforma o resultado em array(e coloca dentro de outro array)
+            //         array_push($carrinho, Produto::where('id', $item_carrinho->id_produto)->get()->toArray());
+            //     }
+
+
+             return ['prod_carrinho' => $prod_carrinho];
+
+
+        }catch (\Throwable $th) {
+            return $th->getMessage();
+
+        }
+    }
+
+
 
     //chamada de páginas
     public function showCarrinho(){
@@ -18,22 +54,45 @@ class Prod_carrinhoController extends Controller
         if(Auth::check()){
             try {
 
-                //isso aqui tudo é só jesus na causa
-                $prod_carrinho = Prod_Carrinho::where('id_usuario', Auth::user()->id)->get(); //pega todos os itens do carrinho do usuário
-
-                    $carrinho = []; //inicia um array vazio.
-
-                    //pra cada item do carrinho ele busca o produto especifico...
-                    foreach($prod_carrinho as $item_carrinho){
-
-                        //...e tranforma o resultado em array(e coloca dentro de outro array)
-                        array_push($carrinho, Produto::where('id', $item_carrinho->id_produto)->get()->toArray());
-                    }
-
-
-                return view('carrinho.carrinho', ['carrinho' => $carrinho, 'prod_carrinho' => $prod_carrinho]);
+                return view('carrinho.carrinho',$this->carrinhoItens());
 
             }catch (\Throwable $th) {
+
+                echo $th->getMessage();
+
+            }
+
+        }else{
+            return redirect('/');
+
+        }
+
+    }
+
+
+
+    public function showCheckout(Request $request){
+        if(Auth::check()){
+            try {
+
+                $enderecos = Endereco::where('id_usuario', \Auth::user()->id)->get();
+
+                $frete = $request->frete;
+
+                if($frete == 'sedex'){
+                    $valor_frete = 27.00;
+                    $total = $request->total + $valor_frete;
+                }else{
+                    $valor_frete = 14.90;
+                    $total = $request->total + $valor_frete;
+                }
+
+
+                //$this->carrinhoItens() é a chamada da função carrinhoItens
+                return view('carrinho.checkout',$this->carrinhoItens(),['enderecos' => $enderecos ,'frete' => $frete, 'valor_frete'=> $valor_frete, 'total' => $total]);
+
+            }catch (\Throwable $th) {
+
                 echo $th->getMessage();
 
             }
