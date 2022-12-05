@@ -12,10 +12,12 @@ class FreteController extends Controller
 {
 
     //API de retorno de fretes
-    public function calculoFrete(){
+    public function calculoFrete(Request $request){
 
         $teste = new PrecoPrazo();
-        $teste->setCodigoServico(Data::SEDEX)
+        $teste->setCodigoServico([Data::SEDEX, Data::PAC])
+                ->setCodigoEmpresa('08082650')
+                ->setSenha('564321')
                 ->setCepOrigem('07500000')
                 ->setCepDestino('21030001')
                 ->setComprimento(30)
@@ -27,36 +29,9 @@ class FreteController extends Controller
             try {
                 $result = $teste->calculate();
 
-                //dd($result['cServico']['Valor'], $result['cServico']['PrazoEntrega']);
-
-            } catch (FreteException $e) {
-                echo $e->getMessage();
-                echo $e->getCode();
-            }
-
-        return response()->json([
-            'valor' => $result['cServico']['Valor'],
-            'dias' =>  $result['cServico']['PrazoEntrega'],
-        ]);
-
-    }
-
-    public function teste(){
-
-        $teste = new PrecoPrazo();
-        $teste->setCodigoServico(Data::SEDEX)
-                ->setCepOrigem('07500000')
-                ->setCepDestino('21030001')
-                ->setComprimento(30)
-                ->setAltura(30)
-                ->setLargura(30)
-                ->setDiametro(30)
-                ->setPeso(0.5);
-
-            try {
-                $result = $teste->calculate();
-
-                dd($result['cServico']['Valor'], $result['cServico']['PrazoEntrega']);
+                return response()->json([
+                    'data' => $result['cServico']
+                ]);
 
             } catch (FreteException $e) {
                 echo $e->getMessage();
@@ -64,4 +39,5 @@ class FreteController extends Controller
             }
 
     }
+
 }
