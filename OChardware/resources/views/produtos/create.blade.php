@@ -6,22 +6,36 @@
     <section class="flex-container form">
         <form action="/produtos/create" method="POST" enctype="multipart/form-data">
             @csrf
-            <!--input type="text" name="nome" id="nome" placeholder="Nome" class="input-full"-->
 
             <input type="text" name="nome" id="nome" placeholder="nome" class="input-full">
 
             <label for="categoria">Categoria</label>
-            <select name="categoria" id="categoria" class="input-full">
-                <option value="processador">Processadores</option>
-                <option value="placa_mae">Placas-Mãe</option>
-                <option value="placa_de_video">Placas de Vídeo</option>
-                <option value="memoria">Memórias</option>
-                <option value="monitor">Monitores</option>
-                <option value="mouse_teclado">Mouse e Teclado</option>
-                <option value="hd">HD</option>
-                <option value="ssd">SSD</option>
-                <option value="fonte">Fontes</option>
-            </select>
+
+                @if(count($categoria)>0)
+
+                    <select name="id_categoria" id="id_categoria" class="input-full">
+                        @foreach ($categoria as $categorias)
+                            <option value="{{$categorias->id}}" name="">{{$categorias->nome}}</option>
+                        @endforeach
+                    </select>
+
+                @else
+                    <h3>Não há categorias</h3>
+                @endif
+
+
+                <label for="marca">Marca</label>
+                    @if(count($marca)>0)
+
+                    <select name="id_marca" id="id_marca" class="input-full">
+                        @foreach ($marca as $marcas)
+                            <option value="{{$marcas->id}}">{{$marcas->nome}}</option>
+                        @endforeach
+                    </select>
+                    @else
+                    <h3>Não há marcas</h3>
+                    @endif
+
 
             <input type="text" name="preco" id="preco" placeholder="Preço" class="input-full">
 
