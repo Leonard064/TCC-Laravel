@@ -47,21 +47,6 @@ body{
     height: 100%;
 }
 
-/* menu direita da navbar */
-
-.nav-direita{
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-    grid-column-gap: 0px;
-    grid-row-gap: 0px;
-}
-
-.carrinho { grid-area: 1 / 1 / 2 / 3; }
-.usuario { grid-area: 2 / 1 / 3 / 2; }
-.sair { grid-area: 2 / 2 / 3 / 3; }
-
-
-
 /* TOPO MOBILE */
 
 .topo-mobile{
@@ -97,6 +82,9 @@ body{
 
 /* ----------------- */
 
+/* Header */
+
+/* barra de pesquisa */
 #topo-pesquisa{
     flex-grow: 10;
     box-sizing: border-box;
@@ -112,6 +100,45 @@ body{
 .topo div{
     margin: 10px 20px;
 }
+
+/* área user - carrinho */
+
+#opcoes{
+    /* flex-direction: row; */
+    grid-template-columns: 1fr 1fr;
+    max-width: 600px;
+    min-width: 150px;
+}
+
+#area-nav{
+    margin: 10px 50px;
+    grid-template-columns: 1fr 1fr 1fr;
+    column-gap: 20px;
+    row-gap: 10px;
+    max-width: 300px;
+}
+
+.user{
+    grid-column: 2/span 2;
+}
+
+.icon{
+    grid-row: 1/ span 2;
+}
+
+.icon i{
+    font-size: 35px;
+}
+
+#cart{
+    grid-template-columns: 50px 1fr;
+    margin: 10px;
+    width: 150px;
+    align-items: center;
+}
+
+
+/* NAV */
 
 .navegacao{
     justify-content: center;
@@ -178,8 +205,6 @@ body{
 .secao{
     justify-content: center;
     align-items: center;
-    background: #e00009;
-    color: #fff;
 }
 
 .itens{
@@ -201,7 +226,7 @@ body{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 2fr 1fr;
-    width: 300px;
+    width: 250px;
     height: 450px;
     border-radius: 20px;
     background: #d6d6d6;
@@ -210,8 +235,8 @@ body{
 }
 
 .card-img{
-    min-width: 300px;
-    min-height: 250px;
+    min-width: 250px;
+    min-height: 200px;
     justify-content: center;
     margin-top: 5px;
 }
@@ -470,6 +495,10 @@ body{
 .black{
     background: #212121;
     color: #fff;
+}
+
+.red{
+    color: #e00009;
 }
 
 /* fontes */
