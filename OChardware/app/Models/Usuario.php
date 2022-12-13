@@ -10,7 +10,7 @@ class Usuario extends Model implements Authenticatable
 {
     use HasFactory;
     protected $table = 'usuarios';
-    protected $fillable = ['login','nome','sobrenome','cpf','email','senha','tipo'];
+    protected $fillable = ['login','nome','sobrenome','cpf','email','foto','senha','tipo'];
 
     /**
         * Get all of the prod_carrinho for the Usuario

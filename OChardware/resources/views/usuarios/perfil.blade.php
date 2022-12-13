@@ -7,7 +7,7 @@
         <section class="detalhes-topo">
             <div class="grid-container detalhes-foto-nome margem">
                 <div class="flex-container detalhes-foto">
-                    <img src="img/blank-profile-picture-g03979cc6f_640.png" alt="Image by Stephanie Edwards pixabay.com">
+                    <img src="img/usuarios/{{Auth::user()->foto}}" alt="Perfil">
                 </div>
                 <div class="flex-container detalhes-nome">
                     <h2>{{Auth::user()->nome}} {{Auth::user()->sobrenome}}</h2>

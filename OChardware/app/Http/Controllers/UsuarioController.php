@@ -52,33 +52,53 @@ class UsuarioController extends Controller
         $usuario = new Usuario;
         $usuario->fill($valores);
 
-        $usuario->senha = Hash::make($request->senha); //criptografa a senha
+            /* Checa se o usuário especificou uma foto no ato de cadastro */
+            if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
-        $usuario->tipo = 'user'; //todos os cadastros diretos do site são 'users'
+                $requestImage = $request->foto;
+                $extensao = $requestImage->extension();
+                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
 
-        try{
+                $requestImage->move(public_path('img/usuarios'),$nomeFoto);
 
-            //checa se já existe um email igual cadastrado no sistema
-            $dbUsuario = Usuario::where('login', $usuario->login)->first();
-            if($dbUsuario){
+                $usuario->foto = $nomeFoto;
 
-                $request->session()->flash('err', 'Credencial já existe no banco.');
+            }else{ //caso não, ele salvará a foto "default"
+
+               $usuario->foto = 'foto-padrao.png';
 
             }
 
-                DB::beginTransaction();
-                $usuario->save();
-                DB::commit();
 
-                return $this->authenticate($request); //chama a função de login - e manda os campos preenchidos no cadastro
+            $usuario->senha = Hash::make($request->senha); //criptografa a senha
 
-        }catch(\Exception $e){
+            $usuario->tipo = 'user'; //todos os cadastros diretos do site são 'users'
 
-            echo $e->getMessage();
-            DB::rollback();
 
-            $request->session()->flash('err', 'Usuário não pode ser cadastrado');
-        }
+                try{
+
+                    //checa se já existe um email igual cadastrado no sistema
+                    $dbUsuario = Usuario::where('login', $usuario->login)->first();
+                    if($dbUsuario){
+
+                        $request->session()->flash('err', 'Credencial já existe no banco.');
+
+                    }
+
+                        DB::beginTransaction();
+                        $usuario->save();
+                        DB::commit();
+
+                        //chama a função de login - e manda os campos preenchidos no cadastro
+                        return $this->authenticate($request);
+
+                }catch(\Exception $e){
+
+                    echo $e->getMessage();
+                    DB::rollback();
+
+                    $request->session()->flash('err', 'Usuário não pode ser cadastrado');
+                }
 
     }
 
@@ -100,6 +120,7 @@ class UsuarioController extends Controller
 
             }elseif(Auth::user()->tipo == 'adm') {
                 return redirect('/dashboard');
+
             }
 
         }else{

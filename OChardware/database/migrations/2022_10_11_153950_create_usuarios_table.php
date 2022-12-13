@@ -21,6 +21,7 @@ return new class extends Migration
             $table->string('sobrenome',50);
             $table->string('cpf',11)->unique();
             $table->string('email',100)->unique();
+            $table->string('foto');
             $table->string('senha',100);
             $table->string('tipo',5);
         });
