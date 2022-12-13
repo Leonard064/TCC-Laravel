@@ -40,6 +40,7 @@
                 <input type="text" name="cep" id="cep" placeholder="cep">
                 <input type="text" name="endereco" id="endereco" placeholder="endereco">
                 <input type="text" name="numero" id="numero" placeholder="numero">
+                <input type="text" name="bairro" id="bairro" placeholder="bairro">
                 <input type="text" name="estado" id="estado" placeholder="estado">
                 <input type="text" name="municipio" id="municipio" placeholder="municipio">
 

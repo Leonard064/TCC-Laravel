@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('cep',8);
             $table->string('endereco',100);
             $table->string('numero',5);
+            $table->string('bairro',50);
             $table->string('municipio',100);
             $table->string('estado',50);
 
