@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Usuario;
 use App\Models\Pedido;
+use App\Models\Produto;
 use DB;
 
 class UsuarioController extends Controller
@@ -33,8 +34,9 @@ class UsuarioController extends Controller
         if(\Auth::user()->tipo == 'adm'){
 
             $pedidos = Pedido::all();
+            $produtos = Produto::all()->take(2);
 
-            return view('usuarios.dashboard', ['pedidos' => $pedidos]);
+            return view('usuarios.dashboard', ['pedidos' => $pedidos, 'produtos' => $produtos]);
 
         }else{
             return redirect('/');

@@ -3,15 +3,17 @@
 @section('title','OC - Admin')
 
 @section('conteudo')
-    <div class="flex-container corpo margem">
-        <div>
+    <div class="flex-container corpo">
+        <div class="margem" style="background-color: #d6d6d6">
             <h1>Admin</h1>
             <a href="/create-categoria">Criar Categoria</a>
             <a href="/create-marca">Criar Marca</a>
             <a href="/create-produto">Criar Produto</a>
+
         </div>
 
-        <div class="flex-container secao">
+        <div class="flex-container secao black">
+            <i class="fa-solid fa-square red"></i> &nbsp;
             <h3>Pedidos Abertos</h3>
         </div>
 
@@ -43,6 +45,37 @@
             @endif
         </div>
 
+        <div class="flex-container secao black">
+            <i class="fa-solid fa-square red"></i> &nbsp;
+            <h3>Produtos</h3>
+        </div>
+
+        <div class="detalhes-descricao margem">
+            @if (count($produtos) > 0)
+
+                <table>
+                    <tr>
+                        <th>Nome</th>
+                    </tr>
+                    @foreach ($produtos as $produto)
+
+                            <tr>
+                                <td>{{$produto->nome}}</td>
+                                <td><a href="#">Editar</a></td>
+                            </tr>
+
+                    @endforeach
+
+                </table>
+
+            @else
+                <h2>Não há Produtos</h2>
+
+            @endif
+
+            <a href="">Visualizar todos os Produtos</a>
+
+        </div>
     </div>
 
 @endsection
