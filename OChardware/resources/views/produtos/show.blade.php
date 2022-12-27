@@ -35,14 +35,16 @@
             </div>
         </section>
 
-        <div class="flex-container secao">
+        <div class="flex-container secao black">
+            <i class="fa-solid fa-square red"></i> &nbsp;
             <h3>Descrição</h3>
         </div>
         <div class="detalhes-descricao margem">
             <p>{{$produto->descricao}}</p>
         </div>
 
-        <div class="flex-container secao">
+        <div class="flex-container secao black">
+            <i class="fa-solid fa-square red"></i> &nbsp;
             <h3>Avaliações</h3>
         </div>
 

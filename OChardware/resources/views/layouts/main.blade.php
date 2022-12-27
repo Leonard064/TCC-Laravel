@@ -109,28 +109,28 @@
                 <section id="mobile-nav" class="black">
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="/produtos/3">Processadores</a>
+                            <a class="no-deco-white" href="/produtos/1">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/4">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos/2">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/5">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos/3">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/6">Memórias</a>
+                            <a class="no-deco-white" href="/produtos/4">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/7">Monitores</a>
+                            <a class="no-deco-white" href="/produtos/5">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/8">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos/6">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/9">HDs e SSDs</a>
+                            <a class="no-deco-white" href="/produtos/7">HDs e SSDs</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/10">Fontes</a>
+                            <a class="no-deco-white" href="/produtos/8">Fontes</a>
                         </li>
                     </ul>
                 </section>
@@ -140,28 +140,28 @@
                 <div>
                     <ul>
                         <li>
-                            <a class="no-deco-white" href="/produtos/3">Processadores</a>
+                            <a class="no-deco-white" href="/produtos/1">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/4">Placas-Mãe</a>
+                            <a class="no-deco-white" href="/produtos/2">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/5">Placas de Vídeo</a>
+                            <a class="no-deco-white" href="/produtos/3">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/6">Memórias</a>
+                            <a class="no-deco-white" href="/produtos/4">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/7">Monitores</a>
+                            <a class="no-deco-white" href="/produtos/5">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/8">Mouse e Teclado</a>
+                            <a class="no-deco-white" href="/produtos/6">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/9">HDs e SSDs</a>
+                            <a class="no-deco-white" href="/produtos/7">HDs e SSDs</a>
                         </li>
                         <li>
-                            <a class="no-deco-white" href="/produtos/10">Fontes</a>
+                            <a class="no-deco-white" href="/produtos/8">Fontes</a>
                         </li>
                     </ul>
                 </div>
