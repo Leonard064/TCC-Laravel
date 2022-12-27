@@ -1,5 +1,7 @@
 A fazer:
 
+-parte de UPDATE -> produtos, pedidos e endereços
+
 Carrinho e Checkout:
 
 - frete (carrinho) -> funcional parcial
