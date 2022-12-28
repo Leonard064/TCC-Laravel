@@ -30,6 +30,11 @@ class UsuarioController extends Controller
         return view('usuarios.perfil', ['pedidos' => $pedidos]);
     }
 
+    public function showEditPerfil(){
+
+        return view('usuarios.editar-perfil');
+    }
+
     public function dashboard(){
         if(\Auth::user()->tipo == 'adm'){
 
