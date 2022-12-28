@@ -21,18 +21,11 @@ use App\Http\Controllers\EnderecoController;
 |
 */
 
-// --- Produtos ---
+/* =====================
+      --- Produtos ---
+  =======================*/
 
 Route::get('/', [ProdutoController::class, 'index']);
-
-
-/* ---- Funções de teste ----
-
-Route::get('/produtos', [ProdutoController::class, 'showPesquisa']);
-
-Route::get('/produtos/{categoria}',[ProdutoController::class, 'showCat']);
-
-*/
 
 Route::get('/produtos/{id_categoria?}',[ProdutoController::class, 'showProdutos']);
 
@@ -43,18 +36,29 @@ Route::get('/create-produto',[ProdutoController::class, 'create']);
 Route::post('/produtos/create', [ProdutoController::class, 'store']);
 
 
-// --- Categoria ---
+/* ====================
+    --- Categoria ---
+   ====================*/
+
 Route::get('/create-categoria', [CategoriaController::class, 'create']);
 
 Route::post('/categorias/create', [CategoriaController::class, 'store']);
 
-// --- Marca ---
+
+
+/* ====================
+    --- Marca ---
+   ====================*/
+
 Route::get('/create-marca', [MarcaController::class, 'create']);
 
 Route::post('/marcas/create', [MarcaController::class, 'store']);
 
 
-// --- Carrinho ---
+/* ====================
+    --- Carrinho ---
+   ====================*/
+
 Route::get('/carrinho',[Prod_carrinhoController::class, 'showCarrinho']);
 
 Route::post('/addCarrinho',[Prod_carrinhoController::class, 'addCarrinho']);
@@ -63,16 +67,28 @@ Route::get('/removerCarrinho/{id}', [Prod_carrinhoController::class, 'removerCar
 
 Route::post('/checkout',[Prod_carrinhoController::class, 'showCheckout']);
 
-// --- Endereco ---
+
+
+/* ====================
+    --- Endereço ---
+   ====================*/
+
 Route::post('/endereco/create', [EnderecoController::class, 'addEnderecoPerfil']);
 
 Route::post('/endereco/create-via-checkout', [EnderecoController::class, 'addEnderecoCheckout']);
 
 
-// --- Avaliacao ---
+/* ====================
+    --- Avaliação ---
+   ====================*/
+
 Route::post('/avaliacoes/create', [AvaliacaoController::class, 'store']);
 
-// --- Usuários ---
+
+
+/* ====================
+    --- Usuários ---
+   ====================*/
 
 //Criação, autenticação e logoff
 Route::get('/login',[UsuarioController::class, 'showLogin']);
@@ -98,3 +114,5 @@ Route::get('/adicionar-endereco', [EnderecoController::class, 'showAddEndereco']
 //Rotas nível Admin
 
 Route::get('/dashboard',[UsuarioController::class, 'dashboard']);
+
+Route::get('/editar-produto', [ProdutoController::class, 'showEditProduto']);
