@@ -56,12 +56,14 @@
                 <table>
                     <tr>
                         <th>Nome</th>
+                        <th>Opções</th>
                     </tr>
                     @foreach ($produtos as $produto)
 
                             <tr>
                                 <td>{{$produto->nome}}</td>
-                                <td><a href="#">Editar</a></td>
+                                <td><a href="/editar-produto">Editar</a></td>
+                                <td><a href="#">Excluir</a></td>
                             </tr>
 
                     @endforeach
@@ -73,6 +75,7 @@
 
             @endif
 
+            <button class="bt-red">Visualizar todos os Produtos</button>
             <a href="">Visualizar todos os Produtos</a>
 
         </div>

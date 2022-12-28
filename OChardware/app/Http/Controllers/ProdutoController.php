@@ -28,6 +28,11 @@ class ProdutoController extends Controller
         return view('produtos.create', ['categoria' => $categoria ,'marca' => $marca]);
     }
 
+    public function showEditProduto(){
+
+        return view('produtos.edit-produto');
+    }
+
 
     //chamadas CRUD
     public function store(Request $request){
