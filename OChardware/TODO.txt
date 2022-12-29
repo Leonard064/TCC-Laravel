@@ -1,6 +1,10 @@
 A fazer:
 
--parte de UPDATE -> pedidos e endereços
+-parte de UPDATE ->endereços
+
+-funcionalidade UPDATE -> pedidos , perfil e endereço
+
+
 
 Carrinho e Checkout:
 
@@ -20,8 +24,6 @@ Index e Produtos:
 
 
 Users:
-
-- alteração de cadastros: usuário
 
 - alteração de status de compra: adm
 
