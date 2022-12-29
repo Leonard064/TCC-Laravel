@@ -20,8 +20,11 @@ class UsuarioController extends Controller
     }
 
     public function showCadastre(){
+
         return view('usuarios.cadastre-se');
+
     }
+
 
     public function perfil(){
 
@@ -30,9 +33,20 @@ class UsuarioController extends Controller
         return view('usuarios.perfil', ['pedidos' => $pedidos]);
     }
 
+
     public function showEditPerfil(){
 
-        return view('usuarios.editar-perfil');
+        try{
+            $usuario = Usuario::findOrFail(\Auth::user()->id);
+
+            return view('usuarios.editar-perfil', ['usuario' => $usuario]);
+
+        }catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
+        }
+
     }
 
     public function dashboard(){

@@ -15,7 +15,7 @@
                     <h3>Usuário desde: {{Auth::user()->created_at}}</h3>
                     <a href="/editar-perfil">Editar cadastro</a>
                     <a href="/adicionar-endereco">Meus Endereços</a>
-                    {{-- <a href="#">Editar cadastro</a> --}}
+
                 </div>
             </div>
         </section>
