@@ -25,7 +25,7 @@
                             <td>{{$produtos->nome}}</td>
                             <td>{{$produtos->quantidade}}</td>
                             <td>{{$produtos->preco}}</td>
-                            <td><a href="/editar-produto">Editar</a></td>
+                            <td><a href="/editar-produto/{{$produtos->id}}">Editar</a></td>
                             <td><a href="/remover-produto/{{$produtos->id}}">Excluir</a></td>
                         </tr>
                     @endforeach

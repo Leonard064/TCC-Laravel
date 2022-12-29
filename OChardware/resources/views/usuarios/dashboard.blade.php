@@ -14,7 +14,7 @@
 
         <div class="flex-container secao black">
             <i class="fa-solid fa-square red"></i> &nbsp;
-            <h3>Pedidos Abertos</h3>
+            <h3>Últimos Pedidos Abertos</h3>
         </div>
 
         <div class="detalhes-descricao margem">
@@ -62,7 +62,7 @@
 
                             <tr>
                                 <td>{{$produto->nome}}</td>
-                                <td><a href="/editar-produto">Editar</a></td>
+                                <td><a href="/editar-produto/{{$produto->id}}">Editar</a></td>
                                 <td><a href="/remover-produto/{{$produto->id}}">Excluir</a></td>
                             </tr>
 
@@ -75,8 +75,9 @@
 
             @endif
 
-            <button class="bt-red">Visualizar todos os Produtos</button>
-            <a href="/todos-produtos">Visualizar todos os Produtos</a>
+            <a href="/todos-produtos">
+                <button class="bt-red">Visualizar todos os Produtos</button>
+            </a>
 
         </div>
     </div>

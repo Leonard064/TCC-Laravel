@@ -115,7 +115,7 @@ Route::get('/adicionar-endereco', [EnderecoController::class, 'showAddEndereco']
 
 Route::get('/dashboard',[UsuarioController::class, 'dashboard']);
 
-Route::get('/editar-produto', [ProdutoController::class, 'showEditProduto']);
+Route::get('/editar-produto/{id}', [ProdutoController::class, 'showEditProduto']);
 
 Route::get('remover-produto/{id}', [ProdutoController::class, 'removerProduto']);
 

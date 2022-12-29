@@ -20,6 +20,7 @@ class ProdutoController extends Controller
         return view('index',['produto' => $produto]);
     }
 
+
     public function create(){
 
         $categoria = Categoria::all();
@@ -28,10 +29,78 @@ class ProdutoController extends Controller
         return view('produtos.create', ['categoria' => $categoria ,'marca' => $marca]);
     }
 
-    public function showEditProduto(){
 
-        return view('produtos.edit-produto');
+    public function showEditProduto($id){
+
+        try{
+            $produto = Produto::findOrFail($id);
+            $categoria = Categoria::all();
+            $marca = Marca::all();
+
+            return view('produtos.edit-produto', ['produto' => $produto , 'categoria' => $categoria ,'marca' => $marca]);
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+        }
+
     }
+
+
+    //Página de Categorias / Pesquisa
+    public function showProdutos($id_categoria = 0){
+        $pesquisa = request('pesquisa');
+        $marca = Marca::all();
+
+        if($pesquisa){
+
+            $produto = Produto::where('nome','like','%'.$pesquisa.'%')->get();
+            $categoria = Categoria::all();
+
+        }elseif($id_categoria){
+
+            $pesquisa = 0;
+            $produto = Produto::where('id_categoria', $id_categoria)->get();
+            $categoria = Categoria::where('id', $id_categoria)->get();
+
+        }else{
+            return 0;
+        }
+
+        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
+
+    }
+
+
+
+    //Página Detalhes
+    public function show($id){
+        $produto = Produto::findOrFail($id);
+
+        $avaliacao = Avaliacao::where('id_produto', $id)
+                                ->join('usuarios','avaliacoes.id_usuario', '=', 'usuarios.id')
+                                ->select('avaliacoes.*','usuarios.nome','usuarios.sobrenome')
+                                ->get();
+
+        // $teste = [];
+
+        // foreach($avaliacao as $avaliacoes){
+        //     array_push($teste, Usuario::where('id', $avaliacoes->id_usuario)->pluck('nome'));
+        // }
+
+
+        return view('produtos.show',['produto' => $produto, 'avaliacao' => $avaliacao]);
+
+    }
+
+
+    //página Todos os Produtos (Dashboard ADM)
+    public function showAdmProdutos(){
+        $produto = Produto::all();
+
+        return view('produtos.showAdmProdutos', ['produto' => $produto]);
+    }
+
 
 
     //Chamadas CRUD
@@ -99,60 +168,6 @@ class ProdutoController extends Controller
     //     }
     //     return view('produtos', ['produto' => $produto, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
     // }
-
-    //Página de Categorias / Pesquisa
-    public function showProdutos($id_categoria = 0){
-        $pesquisa = request('pesquisa');
-        $marca = Marca::all();
-
-        if($pesquisa){
-
-            $produto = Produto::where('nome','like','%'.$pesquisa.'%')->get();
-            $categoria = Categoria::all();
-
-        }elseif($id_categoria){
-
-            $pesquisa = 0;
-            $produto = Produto::where('id_categoria', $id_categoria)->get();
-            $categoria = Categoria::where('id', $id_categoria)->get();
-
-        }else{
-            return 0;
-        }
-
-        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
-
-    }
-
-
-
-    //Página Detalhes
-    public function show($id){
-        $produto = Produto::findOrFail($id);
-
-        $avaliacao = Avaliacao::where('id_produto', $id)
-                                ->join('usuarios','avaliacoes.id_usuario', '=', 'usuarios.id')
-                                ->select('avaliacoes.*','usuarios.nome','usuarios.sobrenome')
-                                ->get();
-
-        // $teste = [];
-
-        // foreach($avaliacao as $avaliacoes){
-        //     array_push($teste, Usuario::where('id', $avaliacoes->id_usuario)->pluck('nome'));
-        // }
-
-
-        return view('produtos.show',['produto' => $produto, 'avaliacao' => $avaliacao]);
-
-    }
-
-
-    //página Todos os Produtos (Dashboard ADM)
-    public function showAdmProdutos(){
-        $produto = Produto::all();
-
-        return view('produtos.showAdmProdutos', ['produto' => $produto]);
-    }
 
 
     //Remover Produtos (Dashboard ADM)

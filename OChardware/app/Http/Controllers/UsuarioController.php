@@ -38,7 +38,7 @@ class UsuarioController extends Controller
     public function dashboard(){
         if(\Auth::user()->tipo == 'adm'){
 
-            $pedidos = Pedido::all();
+            $pedidos = Pedido::all()->take(2);
             $produtos = Produto::all()->take(2);
 
             return view('usuarios.dashboard', ['pedidos' => $pedidos, 'produtos' => $produtos]);
