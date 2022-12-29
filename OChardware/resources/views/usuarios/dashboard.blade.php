@@ -34,7 +34,7 @@
                             <td>{{$pedido->pagamento_tipo}}</td>
                             <td>{{$pedido->total_pedido}}</td>
                             <td>{{$pedido->status}}</td>
-                            <td><a href="#">Editar Status</a></td>
+                            <td><a href="/editar-pedido/{{$pedido->id}}">Editar Status</a></td>
                         </tr>
                     </table>
                 @endforeach
@@ -63,7 +63,7 @@
                             <tr>
                                 <td>{{$produto->nome}}</td>
                                 <td><a href="/editar-produto">Editar</a></td>
-                                <td><a href="#">Excluir</a></td>
+                                <td><a href="/remover-produto/{{$produto->id}}">Excluir</a></td>
                             </tr>
 
                     @endforeach
@@ -76,7 +76,7 @@
             @endif
 
             <button class="bt-red">Visualizar todos os Produtos</button>
-            <a href="">Visualizar todos os Produtos</a>
+            <a href="/todos-produtos">Visualizar todos os Produtos</a>
 
         </div>
     </div>

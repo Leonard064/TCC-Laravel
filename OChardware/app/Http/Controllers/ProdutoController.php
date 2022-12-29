@@ -34,7 +34,9 @@ class ProdutoController extends Controller
     }
 
 
-    //chamadas CRUD
+    //Chamadas CRUD
+
+    //Criar Produto
     public function store(Request $request){
 
         $valores = $request->all();
@@ -98,6 +100,7 @@ class ProdutoController extends Controller
     //     return view('produtos', ['produto' => $produto, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
     // }
 
+    //Página de Categorias / Pesquisa
     public function showProdutos($id_categoria = 0){
         $pesquisa = request('pesquisa');
         $marca = Marca::all();
@@ -123,6 +126,7 @@ class ProdutoController extends Controller
 
 
 
+    //Página Detalhes
     public function show($id){
         $produto = Produto::findOrFail($id);
 
@@ -140,6 +144,33 @@ class ProdutoController extends Controller
 
         return view('produtos.show',['produto' => $produto, 'avaliacao' => $avaliacao]);
 
+    }
+
+
+    //página Todos os Produtos (Dashboard ADM)
+    public function showAdmProdutos(){
+        $produto = Produto::all();
+
+        return view('produtos.showAdmProdutos', ['produto' => $produto]);
+    }
+
+
+    //Remover Produtos (Dashboard ADM)
+    public function removerProduto($id){
+
+        try {
+
+            if(Produto::destroy($id)) {
+                return redirect('/dashboard')->session()->flash('ok','Item Excluído');
+            }else{
+                return redirect('/dashboard')->session()->flash('err','Item não foi excluído');
+            }
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
+        }
     }
 
 
