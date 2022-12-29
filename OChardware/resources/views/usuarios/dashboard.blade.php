@@ -37,6 +37,10 @@
                             <td><a href="/editar-pedido/{{$pedido->id}}">Editar Status</a></td>
                         </tr>
                     </table>
+
+                    <a href="/todos-pedidos">
+                        <button class="bt-red">Visualizar todos os Pedidos</button>
+                    </a>
                 @endforeach
 
             @else
@@ -70,14 +74,14 @@
 
                 </table>
 
+                <a href="/todos-produtos">
+                    <button class="bt-red">Visualizar todos os Produtos</button>
+                </a>
+
             @else
                 <h2>Não há Produtos</h2>
 
             @endif
-
-            <a href="/todos-produtos">
-                <button class="bt-red">Visualizar todos os Produtos</button>
-            </a>
 
         </div>
     </div>
