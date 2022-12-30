@@ -110,6 +110,8 @@ Route::get('/editar-perfil',[UsuarioController::class, 'showEditPerfil']);
 
 Route::get('/adicionar-endereco', [EnderecoController::class, 'showAddEndereco']);
 
+Route::post('/update-perfil',[UsuarioController::class, 'updatePerfil']);
+
 
 //Rotas nível Admin
 
