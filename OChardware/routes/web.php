@@ -119,6 +119,8 @@ Route::get('/dashboard',[UsuarioController::class, 'dashboard']);
 
 Route::get('/editar-produto/{id}', [ProdutoController::class, 'showEditProduto']);
 
+Route::post('/update-produto', [ProdutoController::class, 'updateProduto']);
+
 Route::get('remover-produto/{id}', [ProdutoController::class, 'removerProduto']);
 
 Route::get('/todos-produtos', [ProdutoController::class, 'showAdmProdutos']);
