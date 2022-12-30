@@ -189,5 +189,48 @@ class ProdutoController extends Controller
     }
 
 
+    //Editar Produtos
+    public function updateProduto(Request $request){
+
+        try {
+
+            $produto = Produto::find($request->id);
+
+            $produto->nome = $request->nome;
+            $produto->id_categoria = $request->id_categoria;
+            $produto->id_marca = $request->id_marca;
+            $produto->preco = $request->preco;
+            $produto->descricao = $request->descricao;
+            $produto->largura = $request->largura;
+            $produto->altura = $request->altura;
+            $produto->peso = $request->peso;
+            $produto->comprimento = $request->comprimento;
+            $produto->quantidade = $request->quantidade;
+
+
+            if($request->hasFile('foto') && $request->file('foto')->isValid()){
+
+                $requestImage = $request->foto;
+                $extensao = $requestImage->extension();
+                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+
+                $requestImage->move(public_path('img/usuarios'),$nomeFoto);
+
+                $produto->foto = $nomeFoto;
+
+            }
+
+            $produto->save();
+
+            return redirect('/dashboard');
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
+        }
+
+    }
+
 }
 

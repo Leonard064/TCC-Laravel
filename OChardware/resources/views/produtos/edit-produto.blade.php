@@ -4,7 +4,7 @@
 
 @section('conteudo')
     <section class="flex-container form">
-        <form action="#" method="POST" enctype="multipart/form-data">
+        <form action="/update-produto" method="POST" enctype="multipart/form-data">
             @csrf
 
             <input type="text" name="nome" id="nome" placeholder="nome" class="input-full" value="{{$produto->nome}}">
@@ -43,7 +43,7 @@
             <textarea name="descricao" id="descricao" cols="80" rows="10">{{$produto->descricao}}</textarea>
             <br>
             <label for="foto">Imagem: (Foto Atual: {{$produto->foto}})</label>
-            <input type="file" name="foto" id="foto" value="{{$produto->foto}}">
+            <input type="file" name="foto" id="foto">
             <br>
             <input type="text" name="largura" id="largura" placeholder="largura" class="input-full" value="{{$produto->largura}}">
             <input type="text" name="altura" id="altura" placeholder="altura" class="input-full" value="{{$produto->altura}}">
@@ -51,7 +51,12 @@
             <input type="text" name="comprimento" id="comprimento" placeholder="comprimento" class="input-full" value="{{$produto->comprimento}}">
             <input type="text" name="quantidade" id="quantidade" placeholder="quantidade" class="input-full" value="{{$produto->quantidade}}">
 
+            <input type="hidden" name="id" value="{{$produto->id}}">
+
             <button class="bt-red">Atualizar</button>
+
         </form>
+
     </section>
+
 @endsection
