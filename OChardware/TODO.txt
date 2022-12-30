@@ -2,7 +2,7 @@ A fazer:
 
 -parte de UPDATE ->endereços
 
--funcionalidade UPDATE -> pedidos , perfil e endereço
+-funcionalidade UPDATE -> endereço
 
 
 
