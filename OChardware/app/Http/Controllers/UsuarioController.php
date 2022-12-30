@@ -186,11 +186,11 @@ class UsuarioController extends Controller
 
             }
 
-            return redirect('/perfil');
+            return redirect('/perfil')->session()->flash('ok','Perfil alterado com sucesso');
 
         } catch (\Throwable $th) {
 
-            echo $th->getMessage()->session()->flash('ok','Perfil alterado com sucesso');
+            echo $th->getMessage();
 
         }
     }
