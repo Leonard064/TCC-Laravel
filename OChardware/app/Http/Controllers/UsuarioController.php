@@ -159,4 +159,39 @@ class UsuarioController extends Controller
         return redirect('/');
     }
 
+
+    //Editar Cadastro
+    public function updatePerfil(Request $request){
+
+        try {
+            $usuario = Usuario::find(\Auth::user()->id);
+
+            $usuario->login = $request->login;
+            $usuario->nome = $request->nome;
+            $usuario->sobrenome = $request->sobrenome;
+            $usuario->email = $request->email;
+
+
+            if($request->hasFile('foto') && $request->file('foto')->isValid()){
+
+                $requestImage = $request->foto;
+                $extensao = $requestImage->extension();
+                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+
+                $requestImage->move(public_path('img/usuarios'),$nomeFoto);
+
+                $usuario->foto = $nomeFoto;
+
+                $usuario->save();
+
+            }
+
+            return redirect('/perfil');
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage()->session()->flash('ok','Perfil alterado com sucesso');
+
+        }
+    }
 }
