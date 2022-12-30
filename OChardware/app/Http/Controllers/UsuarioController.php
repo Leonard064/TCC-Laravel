@@ -182,11 +182,11 @@ class UsuarioController extends Controller
 
                 $usuario->foto = $nomeFoto;
 
-                $usuario->save();
-
             }
 
-            return redirect('/perfil')->session()->flash('ok','Perfil alterado com sucesso');
+            $usuario->save();
+
+            return redirect('/perfil');
 
         } catch (\Throwable $th) {
 
