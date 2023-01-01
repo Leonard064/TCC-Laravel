@@ -13,10 +13,24 @@ class EnderecoController extends Controller
 
         $enderecos = Endereco::where('id_usuario', \Auth::user()->id)->get();
 
-        return view('usuarios.adicionar-endereco',['enderecos' => $enderecos]);
+        return view('enderecos.adicionar-endereco',['enderecos' => $enderecos]);
     }
 
-    //funções
+
+    public function showEditEndereco($id){
+        try {
+            $endereco = Endereco::findOrFail($id);
+
+            return view('enderecos.edit-endereco',['endereco' => $endereco]);
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
+        }
+    }
+
+    //funções CRUD
     public function store(Request $request){
         $valores = $request->all();
 
@@ -48,7 +62,7 @@ class EnderecoController extends Controller
             $this->store($request);
 
             $request->session()->flash('ok','Endereço salvo com sucesso');
-            return redirect('/perfil');
+            return redirect('/adicionar-endereco');
 
         } catch (\Throwable $th) {
             echo $th->getMessage();
@@ -67,5 +81,61 @@ class EnderecoController extends Controller
         } catch (\Throwable $th) {
             echo $th->getMessage();
         }
+    }
+
+
+    //update de endereço
+    public function updateEndereco(Request $request){
+
+        try {
+            $endereco = Endereco::find($request->id);
+
+            // $endereco->cep = $request->cep;
+            // $endereco->endereco = $request->endereco;
+            // $endereco->numero = $request->numero;
+            // $endereco->bairro = $request->bairro;
+            // $endereco->estado = $request->estado;
+            // $endereco->municipio = $request->municipio;
+
+            $valores = $request->all();
+
+            $endereco->fill($valores);
+
+            $endereco->save();
+
+            $request->session()->flash('ok','Endereço atualizado com sucesso');
+            return redirect('/adicionar-endereco');
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
+        }
+
+    }
+
+
+    //remover endereço
+    public function removerEndereco($id){
+
+        try {
+
+            if(Endereco::destroy($id)){
+
+                \Session::flash('ok','Endereço excluído com sucesso');
+                return redirect('/adicionar-endereco');
+
+            }else{
+
+                \Session::flash('err','Endereço não foi excluído');
+                return redirect('/adicionar-endereco');
+            }
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
+        }
+
     }
 }
