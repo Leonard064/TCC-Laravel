@@ -77,6 +77,12 @@ Route::post('/endereco/create', [EnderecoController::class, 'addEnderecoPerfil']
 
 Route::post('/endereco/create-via-checkout', [EnderecoController::class, 'addEnderecoCheckout']);
 
+Route::get('/editar-endereco/{id}', [EnderecoController::class, 'showEditEndereco']);
+
+Route::post('/update-endereco', [EnderecoController::class, 'updateEndereco']);
+
+Route::get('/remover-endereco/{id}', [EnderecoController::class, 'removerEndereco']);
+
 
 /* ====================
     --- Avaliação ---
