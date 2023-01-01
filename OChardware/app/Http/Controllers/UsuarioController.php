@@ -166,11 +166,8 @@ class UsuarioController extends Controller
         try {
             $usuario = Usuario::find(\Auth::user()->id);
 
-            $usuario->login = $request->login;
             $usuario->nome = $request->nome;
             $usuario->sobrenome = $request->sobrenome;
-            $usuario->email = $request->email;
-
 
             if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
