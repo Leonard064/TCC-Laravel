@@ -9,8 +9,8 @@ use App\Http\Controllers\Prod_vendidosController;
 
 class PedidoController extends Controller
 {
-    //Função de salvar Pedidos
-    public static function store($request, $id_endereco){
+    //Função de salvar Pedidos - Endereço criado em Checkout
+    public static function storeSemEndereco($request, $id_endereco){
 
         $valores = $request->all();
 

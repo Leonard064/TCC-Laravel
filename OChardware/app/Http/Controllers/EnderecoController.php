@@ -76,7 +76,7 @@ class EnderecoController extends Controller
         try {
 
             //salva o endereço e chama a função de salvar pedido (enviando o id do endereco)
-            return PedidoController::store($request, $this->store($request));
+            return PedidoController::storeSemEndereco($request, $this->store($request));
 
         } catch (\Throwable $th) {
             echo $th->getMessage();
