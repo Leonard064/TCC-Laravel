@@ -145,6 +145,24 @@ class Prod_carrinhoController extends Controller
         }
     }
 
+
+    public function updateCarrinho($id){
+        try {
+            $carrinhoItem = Prod_Carrinho::find($id);
+
+            $carrinhoItem->quantidade += 1;
+
+            $carrinhoItem->save();
+
+            return redirect('/carrinho');
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+        }
+    }
+
+
     public function removerCarrinho($id){
 
         try {
