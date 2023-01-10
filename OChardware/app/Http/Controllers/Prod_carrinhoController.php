@@ -77,19 +77,24 @@ class Prod_carrinhoController extends Controller
 
                 $enderecos = Endereco::where('id_usuario', \Auth::user()->id)->get();
 
-                $frete = $request->frete;
+                $total = $request->total;
 
-                if($frete == 'sedex'){
-                    $valor_frete = 27.00;
-                    $total = $request->total + $valor_frete;
-                }else{
-                    $valor_frete = 14.90;
-                    $total = $request->total + $valor_frete;
-                }
+                // $frete = $request->frete;
+
+                // if($frete == 'sedex'){
+                //     $valor_frete = 27.00;
+                //     $total = $request->total + $valor_frete;
+                // }else{
+                //     $valor_frete = 14.90;
+                //     $total = $request->total + $valor_frete;
+                // }
 
 
                 //$this->carrinhoItens() é a chamada da função carrinhoItens
-                return view('carrinho.checkout',$this->carrinhoItens(),['enderecos' => $enderecos ,'frete' => $frete, 'valor_frete'=> $valor_frete, 'total' => $total]);
+
+                // ,'frete' => $frete, 'valor_frete'=> $valor_frete, 'total' => $total
+
+                return view('carrinho.checkout',$this->carrinhoItens(),['enderecos' => $enderecos, 'total' => $total]);
 
             }catch (\Throwable $th) {
 

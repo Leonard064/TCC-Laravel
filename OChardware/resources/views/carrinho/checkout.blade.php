@@ -49,16 +49,30 @@
 
                         @endforeach
 
-                        <input type="hidden" name="total_pedido" value="{{$total}}">
+                        {{-- <input type="hidden" name="total_pedido" value="{{$total}}">
                         <input type="hidden" name="frete_tipo" value="{{$frete}}">
-                        <input type="hidden" name="frete_valor" value="{{$valor_frete}}">
+                        <input type="hidden" name="frete_valor" value="{{$valor_frete}}"> --}}
+
+                        <h2>Frete e Prazos</h2>
+
+                            @php
+                                $sedex = 27.00;
+                                $pac = 14.90;
+                            @endphp
+
+                            <input type="radio" name="frete" id="sedex" value="sedex">
+                            <label for="sedex">Sedex - {{number_format($sedex,2,',','.')}} (4 dias)</label><br>
+                            <input type="radio" name="frete" id="pac" value="pac">
+                            <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label>
+
 
                         <h2>Pagamento</h2>
                         <input type="radio" name="pagamento_tipo" value="boleto">Boleto
                         <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
 
-                        <h2>Frete escolhido</h2>
-                        <p>{{$frete}}</p>
+                        {{-- <h2>Frete escolhido</h2>
+                        <p>{{$frete}}</p> --}}
+
 
                         <h2>Total</h2>
                         <p>R${{number_format($total,2,',','.')}}</p>
@@ -81,16 +95,21 @@
                         <input type="text" name="estado" id="estado" placeholder="estado">
                         <input type="text" name="municipio" id="municipio" placeholder="municipio">
 
-                        <input type="hidden" name="total_pedido" value="{{$total}}">
+                        {{-- <input type="hidden" name="total_pedido" value="{{$total}}">
                         <input type="hidden" name="frete_tipo" value="{{$frete}}">
-                        <input type="hidden" name="frete_valor" value="{{$valor_frete}}">
+                        <input type="hidden" name="frete_valor" value="{{$valor_frete}}"> --}}
+
+
+                        <h2>Frete e Prazos</h2>
+                        <p>Adicione um endereço para selecionar o frete.</p>
 
                         <h2>Pagamento</h2>
-                        <input type="radio" name="pagamento_tipo" value="boleto">Boleto
+
+                        <input type="radio" name="pagamento_tipo" value="boleto">Boleto <br>
                         <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
 
-                        <h2>Frete escolhido</h2>
-                        <p>{{$frete}}</p>
+                        {{-- <h2>Frete escolhido</h2>
+                        <p>{{$frete}}</p> --}}
 
                         <h2>Total</h2>
                         <p>R${{number_format($total,2,',','.')}}</p>

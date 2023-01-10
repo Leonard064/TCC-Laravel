@@ -74,7 +74,7 @@
 
                     <form action="/checkout" method="post">
                     @csrf
-                        <h2>Frete e Prazos</h2>
+                        {{-- <h2>Frete e Prazos</h2>
 
                             @php
                                 $sedex = 27.00;
@@ -84,7 +84,7 @@
                             <input type="radio" name="frete" id="sedex" value="sedex">
                             <label for="sedex">Sedex - {{number_format($sedex,2,',','.')}} (4 dias)</label>
                             <input type="radio" name="frete" id="pac" value="pac">
-                            <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label>
+                            <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label> --}}
 
 
                             <h2>Total</h2>
