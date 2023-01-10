@@ -1,5 +1,12 @@
 A fazer:
 
+modificar fretes - de carrinho para checkout
+fretes - funcionar apenas com o endereço selecionado
+pesquisa especifica - página produtos
+
+
+
+
 Carrinho e Checkout:
 
 - frete (carrinho) -> funcional parcial
@@ -10,11 +17,6 @@ Carrinho e Checkout:
 
 - criação de 2 forms em checkout : com e sem endereço - parcial pronto
     - criar o com endereço
-
-
-Index e Produtos:
-
-- pesquisa especifica (produtos)
 
 
 Users:
