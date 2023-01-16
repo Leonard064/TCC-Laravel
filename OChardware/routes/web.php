@@ -9,6 +9,7 @@ use App\Http\Controllers\CategoriaController;
 use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\EnderecoController;
+use App\Http\Controllers\PedidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,12 @@ Route::get('/editar-endereco/{id}', [EnderecoController::class, 'showEditEnderec
 Route::post('/update-endereco', [EnderecoController::class, 'updateEndereco']);
 
 Route::get('/remover-endereco/{id}', [EnderecoController::class, 'removerEndereco']);
+
+
+/* ====================
+    --- Pedido ---
+   ====================*/
+Route::post('pedido/create', [PedidoController::class, 'store']);
 
 
 /* ====================
