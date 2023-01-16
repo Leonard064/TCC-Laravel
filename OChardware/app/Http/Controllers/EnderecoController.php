@@ -31,6 +31,8 @@ class EnderecoController extends Controller
     }
 
     //funções CRUD
+
+    //criação de endereço
     public function store(Request $request){
         $valores = $request->all();
 
@@ -55,7 +57,7 @@ class EnderecoController extends Controller
     }
 
 
-    //criação de enderço via página Adicionar Endereço
+    //criação de endereço
     public function addEnderecoPerfil(Request $request){
 
         try {
@@ -75,8 +77,13 @@ class EnderecoController extends Controller
     public function addEnderecoCheckout(Request $request){
         try {
 
-            //salva o endereço e chama a função de salvar pedido (enviando o id do endereco)
-            return PedidoController::storeSemEndereco($request, $this->store($request));
+            $this->store($request);
+
+            $request->session()->flash('ok','Endereço salvo com sucesso');
+            return redirect('/checkout');
+
+            // //salva o endereço e chama a função de salvar pedido (enviando o id do endereco)
+            // return PedidoController::storeSemEndereco($request, $this->store($request));
 
         } catch (\Throwable $th) {
             echo $th->getMessage();
