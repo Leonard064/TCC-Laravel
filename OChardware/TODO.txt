@@ -2,6 +2,7 @@ A fazer:
 
 modificar fretes - de carrinho para checkout
 fretes - funcionar apenas com o endereço selecionado
+passar valores totais evalor de frete para checkout
 pesquisa especifica - página produtos
 
 
@@ -14,10 +15,6 @@ Carrinho e Checkout:
 
 - pagamento (carrinho) -> funcional parcial
     - funcionar com gateway de pagamento
-
-- criação de 2 forms em checkout : com e sem endereço - parcial pronto
-    - criar o com endereço
-
 
 Users:
 
