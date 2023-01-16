@@ -44,6 +44,7 @@ class Prod_vendidoController extends Controller
 
         //Redireciona ao Index
         //--- depois criar página de sucesso ---
+        \Session::flash('ok','Pedido concluído!');
         return redirect('/');
 
 

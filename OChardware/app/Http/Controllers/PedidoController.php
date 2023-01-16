@@ -10,7 +10,7 @@ use App\Http\Controllers\Prod_vendidosController;
 class PedidoController extends Controller
 {
     //Função de salvar Pedidos - Endereço criado em Checkout
-    public static function storeSemEndereco($request, $id_endereco){
+    public static function store($request){
 
         $valores = $request->all();
 
@@ -20,7 +20,7 @@ class PedidoController extends Controller
 
         $pedido->status = 'Em Análise'; //por padrão, não há confirmação de pagamento
         $pedido->id_usuario = \Auth::user()->id;
-        $pedido->id_endereco = $id_endereco;
+        //$pedido->id_endereco = $id_endereco;
 
             //começa a salvar pedido
             try {

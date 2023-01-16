@@ -34,10 +34,10 @@
             <h2>Endereço de Entrega</h2>
 
 
-                {{-- Método de criação de pedido com endereço já existente --}}
+                {{-- Método de criação de pedido --}}
                 @if (count($enderecos) > 0)
 
-                    <form action="/pedido/create-with-endereco" method="post">
+                    <form action="/pedido/create" method="post">
                         @csrf
 
                         <h3>Selecione um Endereço:</h3>
@@ -66,6 +66,33 @@
                             <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label>
 
 
+                @else
+
+                    <form action="/endereco/create-via-checkout" method="post">
+                        @csrf
+
+                            <h3>Você ainda não possui endereço cadastrado. Insira um agora</h3>
+
+                            <input type="text" name="cep" id="cep" placeholder="cep"><br>
+                            <input type="text" name="endereco" id="endereco" placeholder="endereco"><br>
+                            <input type="text" name="numero" id="numero" placeholder="numero"><br>
+                            <input type="text" name="estado" id="estado" placeholder="estado"><br>
+                            <input type="text" name="municipio" id="municipio" placeholder="municipio"><br>
+
+                            <button class="bt-red">Cadastrar</button>
+
+                                {{-- <input type="hidden" name="total_pedido" value="{{$total}}">
+                                <input type="hidden" name="frete_tipo" value="{{$frete}}">
+                                <input type="hidden" name="frete_valor" value="{{$valor_frete}}"> --}}
+
+                            <h2>Frete e Prazos</h2>
+                            <p>Cadastre um endereço para poder selecionar um frete.</p>
+
+                    </form>
+
+                @endif
+
+
                         <h2>Pagamento</h2>
                         <input type="radio" name="pagamento_tipo" value="boleto">Boleto
                         <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
@@ -80,48 +107,6 @@
                         <button class="bt-red">Finalizar Compra</button>
 
                     </form>
-
-                @else
-
-                    {{-- criação de pedido com cadastro de endereço --}}
-                    <form action="/endereco/create-via-checkout" method="post">
-                        @csrf
-
-                        <h3>Você ainda não possui endereço cadastrado. Insira um agora</h3>
-
-                        <input type="text" name="cep" id="cep" placeholder="cep">
-                        <input type="text" name="endereco" id="endereco" placeholder="endereco">
-                        <input type="text" name="numero" id="numero" placeholder="numero">
-                        <input type="text" name="estado" id="estado" placeholder="estado">
-                        <input type="text" name="municipio" id="municipio" placeholder="municipio">
-
-                        {{-- <input type="hidden" name="total_pedido" value="{{$total}}">
-                        <input type="hidden" name="frete_tipo" value="{{$frete}}">
-                        <input type="hidden" name="frete_valor" value="{{$valor_frete}}"> --}}
-
-
-                        <h2>Frete e Prazos</h2>
-                        <p>Adicione um endereço para selecionar o frete.</p>
-
-                        <h2>Pagamento</h2>
-
-                        <input type="radio" name="pagamento_tipo" value="boleto">Boleto <br>
-                        <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
-
-                        {{-- <h2>Frete escolhido</h2>
-                        <p>{{$frete}}</p> --}}
-
-                        <h2>Total</h2>
-                        <p>R${{number_format($total,2,',','.')}}</p>
-
-
-
-                        <button class="bt-red">Finalizar Compra</button>
-
-                    </form>
-
-                @endif
-
 
     </div>
 
