@@ -14,36 +14,38 @@ class PedidoController extends Controller
 
         $valores = $request->all();
 
-        //devido a propriedade "Fillable" todos os campos precisam ir na mesma ordem declarada no Model
-        $pedido = new Pedido;
-        $pedido->fill($valores);
+        dd($valores);
 
-        $pedido->status = 'Em Análise'; //por padrão, não há confirmação de pagamento
-        $pedido->id_usuario = \Auth::user()->id;
-        //$pedido->id_endereco = $id_endereco;
+    //     //devido a propriedade "Fillable" todos os campos precisam ir na mesma ordem declarada no Model
+    //     $pedido = new Pedido;
+    //     $pedido->fill($valores);
 
-            //começa a salvar pedido
-            try {
+    //     $pedido->status = 'Em Análise'; //por padrão, não há confirmação de pagamento
+    //     $pedido->id_usuario = \Auth::user()->id;
+    //     //$pedido->id_endereco = $id_endereco;
 
-                \DB::beginTransaction();
+    //         //começa a salvar pedido
+    //         try {
 
-                    $pedido->save();
+    //             \DB::beginTransaction();
 
-                        \DB::commit();
+    //                 $pedido->save();
 
-                            $id_pedido = $pedido->id; //pega o id criado...
+    //                     \DB::commit();
 
-
-
-                //...e o envia para a função de criação de Produtos Vendidos
-                return Prod_vendidoController::store($id_pedido);
+    //                         $id_pedido = $pedido->id; //pega o id criado...
 
 
-            } catch (\Throwable $th) {
 
-                echo $th->getMessage();
-                \DB::rollback();
+    //             //...e o envia para a função de criação de Produtos Vendidos
+    //             return Prod_vendidoController::store($id_pedido);
 
-            }
+
+    //         } catch (\Throwable $th) {
+
+    //             echo $th->getMessage();
+    //             \DB::rollback();
+
+    //         }
     }
 }
