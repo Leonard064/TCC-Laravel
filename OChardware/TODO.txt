@@ -2,7 +2,11 @@ A fazer:
 
 modificar fretes - de carrinho para checkout
 fretes - funcionar apenas com o endereço selecionado
-passar valores totais evalor de frete para checkout
+
+passar retorno do ajax para um form radio - frete
+adicionar suporte a multiplos serviços - PAC e SEDEX
+apagar consulta anterior
+
 pesquisa especifica - página produtos
 
 
