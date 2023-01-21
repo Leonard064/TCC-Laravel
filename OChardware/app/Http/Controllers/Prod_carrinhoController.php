@@ -54,7 +54,7 @@ class Prod_carrinhoController extends Controller
         if(Auth::check()){
             try {
 
-                return view('carrinho.carrinho',$this->carrinhoItens());
+                return view('carrinho.carrinho', $this->carrinhoItens());
 
             }catch (\Throwable $th) {
 
@@ -71,13 +71,13 @@ class Prod_carrinhoController extends Controller
 
 
 
-    public function showCheckout(Request $request){
+    public function showCheckout(){
         if(Auth::check()){
             try {
 
                 $enderecos = Endereco::where('id_usuario', \Auth::user()->id)->get();
 
-                $total = $request->total;
+                //$total = $request->total;
 
                 // $frete = $request->frete;
 
@@ -89,12 +89,9 @@ class Prod_carrinhoController extends Controller
                 //     $total = $request->total + $valor_frete;
                 // }
 
+                // dd($frete);
 
-                //$this->carrinhoItens() é a chamada da função carrinhoItens
-
-                // ,'frete' => $frete, 'valor_frete'=> $valor_frete, 'total' => $total
-
-                return view('carrinho.checkout',$this->carrinhoItens(),['enderecos' => $enderecos, 'total' => $total]);
+                return view('carrinho.checkout',$this->carrinhoItens(),['enderecos' => $enderecos]);
 
             }catch (\Throwable $th) {
 
