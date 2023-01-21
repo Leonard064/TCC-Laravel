@@ -91,7 +91,7 @@
 
                                 <h3>R${{number_format($total,2,',','.')}}</h3>
 
-                                <input type="hidden" name="total" value="{{$total}}">
+                                {{-- <input type="hidden" name="total" value="{{$total}}"> --}}
 
 
                             <button class="bt-red">Finalizar Compra</button>
@@ -108,7 +108,7 @@
     </div>
 
 @endsection
-@push('scripts')
+{{-- @push('scripts')
     <script>
         let formFrete = document.querySelector('form.formFrete')
 
@@ -145,5 +145,5 @@
             }
 
     </script>
-@endpush
+@endpush --}}
 

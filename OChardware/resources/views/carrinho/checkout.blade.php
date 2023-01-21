@@ -15,6 +15,10 @@
                     <th>Valor</th>
                 </tr>
 
+                    @php
+                        $total = 0;
+                    @endphp
+
                     @foreach ($prod_carrinho as $itens)
                         <tr>
                             <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
@@ -26,6 +30,11 @@
                             <td>R${{number_format($itens->preco,2,',','.')}}</td>
 
                         </tr>
+
+                        @php
+                            $total += $itens->preco * $itens->quantidade;
+                        @endphp
+
                     @endforeach
 
 
@@ -37,14 +46,14 @@
                 {{-- Método de criação de pedido --}}
                 @if (count($enderecos) > 0)
 
-                    <form action="/pedido/create" method="post">
+                    <form action="/pedido/create" class="formFrete" method="post">
                         @csrf
 
                         <h3>Selecione um Endereço:</h3>
 
                         @foreach ($enderecos as $endereco)
 
-                            <input type="radio" name="endereco" id="{{$endereco->id}}" value="{{$endereco->id}}">
+                            <input type="radio" name="endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}})">
                             <label for="{{$endereco->id}}">{{$endereco->endereco}}</label><br>
 
                         @endforeach
@@ -55,15 +64,19 @@
 
                         <h2>Frete e Prazos</h2>
 
+                            <div class="grid-container" id="teste">
+                                <p>Selecione um endereço</p>
+                            </div>
+
                             @php
                                 $sedex = 27.00;
                                 $pac = 14.90;
                             @endphp
 
-                            <input type="radio" name="frete" id="sedex" value="sedex">
+                            {{-- <input type="radio" name="frete" id="sedex" value="sedex">
                             <label for="sedex">Sedex - {{number_format($sedex,2,',','.')}} (4 dias)</label><br>
                             <input type="radio" name="frete" id="pac" value="pac">
-                            <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label>
+                            <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label> --}}
 
 
                 @else
@@ -111,3 +124,45 @@
     </div>
 
 @endsection
+@push('scripts')
+    <script>
+
+        function ajax(id){
+
+                // let corpo = document.querySelector('div.corpo');
+
+                let url = '/api/frete/'+id;
+                // let idCep = id;
+
+                fetch(url,{
+                    'method': 'POST',
+                    'headers':{'Content-Type':'application/json'},
+                    //'params': JSON.stringify(idCep)
+                }) //ajax
+                    .then(response => response.json())
+                    .then(responseBody => {
+
+                        // div por enquanto é criada abaixo do corpo, logo não aparece
+
+                        let div = document.createElement('div')
+                        div.className = 'frete'
+                        div.innerText = JSON.stringify(responseBody.data)
+
+
+                        document.getElementById('teste').appendChild(div);
+
+                        // alert(JSON.stringify(responseBody.data));
+                        // let formParent = frete.parentElement
+
+                        // let div = document.createElement('div')
+                        // div.className = 'frete'
+                        // div.innerText = JSON.stringify(responseBody.data)
+
+                        // formParent.appendChild(div);
+                    })
+
+        }
+
+
+    </script>
+@endpush
