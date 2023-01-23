@@ -10,42 +10,40 @@ use App\Http\Controllers\Prod_vendidosController;
 class PedidoController extends Controller
 {
     //Função de salvar Pedidos - Endereço criado em Checkout
-    public static function store($request){
+    public static function store(Request $request){
 
         $valores = $request->all();
 
-        dd($valores);
+        //devido a propriedade "Fillable" todos os campos precisam ir na mesma ordem declarada no Model
+        $pedido = new Pedido;
+        $pedido->fill($valores);
 
-    //     //devido a propriedade "Fillable" todos os campos precisam ir na mesma ordem declarada no Model
-    //     $pedido = new Pedido;
-    //     $pedido->fill($valores);
+        $pedido->status = 'Em Análise'; //por padrão, não há confirmação de pagamento
+        $pedido->id_usuario = \Auth::user()->id;
+        //$pedido->id_endereco = $id_endereco;
 
-    //     $pedido->status = 'Em Análise'; //por padrão, não há confirmação de pagamento
-    //     $pedido->id_usuario = \Auth::user()->id;
-    //     //$pedido->id_endereco = $id_endereco;
+            //começa a salvar pedido
+            try {
 
-    //         //começa a salvar pedido
-    //         try {
+                \DB::beginTransaction();
 
-    //             \DB::beginTransaction();
+                    $pedido->save();
 
-    //                 $pedido->save();
+                        \DB::commit();
 
-    //                     \DB::commit();
-
-    //                         $id_pedido = $pedido->id; //pega o id criado...
+                            $id_pedido = $pedido->id; //pega o id criado...
 
 
 
-    //             //...e o envia para a função de criação de Produtos Vendidos
-    //             return Prod_vendidoController::store($id_pedido);
+                //...e o envia para a função de criação de Produtos Vendidos
+                return Prod_vendidoController::store($id_pedido);
 
 
-    //         } catch (\Throwable $th) {
+            } catch (\Throwable $th) {
 
-    //             echo $th->getMessage();
-    //             \DB::rollback();
+                echo $th->getMessage();
+                \DB::rollback();
 
-    //         }
+            }
     }
 }
