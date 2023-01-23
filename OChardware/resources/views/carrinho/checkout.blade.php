@@ -110,12 +110,11 @@
                         <input type="radio" name="pagamento_tipo" value="boleto">Boleto
                         <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
 
-                        {{-- <h2>Frete escolhido</h2>
-                        <p>{{$frete}}</p> --}}
-
 
                         <h2>Total</h2>
                         <p>R${{number_format($total,2,',','.')}}</p>
+
+                        <input type="hidden" name="total_pedido" value="{{$total}}">
 
                         <button class="bt-red">Finalizar Compra</button>
 
@@ -144,12 +143,44 @@
 
                         // div por enquanto é criada abaixo do corpo, logo não aparece
 
-                        let div = document.createElement('div')
-                        div.className = 'frete'
-                        div.innerText = JSON.stringify(responseBody.data)
+                         let div = document.createElement('div')
+                         div.id = 'frete'
+                        // div.innerText = JSON.stringify(responseBody.data)
 
+                        /*
+                         * Cria os campos radio com as opções
+                         * de fretes disponíveis
+                         *
+                        */
+                        let valor = 24.80 //debug
 
-                        document.getElementById('teste').appendChild(div);
+                        //campos radio
+                        let radio = document.createElement('input')
+                        radio.type = 'radio'
+                        radio.name = 'frete_tipo'
+                        radio.id = 'pac'
+                        radio.value = 'PAC'
+
+                        var label = document.createElement('label')
+                        label.htmlFor = 'pac'
+
+                        var nvLinha = document.createElement('br')
+
+                        var descricao = document.createTextNode('PAC - '+ valor);
+                        label.appendChild(descricao)
+
+                        //campo hidden - para passagem de valor do frete
+                        let hidd = document.createElement('input')
+                        hidd.type = 'hidden'
+                        hidd.name = 'frete_valor'
+                        hidd.value = valor
+
+                        //chama os inputs na DOM
+                        document.getElementById('teste').appendChild(div)
+                        document.getElementById('frete').appendChild(radio)
+                        document.getElementById('frete').appendChild(label)
+                        document.getElementById('frete').appendChild(nvLinha)
+                        document.getElementById('frete').appendChild(hidd)
 
                         // alert(JSON.stringify(responseBody.data));
                         // let formParent = frete.parentElement
