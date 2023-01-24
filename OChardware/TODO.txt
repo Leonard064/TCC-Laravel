@@ -1,9 +1,5 @@
 A fazer:
 
-modificar fretes - de carrinho para checkout
-fretes - funcionar apenas com o endereço selecionado
-
-passar retorno do ajax para um form radio - frete
 adicionar suporte a multiplos serviços - PAC e SEDEX
 apagar consulta anterior
 
@@ -13,9 +9,6 @@ pesquisa especifica - página produtos
 
 
 Carrinho e Checkout:
-
-- frete (carrinho) -> funcional parcial
-    -funcionar com Ajax
 
 - pagamento (carrinho) -> funcional parcial
     - funcionar com gateway de pagamento
