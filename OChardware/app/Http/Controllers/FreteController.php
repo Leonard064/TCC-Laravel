@@ -38,8 +38,16 @@ class FreteController extends Controller
 
                     // return Prod_CarrinhoController::showCheckout($result);
 
+                    if(($tipo =  $result['cServico']['Codigo']) == "04510"){
+                        $tipo = "PAC";
+                    }else if(($tipo =  $result['cServico']['Codigo']) == "04014"){
+                        $tipo = "SEDEX";
+                    }
+
                     return response()->json([
-                        'data' => $result['cServico']
+                        'tipo' => $tipo,
+                        'valor' => $result['cServico']['Valor'],
+                        'prazo' => $result['cServico']['PrazoEntrega']
                         // 'data' => $request
                     ]);
 

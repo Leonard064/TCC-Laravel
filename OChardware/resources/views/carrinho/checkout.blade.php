@@ -152,21 +152,23 @@
                          * de fretes disponíveis
                          *
                         */
-                        let valor = 24.80 //debug
+                        let tipo =  JSON.stringify(responseBody.tipo)
+                        let valor = JSON.stringify(responseBody.valor)
+                        let dias =  JSON.stringify(responseBody.prazo)
 
                         //campos radio
                         let radio = document.createElement('input')
                         radio.type = 'radio'
                         radio.name = 'frete_tipo'
-                        radio.id = 'pac'
-                        radio.value = 'PAC'
+                        radio.id = 'tipo'
+                        radio.value = responseBody.tipo
 
                         var label = document.createElement('label')
                         label.htmlFor = 'pac'
 
                         var nvLinha = document.createElement('br')
 
-                        var descricao = document.createTextNode('PAC - '+ valor);
+                        var descricao = document.createTextNode( tipo +' - R$'+ valor+' - '+ dias + ' Dias.');
                         label.appendChild(descricao)
 
                         //campo hidden - para passagem de valor do frete
