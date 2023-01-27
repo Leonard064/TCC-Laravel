@@ -32,22 +32,32 @@ class FreteController extends Controller
                     ->setPeso(0.5);
 
                 try {
-                    $result = $calculoFrete->calculate();
+                    $resultPAC =  clone $calculoFrete->calculate();
+
+                    $calculoFrete->setCodigoServico(Data::SEDEX);
+
+                    $resultSedex = clone $calculoFrete->calculate();
 
                     //dd($result['cServico']);
 
                     // return Prod_CarrinhoController::showCheckout($result);
 
-                    if(($tipo =  $result['cServico']['Codigo']) == "04510"){
-                        $tipo = "PAC";
-                    }else if(($tipo =  $result['cServico']['Codigo']) == "04014"){
-                        $tipo = "SEDEX";
+                    if(($resultPAC['cServico']['Codigo']) == "04510"){
+                        $tipoPac = "PAC";
+                    }
+
+                    if(($resultSedex['cServico']['Codigo']) == "04014"){
+                        $tipoSedex = "SEDEX";
                     }
 
                     return response()->json([
-                        'tipo' => $tipo,
-                        'valor' => $result['cServico']['Valor'],
-                        'prazo' => $result['cServico']['PrazoEntrega']
+                        'tipoPac' => $tipoPac,
+                        'valorPac' => $resultPAC['cServico']['Valor'],
+                        'prazoPac' => $resultPAC['cServico']['PrazoEntrega'],
+
+                        'tipoSedex' => $tipoSedex,
+                        'valorSedex' => $resultSedex['cServico']['Valor'],
+                        'prazoSedex' => $resultSedex['cServico']['PrazoEntrega']
                         // 'data' => $request
                     ]);
 

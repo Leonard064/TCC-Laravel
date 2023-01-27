@@ -152,37 +152,64 @@
                          * de fretes disponíveis
                          *
                         */
-                        let tipo =  JSON.stringify(responseBody.tipo)
-                        let valor = JSON.stringify(responseBody.valor)
-                        let dias =  JSON.stringify(responseBody.prazo)
+                        let tipoP =  JSON.stringify(responseBody.tipoPac)
+                        let valorP = JSON.stringify(responseBody.valorPac)
+                        let diasP =  JSON.stringify(responseBody.prazoPac)
+
+                        let tipoS = JSON.stringify(responseBody.tipoSedex)
+                        let valorS = JSON.stringify(responseBody.valorSedex)
+                        let diasS = JSON.stringify(responseBody.prazoSedex)
 
                         //campos radio
-                        let radio = document.createElement('input')
-                        radio.type = 'radio'
-                        radio.name = 'frete_tipo'
-                        radio.id = 'tipo'
-                        radio.value = responseBody.tipo
+                        let radio1 = document.createElement('input')
+                        radio1.type = 'radio'
+                        radio1.name = 'frete_tipo'
+                        radio1.id = responseBody.tipoPac
+                        radio1.value = responseBody.tipoPac
 
-                        var label = document.createElement('label')
-                        label.htmlFor = 'pac'
+                        var label1 = document.createElement('label')
+                        label1.htmlFor = 'pac'
 
-                        var nvLinha = document.createElement('br')
+                        var nvLinha1 = document.createElement('br')
 
-                        var descricao = document.createTextNode( tipo +' - R$'+ valor+' - '+ dias + ' Dias.');
-                        label.appendChild(descricao)
+                        var descricao1 = document.createTextNode( tipoP +' - R$'+ valorP +' - '+ diasP + ' Dias.');
+                        label1.appendChild(descricao1)
+
+                        // -------
+
+                        let radio2 = document.createElement('input')
+                        radio2.type = 'radio'
+                        radio2.name = 'frete_tipo'
+                        radio2.id = responseBody.tipoSedex
+                        radio2.value = responseBody.tipoSedex
+
+                        var label2 = document.createElement('label')
+                        label2.htmlFor = 'sedex'
+
+                        var nvLinha2 = document.createElement('br')
+
+                        var descricao2 = document.createTextNode( tipoS +' - R$'+ valorS +' - '+ diasS + ' Dias.');
+                        label2.appendChild(descricao2)
+
+
 
                         //campo hidden - para passagem de valor do frete
-                        let hidd = document.createElement('input')
-                        hidd.type = 'hidden'
-                        hidd.name = 'frete_valor'
-                        hidd.value = valor
+                        // let hidd = document.createElement('input')
+                        // hidd.type = 'hidden'
+                        // hidd.name = 'frete_valor'
+                        // hidd.value = valor
 
                         //chama os inputs na DOM
                         document.getElementById('teste').appendChild(div)
-                        document.getElementById('frete').appendChild(radio)
-                        document.getElementById('frete').appendChild(label)
-                        document.getElementById('frete').appendChild(nvLinha)
-                        document.getElementById('frete').appendChild(hidd)
+                        document.getElementById('frete').appendChild(radio1)
+                        document.getElementById('frete').appendChild(label1)
+                        document.getElementById('frete').appendChild(nvLinha1)
+
+                        document.getElementById('frete').appendChild(radio2)
+                        document.getElementById('frete').appendChild(label2)
+                        document.getElementById('frete').appendChild(nvLinha2)
+
+                        // document.getElementById('frete').appendChild(hidd)
 
                         // alert(JSON.stringify(responseBody.data));
                         // let formParent = frete.parentElement
@@ -195,7 +222,6 @@
                     })
 
         }
-
 
     </script>
 @endpush
