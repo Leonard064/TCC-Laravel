@@ -1,7 +1,8 @@
 A fazer:
 
-adicionar suporte a multiplos serviços - PAC e SEDEX
+- fretes:
 apagar consulta anterior
+enviar valor do frete
 
 pesquisa especifica - página produtos
 
