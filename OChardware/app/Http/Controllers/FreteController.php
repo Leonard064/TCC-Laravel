@@ -32,8 +32,12 @@ class FreteController extends Controller
                     ->setPeso(0.5);
 
                 try {
+                    //cria uma pesquisa para PAC
+                    //clone para evitar referenciar duas vezes a mesma variavel
+
                     $resultPAC =  clone $calculoFrete->calculate();
 
+                    //cria uma pesquisa para SEDEX
                     $calculoFrete->setCodigoServico(Data::SEDEX);
 
                     $resultSedex = clone $calculoFrete->calculate();
@@ -41,6 +45,14 @@ class FreteController extends Controller
                     //dd($result['cServico']);
 
                     // return Prod_CarrinhoController::showCheckout($result);
+
+                    /**
+                     * Transforma o código recebido no nome do serviço
+                     *
+                     * 04510 -> PAC
+                     * 04014 -> SEDEX
+                     *
+                     */
 
                     if(($resultPAC['cServico']['Codigo']) == "04510"){
                         $tipoPac = "PAC";
@@ -50,6 +62,14 @@ class FreteController extends Controller
                         $tipoSedex = "SEDEX";
                     }
 
+
+                    /**
+                     * Envia em resposta apenas os dados úteis
+                     * -Nome do Serviço
+                     * -Valor
+                     * -Prazo
+                     *
+                     */
                     return response()->json([
                         'tipoPac' => $tipoPac,
                         'valorPac' => $resultPAC['cServico']['Valor'],
