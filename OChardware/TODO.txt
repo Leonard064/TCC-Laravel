@@ -2,11 +2,9 @@ A fazer:
 
 - fretes:
 apagar consulta anterior
-enviar valor do frete
+enviar valor frete sem aspas
 
 pesquisa especifica - página produtos
-
-
 
 
 Carrinho e Checkout:
