@@ -126,6 +126,34 @@
 @push('scripts')
     <script>
 
+        var totalPAC;
+        var totalSEDEX;
+
+        var selecionaPac = function(){
+
+            let hidd = document.createElement('input')
+            hidd.type = 'hidden'
+            hidd.name = 'frete_valor'
+            hidd.value = totalPAC
+
+            document.getElementById('frete').appendChild(hidd)
+
+            alert("Input Criado!\n totalPAC: "+ totalPAC)
+        }
+
+        var selecionaSedex = function(){
+
+            let hidd = document.createElement('input')
+            hidd.type = 'hidden'
+            hidd.name = 'frete_valor'
+            hidd.value = totalSEDEX
+
+            document.getElementById('frete').appendChild(hidd)
+
+            alert("Input Criado\n totalSEDEX: "+ totalSEDEX)
+    }
+
+
         function ajax(id){
 
                 // let corpo = document.querySelector('div.corpo');
@@ -148,8 +176,8 @@
                         // div.innerText = JSON.stringify(responseBody.data)
 
                         /*
-                         * Cria os campos radio com as opções
-                         * de fretes disponíveis
+                         * Pega os valores retornados
+                         * e os salva em variaveis separadas
                          *
                         */
                         let tipoP =  JSON.stringify(responseBody.tipoPac)
@@ -191,13 +219,9 @@
                         var descricao2 = document.createTextNode( tipoS +' - R$'+ valorS +' - '+ diasS + ' Dias.');
                         label2.appendChild(descricao2)
 
-
-
-                        //campo hidden - para passagem de valor do frete
-                        // let hidd = document.createElement('input')
-                        // hidd.type = 'hidden'
-                        // hidd.name = 'frete_valor'
-                        // hidd.value = valor
+                        //salva o valor de cada serviço em uma variavel global
+                        totalPAC = valorP
+                        totalSEDEX = valorS
 
                         //chama os inputs na DOM
                         document.getElementById('teste').appendChild(div)
@@ -209,16 +233,10 @@
                         document.getElementById('frete').appendChild(label2)
                         document.getElementById('frete').appendChild(nvLinha2)
 
-                        // document.getElementById('frete').appendChild(hidd)
+                        //cria o listener para click nos radio buttons
+                        radio1.addEventListener('click', selecionaPac)
+                        radio2.addEventListener('click', selecionaSedex)
 
-                        // alert(JSON.stringify(responseBody.data));
-                        // let formParent = frete.parentElement
-
-                        // let div = document.createElement('div')
-                        // div.className = 'frete'
-                        // div.innerText = JSON.stringify(responseBody.data)
-
-                        // formParent.appendChild(div);
                     })
 
         }
