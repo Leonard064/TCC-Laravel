@@ -14,7 +14,7 @@ class FreteController extends Controller
 {
 
     //API de retorno de fretes
-    public function calculoFrete($id){
+    public function calculoFrete($id, $peso){
 
         try {
             $frete = Endereco::findOrFail($id);
@@ -29,7 +29,7 @@ class FreteController extends Controller
                     ->setAltura(30)
                     ->setLargura(30)
                     ->setDiametro(30)
-                    ->setPeso(0.5);
+                    ->setPeso($peso);
 
                 try {
                     //cria uma pesquisa para PAC
