@@ -1,11 +1,8 @@
 A fazer:
 
-- fretes:
-apagar consulta anterior
-enviar valor frete sem aspas
-
 pesquisa especifica - página produtos
 
+index - criar query para "acabaram de chegar" e "promoções do momento"
 
 Carrinho e Checkout:
 
