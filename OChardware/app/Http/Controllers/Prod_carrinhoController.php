@@ -143,7 +143,8 @@ class Prod_carrinhoController extends Controller
     }
 
 
-    public function updateCarrinho($id){
+    //adiciona uma (1) quantidade ao item selecionado
+    public function addQtdCarrinho($id){
         try {
             $carrinhoItem = Prod_Carrinho::find($id);
 
@@ -152,6 +153,33 @@ class Prod_carrinhoController extends Controller
             $carrinhoItem->save();
 
             return redirect('/carrinho');
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+        }
+    }
+
+
+    //remove uma (1) quantidade ao item selecionado
+    public function removeQtdCarrinho($id){
+        try {
+            $carrinhoItem = Prod_Carrinho::find($id);
+
+            if($carrinhoItem->quantidade > 1){ //checa se há quantidade a ser removida
+
+                $carrinhoItem->quantidade -= 1;
+
+                $carrinhoItem->save();
+
+                return redirect('/carrinho');
+
+            }else{ //caso não, remove o item do carrinho
+
+                $this->removerCarrinho($id);
+
+            }
+
 
         } catch (\Throwable $th) {
 

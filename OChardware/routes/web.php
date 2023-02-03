@@ -64,7 +64,9 @@ Route::get('/carrinho',[Prod_carrinhoController::class, 'showCarrinho']);
 
 Route::post('/addCarrinho',[Prod_carrinhoController::class, 'addCarrinho']);
 
-Route::get('/addQtd/{id}', [Prod_carrinhoController::class, 'updateCarrinho']);
+Route::get('/addQtd/{id}', [Prod_carrinhoController::class, 'addQtdCarrinho']);
+
+Route::get('/removerQtd/{id}', [Prod_CarrinhoController::class, 'removeQtdCarrinho']);
 
 Route::get('/removerCarrinho/{id}', [Prod_carrinhoController::class, 'removerCarrinho']);
 
