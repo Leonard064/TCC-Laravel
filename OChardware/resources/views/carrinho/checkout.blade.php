@@ -17,6 +17,7 @@
 
                     @php
                         $total = 0;
+                        $peso  = 0;
                     @endphp
 
                     @foreach ($prod_carrinho as $itens)
@@ -33,6 +34,7 @@
 
                         @php
                             $total += $itens->preco * $itens->quantidade;
+                            $peso  += $itens->peso * $itens->quantidade;
                         @endphp
 
                     @endforeach
@@ -53,7 +55,7 @@
 
                         @foreach ($enderecos as $endereco)
 
-                            <input type="radio" name="endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}})">
+                            <input type="radio" name="endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}}, {{$peso}})">
                             <label for="{{$endereco->id}}">{{$endereco->endereco}}</label><br>
 
                         @endforeach
@@ -64,7 +66,7 @@
 
                         <h2>Frete e Prazos</h2>
 
-                            <div class="grid-container" id="teste">
+                            <div id="frete">
                                 <p>Selecione um endereço</p>
                             </div>
 
@@ -114,6 +116,9 @@
                         <h2>Total</h2>
                         <p>R${{number_format($total,2,',','.')}}</p>
 
+                        <h2>Peso</h2>
+                        <p>{{number_format($peso,2,',','.')}}Kg</p>
+
                         <input type="hidden" name="total_pedido" value="{{$total}}">
 
                         <button class="bt-red">Finalizar Compra</button>
@@ -154,11 +159,13 @@
     }
 
 
-        function ajax(id){
+        function ajax(id,peso){
+
+                document.getElementById('frete').innerHTML = "Carregando...";
 
                 // let corpo = document.querySelector('div.corpo');
 
-                let url = '/api/frete/'+id;
+                let url = '/api/frete/'+id+'/'+peso;
                 // let idCep = id;
 
                 fetch(url,{
@@ -171,8 +178,10 @@
 
                         // div por enquanto é criada abaixo do corpo, logo não aparece
 
-                         let div = document.createElement('div')
-                         div.id = 'frete'
+                         let div = document.getElementById('frete')
+
+                         div.innerHTML = "";
+                        //  div.id = 'frete'
                         // div.innerText = JSON.stringify(responseBody.data)
 
                         /*
@@ -180,13 +189,13 @@
                          * e os salva em variaveis separadas
                          *
                         */
-                        let tipoP =  JSON.stringify(responseBody.tipoPac)
-                        let valorP = JSON.stringify(responseBody.valorPac)
-                        let diasP =  JSON.stringify(responseBody.prazoPac)
+                        let tipoP =  responseBody.tipoPac
+                        let valorP = responseBody.valorPac
+                        let diasP =  responseBody.prazoPac
 
-                        let tipoS = JSON.stringify(responseBody.tipoSedex)
-                        let valorS = JSON.stringify(responseBody.valorSedex)
-                        let diasS = JSON.stringify(responseBody.prazoSedex)
+                        let tipoS = responseBody.tipoSedex
+                        let valorS = responseBody.valorSedex
+                        let diasS = responseBody.prazoSedex
 
                         //campos radio
                         let radio1 = document.createElement('input')
@@ -224,14 +233,14 @@
                         totalSEDEX = valorS
 
                         //chama os inputs na DOM
-                        document.getElementById('teste').appendChild(div)
-                        document.getElementById('frete').appendChild(radio1)
-                        document.getElementById('frete').appendChild(label1)
-                        document.getElementById('frete').appendChild(nvLinha1)
+                        // document.getElementById('frete').appendChild(div)
+                        div.appendChild(radio1)
+                        div.appendChild(label1)
+                        div.appendChild(nvLinha1)
 
-                        document.getElementById('frete').appendChild(radio2)
-                        document.getElementById('frete').appendChild(label2)
-                        document.getElementById('frete').appendChild(nvLinha2)
+                        div.appendChild(radio2)
+                        div.appendChild(label2)
+                        div.appendChild(nvLinha2)
 
                         //cria o listener para click nos radio buttons
                         radio1.addEventListener('click', selecionaPac)
