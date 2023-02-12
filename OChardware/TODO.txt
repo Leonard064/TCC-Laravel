@@ -1,17 +1,16 @@
 A fazer:
 
-pesquisa especifica - página produtos
+pesquisa especifica - página produtos - TESTAR
 
-index - criar query para "acabaram de chegar" e "promoções do momento"
+Criar seeder para User ADM
+
+alteração de status de compra para ADM
+
+
+
 
 Carrinho e Checkout:
 
 - pagamento (carrinho) -> funcional parcial
     - funcionar com gateway de pagamento
-
-Users:
-
-- alteração de status de compra: adm
-
-
 
