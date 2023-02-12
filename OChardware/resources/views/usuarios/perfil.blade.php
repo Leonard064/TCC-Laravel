@@ -12,7 +12,7 @@
                 <div class="flex-container detalhes-nome">
                     <h2>{{Auth::user()->nome}} {{Auth::user()->sobrenome}}</h2>
                     <hr>
-                    <h3>Usuário desde: {{Auth::user()->created_at}}</h3>
+                    <h3>Usuário desde: {{Auth::user()->created_at->format('d/m/Y')}}</h3>
                     <a href="/editar-perfil">Editar cadastro</a>
                     <a href="/adicionar-endereco">Meus Endereços</a>
 
