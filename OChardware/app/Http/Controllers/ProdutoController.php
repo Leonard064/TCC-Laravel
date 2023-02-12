@@ -112,16 +112,27 @@ class ProdutoController extends Controller
     */
     public function pesquisaProdutos(Request $request){
 
+        //pega o radio selecionado e limita um valor a ele
+        if($request->valor == 'baixo'){
+            $valor = 100.0;
+        }else if($request->valor == 'medio'){
+            $valor = 500.0;
+        }else if($request->valor == 'alto' || $request->valor == 'caro'){
+            $valor = 1000.0;
+        }
+
+        $produto = Produto::where('marcas' , '=' , $request->marca)
+                            ->where('categorias', '=', $request->categoria)
+                            ->where('valor', '<', $valor)
+                            ->get();
+
+
         //para evitar crashes, marca e categoria precisam ser enviados
 
-        dd($request);
+        $marca = Marca::all();
+        $categoria = Categoria::all();
 
-        // $marca = Marca::all();
-        // $categoria = Categoria::all();
-
-        // $produto = Produto::where()->get();
-
-        // return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria]);
+        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria]);
     }
 
 

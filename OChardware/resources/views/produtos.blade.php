@@ -7,7 +7,8 @@
         <div class="lateral">
             <div class="flex-container nav-lateral">
                 <h2>Busca Específica</h2>
-                <form action="" method="post">
+                <form action="/pesquisa-produtos" method="POST">
+                    @csrf
 
                     <h3>Marcas</h3>
 
@@ -35,10 +36,10 @@
 
                     <h3>Preço</h3>
 
-                    <input type="radio" name="valor" id="baixo"><label for="baixo">R$0,00 até R$100,00</label><br>
-                    <input type="radio" name="valor" id="medio"><label for="medio">R$100,00 até R$500,00</label><br>
-                    <input type="radio" name="valor" id="alto"><label for="alto">R$500,00 até R$1000,00</label><br>
-                    <input type="radio" name="valor" id="caro"><label for="caro">Acima de R$1000,00</label><br><br>
+                    <input type="radio" name="valor" value="baixo"><label for="baixo">R$0,00 até R$100,00</label><br>
+                    <input type="radio" name="valor" value="medio"><label for="medio">R$100,00 até R$500,00</label><br>
+                    <input type="radio" name="valor" value="alto"><label for="alto">R$500,00 até R$1000,00</label><br>
+                    <input type="radio" name="valor" value="caro"><label for="caro">Acima de R$1000,00</label><br><br>
 
                     <button class="bt-red">Pesquisar</button>
 
