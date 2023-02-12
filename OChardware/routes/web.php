@@ -36,6 +36,8 @@ Route::get('/create-produto',[ProdutoController::class, 'create']);
 
 Route::post('/produtos/create', [ProdutoController::class, 'store']);
 
+Route::post('/pesquisa-produtos', [ProdutoController::class, 'pesquisaProdutos']);
+
 
 /* ====================
     --- Categoria ---
