@@ -15,9 +15,14 @@ class ProdutoController extends Controller
     //chamada de páginas
     public function index(){
 
-        $produto = Produto::all();
+        //Promoções do momento
+        $produtoValor = Produto::orderBy('preco' , 'ASC')->get();
 
-        return view('index',['produto' => $produto]);
+        //Acabaram de Chegar
+        $produtoTempo = Produto::all();
+
+
+        return view('index',['produtoValor' => $produtoValor , 'produto' => $produtoTempo]);
     }
 
 
@@ -101,6 +106,23 @@ class ProdutoController extends Controller
         return view('produtos.showAdmProdutos', ['produto' => $produto]);
     }
 
+
+    /*pesquisa os itens que se encaixam na seleção do usuário
+        ---- em construção ----
+    */
+    public function pesquisaProdutos(Request $request){
+
+        //para evitar crashes, marca e categoria precisam ser enviados
+
+        dd($request);
+
+        // $marca = Marca::all();
+        // $categoria = Categoria::all();
+
+        // $produto = Produto::where()->get();
+
+        // return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria]);
+    }
 
 
     //Chamadas CRUD
