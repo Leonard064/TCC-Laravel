@@ -2,11 +2,9 @@ A fazer:
 
 pesquisa especifica - página produtos - TESTAR
 
-Criar seeder para User ADM
-
 alteração de status de compra para ADM
 
-
+criar seeder para alguns produtos (talvez)
 
 
 Carrinho e Checkout:
@@ -14,3 +12,4 @@ Carrinho e Checkout:
 - pagamento (carrinho) -> funcional parcial
     - funcionar com gateway de pagamento
 
+- gerador de boleto
