@@ -121,9 +121,9 @@ class ProdutoController extends Controller
             $valor = 1000.0;
         }
 
-        $produto = Produto::where('marcas' , '=' , $request->marca)
-                            ->where('categorias', '=', $request->categoria)
-                            ->where('valor', '<', $valor)
+        $produto = Produto::where('id_marca' , '=' , $request->marca)
+                            ->where('id_categoria', '=', $request->categoria)
+                            ->where('preco', '<', $valor)
                             ->get();
 
 
@@ -131,8 +131,9 @@ class ProdutoController extends Controller
 
         $marca = Marca::all();
         $categoria = Categoria::all();
+        $pesquisa = 0;
 
-        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria]);
+        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
     }
 
 
