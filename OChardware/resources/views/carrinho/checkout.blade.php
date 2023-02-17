@@ -55,7 +55,7 @@
 
                         @foreach ($enderecos as $endereco)
 
-                            <input type="radio" name="endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}}, {{$peso}})">
+                            <input type="radio" name="id_endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}}, {{$peso}})">
                             <label for="{{$endereco->id}}">{{$endereco->endereco}}</label><br>
 
                         @endforeach
@@ -83,7 +83,7 @@
 
                 @else
 
-                    <form action="/endereco/create-via-checkout" method="post">
+                    <form action="/endereco/create-via-checkout" method="POST">
                         @csrf
 
                             <h3>Você ainda não possui endereço cadastrado. Insira um agora</h3>
@@ -91,6 +91,7 @@
                             <input type="text" name="cep" id="cep" placeholder="cep"><br>
                             <input type="text" name="endereco" id="endereco" placeholder="endereco"><br>
                             <input type="text" name="numero" id="numero" placeholder="numero"><br>
+                            <input type="text" name="bairro" id="bairro" placeholder="bairro"><br>
                             <input type="text" name="estado" id="estado" placeholder="estado"><br>
                             <input type="text" name="municipio" id="municipio" placeholder="municipio"><br>
 
