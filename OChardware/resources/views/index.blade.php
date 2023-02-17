@@ -19,7 +19,7 @@
             @if(count($produtoValor)==0)
                 <h1>Nenhum produto foi encontrado</h1>
             @else
-                @include('layouts._produtos',['produto' => $produto])
+                @include('layouts._produtos',['produto' => $produtoValor])
             @endif
         </div>
 
