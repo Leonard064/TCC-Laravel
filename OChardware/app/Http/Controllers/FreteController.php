@@ -62,6 +62,8 @@ class FreteController extends Controller
                         $tipoSedex = "SEDEX";
                     }
 
+                    $valorPAC = str_replace(',','.',$resultPAC['cServico']['Valor']);
+                    $valorSEDEX = str_replace(',','.',$resultSedex['cServico']['Valor']);
 
                     /**
                      * Envia em resposta apenas os dados úteis
@@ -72,11 +74,11 @@ class FreteController extends Controller
                      */
                     return response()->json([
                         'tipoPac' => $tipoPac,
-                        'valorPac' => $resultPAC['cServico']['Valor'],
+                        'valorPac' => $valorPAC,
                         'prazoPac' => $resultPAC['cServico']['PrazoEntrega'],
 
                         'tipoSedex' => $tipoSedex,
-                        'valorSedex' => $resultSedex['cServico']['Valor'],
+                        'valorSedex' => $valorSEDEX,
                         'prazoSedex' => $resultSedex['cServico']['PrazoEntrega']
                         // 'data' => $request
                     ]);
