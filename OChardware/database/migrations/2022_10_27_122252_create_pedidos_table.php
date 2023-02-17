@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('pedidos', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->decimal('total_pedido',5,2);
+            $table->decimal('total_pedido',7,2);
             $table->string('frete_tipo',5);
             $table->decimal('frete_valor',5,2);
             $table->string('pagamento_tipo',10);
