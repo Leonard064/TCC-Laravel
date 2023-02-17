@@ -83,7 +83,12 @@
 
                 @else
 
-                    <form action="/endereco/create-via-checkout" method="POST">
+                <h3>Você ainda não possui endereço cadastrado. Insira um agora</h3>
+                <a href="/adicionar-endereco">Adicionar um endereço</a>
+
+                <h2>Frete e Prazos</h2>
+                <p>Cadastre um endereço para poder selecionar um frete.</p>
+                    {{-- <form action="/endereco/create-via-checkout" method="POST">
                         @csrf
 
                             <h3>Você ainda não possui endereço cadastrado. Insira um agora</h3>
@@ -101,10 +106,10 @@
                                 <input type="hidden" name="frete_tipo" value="{{$frete}}">
                                 <input type="hidden" name="frete_valor" value="{{$valor_frete}}"> --}}
 
-                            <h2>Frete e Prazos</h2>
+                            {{-- <h2>Frete e Prazos</h2>
                             <p>Cadastre um endereço para poder selecionar um frete.</p>
 
-                    </form>
+                    </form> --}}
 
                 @endif
 
