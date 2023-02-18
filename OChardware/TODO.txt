@@ -1,8 +1,10 @@
 A fazer:
 
-pesquisa especifica - página produtos - TESTAR
+pesquisa especifica - melhorar a lógica
 
 alteração de status de compra para ADM
+
+
 
 criar seeder para alguns produtos (talvez)
 
