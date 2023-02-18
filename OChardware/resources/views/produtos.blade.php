@@ -25,10 +25,10 @@
                         @endif
 
                     <h3>Seção</h3>
-                        @if (count($categoria)<=0)
+                        @if (count($categoriaBE)<=0)
                             <h4>Não há categorias</h4>
                         @else
-                            @foreach ($categoria as $categorias)
+                            @foreach ($categoriaBE as $categorias)
                                 <input type="radio" name="categoria" id="{{$categorias->nome}}" value="{{$categorias->id}}">
                                 <label for="{{$categorias->nome}}">{{$categorias->nome}}</label><br>
                             @endforeach
@@ -36,12 +36,18 @@
 
                     <h3>Preço</h3>
 
-                    <input type="radio" name="valor" value="baixo"><label for="baixo">R$0,00 até R$100,00</label><br>
+                    <label for="valorMin">De:</label><br>
+                    <input type="number" name="valorMin" id="valorMin" min="1"><br>
+
+                    <label for="valorMax">Até:</label><br>
+                    <input type="number" name="valorMax" id="valorMax" min="1">
+
+                    {{-- <input type="radio" name="valor" value="baixo"><label for="baixo">R$0,00 até R$100,00</label><br>
                     <input type="radio" name="valor" value="medio"><label for="medio">R$100,00 até R$500,00</label><br>
                     <input type="radio" name="valor" value="alto"><label for="alto">R$500,00 até R$1000,00</label><br>
-                    <input type="radio" name="valor" value="caro"><label for="caro">Acima de R$1000,00</label><br><br>
+                    <input type="radio" name="valor" value="caro"><label for="caro">Acima de R$1000,00</label><br><br> --}}
 
-                    <button class="bt-red">Pesquisar</button>
+                    <button class="bt-red">Filtrar</button>
 
                 </form>
             </div>

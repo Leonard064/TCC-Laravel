@@ -61,18 +61,20 @@ class ProdutoController extends Controller
 
             $produto = Produto::where('nome','like','%'.$pesquisa.'%')->get();
             $categoria = Categoria::all();
+            $categoriaBE = $categoria; //exclusivo para busca específica
 
         }elseif($id_categoria){
 
             $pesquisa = 0;
             $produto = Produto::where('id_categoria', $id_categoria)->get();
             $categoria = Categoria::where('id', $id_categoria)->get();
+            $categoriaBE = Categoria::all();
 
         }else{
             return 0;
         }
 
-        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
+        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoriaBE' => $categoriaBE, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
 
     }
 
@@ -112,28 +114,30 @@ class ProdutoController extends Controller
     */
     public function pesquisaProdutos(Request $request){
 
-        //pega o radio selecionado e limita um valor a ele
-        if($request->valor == 'baixo'){
-            $valor = 100.0;
-        }else if($request->valor == 'medio'){
-            $valor = 500.0;
-        }else if($request->valor == 'alto' || $request->valor == 'caro'){
-            $valor = 1000.0;
-        }
+        // //pega o radio selecionado e limita um valor a ele
+        // if($request->valor == 'baixo'){
+        //     $valor = 100.0;
+        // }else if($request->valor == 'medio'){
+        //     $valor = 500.0;
+        // }else if($request->valor == 'alto' || $request->valor == 'caro'){
+        //     $valor = 1000.0;
+        // }
 
         $produto = Produto::where('id_marca' , '=' , $request->marca)
                             ->where('id_categoria', '=', $request->categoria)
-                            ->where('preco', '<', $valor)
+                            ->where('preco', '>=', $request->valorMin)
+                            ->where('preco', '<=', $request->valorMax)
                             ->get();
 
 
         //para evitar crashes, marca e categoria precisam ser enviados
 
         $marca = Marca::all();
-        $categoria = Categoria::all();
+        $categoria = Categoria::where('id', $request->categoria)->get();
+        $categoriaBE = Categoria::all();
         $pesquisa = 0;
 
-        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
+        return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoria' => $categoria, 'categoriaBE' => $categoriaBE, 'pesquisa' => $pesquisa]);
     }
 
 
