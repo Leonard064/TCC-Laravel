@@ -38,10 +38,11 @@
                         </tr>
                     </table>
 
-                    <a href="/todos-pedidos">
-                        <button class="bt-red">Visualizar todos os Pedidos</button>
-                    </a>
                 @endforeach
+
+                <a href="/todos-pedidos">
+                    <button class="bt-red">Visualizar todos os Pedidos</button>
+                </a>
 
             @else
                 <i class="fa-solid fa-triangle-exclamation"></i>
