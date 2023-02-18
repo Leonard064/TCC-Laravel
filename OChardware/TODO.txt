@@ -1,12 +1,9 @@
 A fazer:
 
-pesquisa especifica - melhorar a lógica
+alteração de status de compra para ADM - melhorar depois
 
-alteração de status de compra para ADM
+criar seeder para alguns produtos - baixa prioridade
 
-
-
-criar seeder para alguns produtos (talvez)
 
 
 Carrinho e Checkout:
