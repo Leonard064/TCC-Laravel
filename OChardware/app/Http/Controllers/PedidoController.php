@@ -46,4 +46,23 @@ class PedidoController extends Controller
 
             }
     }
+
+
+    public function editPedidoStat($id){
+
+        if($pedido = Pedido::find($id)){
+
+            $pedido->status = "Aprovado";
+
+            try {
+                $pedido->save();
+
+                return redirect('/dashboard');
+
+            } catch (\Throwable $th) {
+                echo $th->getMessage();
+
+            }
+        }
+    }
 }
