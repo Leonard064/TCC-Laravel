@@ -19,7 +19,7 @@ class ProdutoController extends Controller
         $produtoValor = Produto::orderBy('preco' , 'ASC')->get();
 
         //Acabaram de Chegar
-        $produtoTempo = Produto::all();
+        $produtoTempo = Produto::orderBy('created_at', 'DESC')->get();
 
 
         return view('index',['produtoValor' => $produtoValor , 'produto' => $produtoTempo]);
