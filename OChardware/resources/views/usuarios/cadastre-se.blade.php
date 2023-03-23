@@ -3,20 +3,21 @@
 @section('title','OC Hardware - Cadastre-se')
 
 @section('conteudo')
-    <section class="flex-container corpo">
-        <div class="flex-container banner-login heading banner-texto">
+    <section class="flex-container corpo flex-form">
+        {{-- <div class="flex-container banner-login heading banner-texto">
             <h2>Não Possui cadastro? Faça agora o seu</h2>
-        </div>
-        <div class="flex-container secao">
+        </div> --}}
+        {{-- <div class="flex-container secao black">
+            <i class="fa-solid fa-square red"></i> &nbsp;
             <h2>Entre ou Cadastre-se</h2>
-        </div>
+        </div> --}}
 
-        <div class="grid-container forms margem">
+        <div class="grid-container auth">
 
-            {{-- Cadastro --}}
+            {{-- Cadastro
 
             <div class="flex-container form">
-                <h3>Cadastre-se</h3>
+                <h2>Cadastre-se</h2>
                 <form action="/registrar" method="POST" enctype="multipart/form-data">
                     @csrf
                     <input type="text" name="login" id="login" placeholder="Login" class="input-full">
@@ -24,15 +25,34 @@
                     <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="input-full">
                     <input type="text" name="cpf" id="cpf" placeholder="CPF" class="input-full">
                     <input type="email" name="email" id="email-logon" placeholder="Email" class="input-full">
-                    <br>
                     <label for="foto">Imagem:</label>
                     <input type="file" name="foto" id="foto">
-                    <br>
                     <input type="password" name="senha" id="senha-logon" placeholder="Senha" class="input-full">
                     <input type="password" name="" id="testa-senha-logon" placeholder="Insira novamente sua senha" class="input-full">
                     <button class="bt-red">Cadastrar</button>
                 </form>
             </div>
+            --}}
+
+            <div class="flex-container form">
+                <h2>Cadastre-se</h2>
+                <form action="/registrar" method="POST" enctype="multipart/form-data" class="form-cadastro">
+                    @csrf
+                    <input type="text" name="nome" id="nome" placeholder="Nome" class="teste-form">
+                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="teste-form">
+                    <input type="text" name="login" id="login" placeholder="Login" class="teste-form">
+                    <input type="text" name="cpf" id="cpf" placeholder="CPF" class="teste-form">
+                    <input type="email" name="email" id="email-logon" placeholder="Email" class="teste-form">
+                    <br><br>
+                    <label for="foto">Imagem:</label>
+                    <input type="file" name="foto" id="foto">
+                    <br><br>
+                    <input type="password" name="senha" id="senha-logon" placeholder="Senha" class="teste-form">
+                    <input type="password" name="" id="testa-senha-logon" placeholder="Insira novamente sua senha" class="teste-form">
+                    <button class="bt-red">Entrar</button>
+                </form>
+            </div>
+
 
         </div> {{-- FIM Grid-container --}}
 
