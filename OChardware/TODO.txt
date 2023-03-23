@@ -1,5 +1,10 @@
 A fazer:
 
+front-end:
+ páginas de autenticaçao (checar o vh do padding - muito grande)
+
+
+
 alteração de status de compra para ADM - melhorar depois
 
 criar seeder para alguns produtos - baixa prioridade
