@@ -354,12 +354,16 @@ body{
     align-items: center;
     flex-direction: column;
     box-sizing: border-box;
-    margin: 5vh 0;
+    margin: 3vh 0;
 }
 
 .form button{
-    /* width: 50%; */
-    margin: 5px 10px 5px 0;
+    width: 50%;
+    margin: 10px 0 5px 0;
+}
+
+.bt-auth{
+    justify-content: center;
 }
 
 /* Página ITEM */
@@ -369,9 +373,12 @@ body{
     flex-direction: column;
 }
 
+/*
 .detalhes-topo{
     background: #d6d6d6;
+    margin: 2vh 15%;
 }
+*/
 
 .detalhes-foto-nome{
     grid-template-columns: 1fr 1.5fr;
@@ -395,7 +402,7 @@ body{
     margin: 2vw;
 }
 
-.detalhes-comentarios-avaliacao{
+.grid-comentarios-avaliacao{
     grid-template-columns: 1.5fr 1fr;
 }
 
@@ -496,6 +503,19 @@ body{
     }
 }
 
+/* borders radius*/
+.border-10{
+    border-radius: 10px;
+}
+
+/* Padding e margin comuns*/
+.padding-detalhes{
+    padding: 2vh;
+}
+
+.margin-new{
+    margin: 2vh 15%;
+}
 
 /* a sem decoration */
 .no-deco-white{
@@ -513,6 +533,10 @@ body{
     color: #e00009;
 }
 
+.bg-gray{
+    background: #D6D6D6;
+}
+
 /* fontes */
 .heading{
     font-family: 'Passion One', cursive;
@@ -521,6 +545,10 @@ body{
 .banner-texto{
     font-size: 3em;
     color: #fff;
+}
+
+.label-preco{
+    font-weight: bold;
 }
 
 /* BOTÕES */
