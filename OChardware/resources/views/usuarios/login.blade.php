@@ -23,7 +23,9 @@
                     @csrf
                     <input type="text" name="login" id="login" placeholder="Login" class="input-full">
                     <input type="password" name="senha" id="senha-login" placeholder="Senha" class="input-full">
-                    <button class="bt-red">Entrar</button>
+                    <div class="flex-container bt-auth">
+                        <button class="bt-red">Entrar</button>
+                    </div>
                     <p>Não possui cadastro? <a href="/cadastre-se">Cadastrar</a></p>
                 </form>
             </div>

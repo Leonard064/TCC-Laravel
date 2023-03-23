@@ -14,25 +14,7 @@
 
         <div class="grid-container auth">
 
-            {{-- Cadastro
-
-            <div class="flex-container form">
-                <h2>Cadastre-se</h2>
-                <form action="/registrar" method="POST" enctype="multipart/form-data">
-                    @csrf
-                    <input type="text" name="login" id="login" placeholder="Login" class="input-full">
-                    <input type="text" name="nome" id="nome" placeholder="Nome" class="input-full">
-                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="input-full">
-                    <input type="text" name="cpf" id="cpf" placeholder="CPF" class="input-full">
-                    <input type="email" name="email" id="email-logon" placeholder="Email" class="input-full">
-                    <label for="foto">Imagem:</label>
-                    <input type="file" name="foto" id="foto">
-                    <input type="password" name="senha" id="senha-logon" placeholder="Senha" class="input-full">
-                    <input type="password" name="" id="testa-senha-logon" placeholder="Insira novamente sua senha" class="input-full">
-                    <button class="bt-red">Cadastrar</button>
-                </form>
-            </div>
-            --}}
+            {{-- Cadastro --}}
 
             <div class="flex-container form">
                 <h2>Cadastre-se</h2>
@@ -49,7 +31,11 @@
                     <br><br>
                     <input type="password" name="senha" id="senha-logon" placeholder="Senha" class="teste-form">
                     <input type="password" name="" id="testa-senha-logon" placeholder="Insira novamente sua senha" class="teste-form">
-                    <button class="bt-red">Entrar</button>
+
+                    <div class="flex-container bt-auth">
+                        <button class="bt-red">Entrar</button>
+                    </div>
+
                 </form>
             </div>
 
