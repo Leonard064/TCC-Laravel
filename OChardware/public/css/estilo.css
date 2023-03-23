@@ -324,6 +324,17 @@ body{
 
 /* Página LOGIN */
 
+.auth{
+    width: 500px;
+    margin: 5vh 30%;
+    background-color: #D6D6D6;
+    border-radius: 2%;
+}
+
+.flex-form{
+    align-items: center;
+}
+
 .banner-login{
     background-image: url(../img/pexels-athena-2582932.jpg);
     background-size: cover;
@@ -340,13 +351,14 @@ body{
 }
 
 .form{ /*área interna individual dos forms */
+    align-items: center;
     flex-direction: column;
     box-sizing: border-box;
     margin: 5vh 0;
 }
 
 .form button{
-    width: 50%;
+    /* width: 50%; */
     margin: 5px 10px 5px 0;
 }
 
@@ -537,4 +549,20 @@ body{
     margin: 5px 10px 5px 0;
 }
 
-/*Carrinho*/
+.form-cadastro{
+    margin: 0 20px;
+}
+
+.teste-form{
+    width: 49%;
+    padding: 10px 10px;
+    margin: 7px 0;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: solid 2px #212121;
+}
+
+.input-form{
+    width: 50%;
+    margin: 20px 50px;
+}
