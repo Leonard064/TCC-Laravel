@@ -382,7 +382,7 @@ body{
 
 .detalhes-foto-nome{
     grid-template-columns: 1fr 1.5fr;
-    min-height: 4vh; /*temporário*/
+    /* min-height: 4vh; temporário */
 }
 
 .detalhes-foto{
@@ -404,6 +404,7 @@ body{
 
 .grid-comentarios-avaliacao{
     grid-template-columns: 1.5fr 1fr;
+    grid-column-gap: 40px;
 }
 
 /* MEDIA-QUERIES */

@@ -7,7 +7,7 @@
         <section class="detalhes-topo bg-gray border-10 margin-new">
             <div class="grid-container detalhes-foto-nome">
                 <div class="flex-container detalhes-foto">
-                    <img src="../img/produtos/{{$produto->foto}}" alt="OverClock">
+                    <img src="../img/produtos/{{$produto->foto}}" class="border-10" alt="OverClock">
                 </div>
                 <div class="flex-container detalhes-nome">
                     @if($produto->quantidade <= 0)
@@ -42,12 +42,12 @@
             <p>{{$produto->descricao}}</p>
         </div>
 
-        <div class="detalhes-comentarios-avaliacao bg-gray border-10 padding-detalhes margin-new">
+        {{-- <div class="detalhes-comentarios-avaliacao bg-gray border-10 padding-detalhes margin-new">
             <i class="fa-solid fa-square red"></i> &nbsp;
-            <h3>Avaliações</h3>
+            <h3>Avaliações</h3> --}}
 
-            <div class="grid-container grid-comentarios-avaliacao">
-                <div class="detalhes-comentarios">
+            <div class="grid-container grid-comentarios-avaliacao margin-new">
+                <div class="detalhes-comentarios bg-gray padding-detalhes border-10">
                     <i class="fa-solid fa-square red"></i>
                     <h3>Comentários</h3>
 
@@ -78,7 +78,7 @@
                 </div>
 
                 @if(Auth::check())
-                    <div class="detalhes-avaliacao">
+                    <div class="detalhes-avaliacao bg-gray padding-detalhes border-10">
                         <i class="fa-solid fa-square red"></i>
                         <h3>Gostou do produto?</h3>
                         <form action="/avaliacoes/create" method="post">
@@ -99,7 +99,7 @@
                 @endif
             </div>
 
-        </div>
+        {{-- </div> --}}
 
         {{-- Comentado para evitar possiveis problemas
 
