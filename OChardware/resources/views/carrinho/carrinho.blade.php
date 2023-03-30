@@ -3,8 +3,75 @@
 @section('title', 'Carrinho - OCHardware')
 
 @section('conteudo')
-    <div class="flex-container corpo margem">
-        <h2>Página Carrinho</h2>
+    <div class="flex-container corpo margin-new">
+        <div class="grid-container carrinho bg-gray padding-detalhes border-10">
+            <h2>Carrinho</h2>
+
+            <div class="tabela">
+                @if (count($prod_carrinho) > 0)
+                <table>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                    </tr>
+
+                @php
+                    $total = 0;
+                @endphp
+
+                    @foreach ($prod_carrinho as $itens)
+
+                        <tr>
+                            <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
+
+                            <td>{{$itens->nome}}</td>
+                            <td>
+                                <a href="/removerQtd/{{$itens->id}}"><i class="fa-solid fa-minus"></i></a>
+                                    {{$itens->quantidade}}
+                                <a href="/addQtd/{{$itens->id}}"><i class="fa-solid fa-plus"></i></a>
+                            </td>
+                            <td>R${{number_format($itens->preco, 2,',','.')}}</td>
+                            <td><a href="/removerCarrinho/{{$itens->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                        </tr>
+
+                            @php
+                                $total += $itens->preco * $itens->quantidade;
+                            @endphp
+
+                    @endforeach
+
+                </table>
+
+                <form action="/checkout" method="post">
+                    @csrf
+
+
+                    <h2>Total</h2>
+
+                    <h3>R${{number_format($total,2,',','.')}}</h3>
+
+                    {{-- <input type="hidden" name="total" value="{{$total}}">--}}
+
+
+                    <button class="bt-red">Finalizar Compra</button>
+
+                </form>
+
+            @else
+
+                <i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
+                <h2>Seu carrinho está vazio!</h2>
+                <a href="/">Vá as compras</a>
+
+            @endif
+
+            </div>{{-- fim div tabela--}}
+
+        </div> {{-- fim grid - carrinho--}}
+
+        {{-- <h2>Página Carrinho</h2>
 
             @if(count($prod_carrinho) > 0)
                 <table>
@@ -22,7 +89,7 @@
                         @foreach ($prod_carrinho as $itens)
 
                             <tr>
-                                <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
+                                <td>{{$itens->foto}}</td> -- depois chamar a imagem real--
 
                                 <td>{{$itens->nome}}</td>
                                 <td>
@@ -38,7 +105,7 @@
                                 $total += $itens->preco * $itens->quantidade;
                             @endphp
 
-                        @endforeach
+                        @endforeach --}}
 
                         {{-- A repetição vai em cima de prod_carrinho (já que ambos terão a mesma contagem)
                         @for ($i = 0; $i < count($prod_carrinho); $i++)
@@ -61,7 +128,7 @@
                                 $total += $carrinho[$i][0]['preco'] * $prod_carrinho[$i]->quantidade;
                             @endphp
 
-                        @endfor --}}
+                        @endfor
 
                 </table>
 
@@ -70,7 +137,7 @@
                         <label for="cep">Insira o seu CEP</label>
                         <input type="text" class="cep" name="cep" id="cep">
                         <button class="bt-red">Enviar</button>
-                    </form> --}}
+                    </form>
 
                     <form action="/checkout" method="post">
                     @csrf
@@ -84,14 +151,14 @@
                             <input type="radio" name="frete" id="sedex" value="sedex">
                             <label for="sedex">Sedex - {{number_format($sedex,2,',','.')}} (4 dias)</label>
                             <input type="radio" name="frete" id="pac" value="pac">
-                            <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label> --}}
+                            <label for="pac">PAC - {{number_format($pac,2,',','.')}} (7 dias)</label>
 
 
                             <h2>Total</h2>
 
                                 <h3>R${{number_format($total,2,',','.')}}</h3>
 
-                                {{-- <input type="hidden" name="total" value="{{$total}}"> --}}
+                                {{-- <input type="hidden" name="total" value="{{$total}}">
 
 
                             <button class="bt-red">Finalizar Compra</button>
@@ -102,7 +169,7 @@
                 <i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
                 <h2>Seu carrinho está vazio!</h2>
                 <a href="/">Vá as compras</a>
-            @endif
+            @endif--</table>--</table>--</table>--}}
 
 
     </div>
