@@ -4,10 +4,10 @@
 
 @section('conteudo')
     <section class="flex-container corpo-detalhes">
-        <section class="detalhes-topo">
-            <div class="grid-container detalhes-foto-nome margem">
+        <section class="detalhes-topo bg-gray border-10 margin-new">
+            <div class="grid-container detalhes-foto-nome">
                 <div class="flex-container detalhes-foto">
-                    <img src="img/usuarios/{{Auth::user()->foto}}" alt="Perfil">
+                    <img src="img/usuarios/{{Auth::user()->foto}}" class="border-10" alt="Perfil">
                 </div>
                 <div class="flex-container detalhes-nome">
                     <h2>{{Auth::user()->nome}} {{Auth::user()->sobrenome}}</h2>
