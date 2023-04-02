@@ -3,13 +3,20 @@ A fazer:
 front-end:
  páginas de autenticaçao (checar o vh do padding - muito grande)
 
+ ajustar página detalhes
+ ajustar carrinho
+ ajustar checkout
+ ajustar perfil
+ ajustar Administrador
+
+
 
 
 alteração de status de compra para ADM - melhorar depois
 
 criar seeder para alguns produtos - baixa prioridade
 
-
+adicionar campo alterar senha - adm e user comum
 
 Carrinho e Checkout:
 
