@@ -4,72 +4,100 @@
 
 @section('conteudo')
     <div class="flex-container corpo margin-new">
-        <div class="grid-container carrinho bg-gray padding-detalhes border-10">
-            <h2>Carrinho</h2>
 
-            <div class="tabela">
-                @if (count($prod_carrinho) > 0)
-                <table>
-                    <tr>
-                        <th>Foto</th>
-                        <th>Nome</th>
-                        <th>Quantidade</th>
-                        <th>Valor</th>
-                    </tr>
+        @if (count($prod_carrinho) > 0)
 
-                @php
-                    $total = 0;
-                @endphp
+            <div class="grid-container carrinho">
+                <div class="grid-container carrinho-lista bg-gray border-10 padding-detalhes">
+                    <i class="fa-solid fa-square red"></i> &nbsp;
+                    <h2>Carrinho</h2>
 
-                    @foreach ($prod_carrinho as $itens)
+                    <div class="tabela">
+                        <table>
+                            <tr>
+                                <th>Foto</th>
+                                <th>Nome</th>
+                                <th>Quantidade</th>
+                                <th>Valor</th>
+                            </tr>
 
-                        <tr>
-                            <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
+                        @php
+                            $total = 0;
+                        @endphp
 
-                            <td>{{$itens->nome}}</td>
-                            <td>
-                                <a href="/removerQtd/{{$itens->id}}"><i class="fa-solid fa-minus"></i></a>
-                                    {{$itens->quantidade}}
-                                <a href="/addQtd/{{$itens->id}}"><i class="fa-solid fa-plus"></i></a>
-                            </td>
-                            <td>R${{number_format($itens->preco, 2,',','.')}}</td>
-                            <td><a href="/removerCarrinho/{{$itens->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
-                        </tr>
+                            @foreach ($prod_carrinho as $itens)
 
-                            @php
-                                $total += $itens->preco * $itens->quantidade;
-                            @endphp
+                                <tr>
+                                    <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
 
-                    @endforeach
+                                    <td>{{$itens->nome}}</td>
+                                    <td>
+                                        <a href="/removerQtd/{{$itens->id}}"><i class="fa-solid fa-minus"></i></a>
+                                            {{$itens->quantidade}}
+                                        <a href="/addQtd/{{$itens->id}}"><i class="fa-solid fa-plus"></i></a>
+                                    </td>
+                                    <td>R${{number_format($itens->preco, 2,',','.')}}</td>
+                                    <td><a href="/removerCarrinho/{{$itens->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                </tr>
 
-                </table>
+                                    @php
+                                        $total += $itens->preco * $itens->quantidade;
+                                    @endphp
 
-                <form action="/checkout" method="post">
-                    @csrf
+                            @endforeach
+
+                        </table>
+
+                        {{-- <form action="/checkout" method="post">
+                            @csrf
 
 
+                            <h2>Total</h2>
+
+                            <h3>R${{number_format($total,2,',','.')}}</h3>
+
+                            {{-- <input type="hidden" name="total" value="{{$total}}">
+
+
+                            <button class="bt-red">Finalizar Compra</button>
+
+                        </form> --}}
+
+                    </div>{{-- fim div tabela--}}
+                </div>{{-- fim div lista--}}
+
+                <div class="grid-container carrinho-total bg-gray border-10 padding-detalhes">
+                    <i class="fa-solid fa-square red"></i> &nbsp;
                     <h2>Total</h2>
 
-                    <h3>R${{number_format($total,2,',','.')}}</h3>
+                    <form action="/checkout" method="post">
+                        @csrf
 
-                    {{-- <input type="hidden" name="total" value="{{$total}}">--}}
+                        <h3>R${{number_format($total,2,',','.')}}</h3>
+
+                        {{-- <input type="hidden" name="total" value="{{$total}}">--}}
 
 
-                    <button class="bt-red">Finalizar Compra</button>
+                        <button class="bt-red">Finalizar Compra</button>
 
-                </form>
+                    </form>
 
-            @else
+                </div>{{-- fim grid total--}}
 
-                <i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
-                <h2>Seu carrinho está vazio!</h2>
-                <a href="/">Vá as compras</a>
+            </div> {{-- fim grid - carrinho--}}
 
-            @endif
+        @else{{-- Mensagem de carrinho vazio--}}
 
-            </div>{{-- fim div tabela--}}
+            <div class="grid-container carrinho-vazio">
+                <div class="vazio bg-gray padding-detalhes border-10">
+                    <i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
+                    <h2>Seu carrinho está vazio!</h2>
+                    <a href="/">Vá as compras</a>
+                </div>
+            </div>
 
-        </div> {{-- fim grid - carrinho--}}
+        @endif
+
 
         {{-- <h2>Página Carrinho</h2>
 

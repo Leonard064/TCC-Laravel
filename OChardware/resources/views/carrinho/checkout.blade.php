@@ -3,44 +3,105 @@
 @section('title', 'Carrinho - OCHardware')
 
 @section('conteudo')
-    <div class="flex-container corpo margem">
-        <h1>Checkout</h1>
+    <div class="flex-container corpo margin-new">
+        <div class="grid-container carrinho checkout">
+            <div class="grid-container carrinho-lista checkout-lista bg-gray border-10 padding-detalhes">
+                <h2>Checkout</h2>
 
-        <h2>Produtos</h2>
-            <table>
-                <tr>
-                    <th>Foto</th>
-                    <th>Nome</th>
-                    <th>Quantidade</th>
-                    <th>Valor</th>
-                </tr>
-
-                    @php
-                        $total = 0;
-                        $peso  = 0;
-                    @endphp
-
-                    @foreach ($prod_carrinho as $itens)
-                        <tr>
-                            <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
-
-                            <td>{{$itens->nome}}</td>
-
-                            <td>{{$itens->quantidade}}</td>
-
-                            <td>R${{number_format($itens->preco,2,',','.')}}</td>
-
-                        </tr>
+                <table>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Quantidade</th>
+                        <th>Valor</th>
+                    </tr>
 
                         @php
-                            $total += $itens->preco * $itens->quantidade;
-                            $peso  += $itens->peso * $itens->quantidade;
+                            $total = 0;
+                            $peso  = 0;
                         @endphp
 
-                    @endforeach
+                        @foreach ($prod_carrinho as $itens)
+                            <tr>
+                                <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
+
+                                <td>{{$itens->nome}}</td>
+
+                                <td>{{$itens->quantidade}}</td>
+
+                                <td>R${{number_format($itens->preco,2,',','.')}}</td>
+
+                            </tr>
+
+                            @php
+                                $total += $itens->preco * $itens->quantidade;
+                                $peso  += $itens->peso * $itens->quantidade;
+                            @endphp
+
+                        @endforeach
 
 
-            </table>
+                </table>
+
+            </div>
+
+            <div class="grid-container frete bg-gray border-10 padding-detalhes">
+                <h2>Endereço de Entrega</h2>
+
+                    @if(count($enderecos) > 0)
+
+                        <form action="/pedido/create" class="formFrete" method="post">
+                            @csrf
+
+                            <h3>Selecione um Endereço:</h3>
+
+                            @foreach ($enderecos as $endereco)
+
+                                <input type="radio" name="id_endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}}, {{$peso}})">
+                                <label for="{{$endereco->id}}">{{$endereco->endereco}}</label><br>
+
+                            @endforeach
+
+                            <h2>Frete e Prazos</h2>
+
+                                <div id="frete">
+                                    <p>Selecione um endereço</p>
+                                </div>
+
+                                @php
+                                    $sedex = 27.00;
+                                    $pac = 14.90;
+                                @endphp
+
+                    @else
+
+                    @endif
+
+            </div>
+
+            <div class="grid-container carrinho-total checkout-total bg-gray border-10 padding-detalhes">
+                <h2>Pagamento</h2>
+                    <input type="radio" name="pagamento_tipo" value="boleto">Boleto
+                    <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
+
+
+                    <h2>Total</h2>
+                    <p>R${{number_format($total,2,',','.')}}</p>
+
+                    <h2>Peso</h2>
+                    <p>{{number_format($peso,2,',','.')}}Kg</p>
+
+                    <input type="hidden" name="total_pedido" value="{{$total}}">
+
+                    <button class="bt-red">Finalizar Compra</button>
+
+                </form>{{-- fim do form PEDIDO-CREATE --}}
+            </div>
+
+        </div>
+
+        <h2>Produtos</h2>
+
 
             <h2>Endereço de Entrega</h2>
 
