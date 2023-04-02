@@ -46,6 +46,7 @@
             <i class="fa-solid fa-square red"></i> &nbsp;
             <h3>Avaliações</h3> --}}
 
+            @if (Auth::check())
             <div class="grid-container grid-comentarios-avaliacao margin-new">
                 <div class="detalhes-comentarios bg-gray padding-detalhes border-10">
                     <i class="fa-solid fa-square red"></i>
@@ -77,7 +78,7 @@
 
                 </div>
 
-                @if(Auth::check())
+
                     <div class="detalhes-avaliacao bg-gray padding-detalhes border-10">
                         <i class="fa-solid fa-square red"></i>
                         <h3>Gostou do produto?</h3>
@@ -96,8 +97,41 @@
 
                         </form>
                     </div>
-                @endif
-            </div>
+
+            @else
+                <div class="grid-container grid-comentarios margin-new">
+                    <div class="detalhes-comentarios bg-gray padding-detalhes border-10">
+                        <i class="fa-solid fa-square red"></i>
+                        <h3>Comentários</h3>
+
+                        @if(count($avaliacao) > 0)
+
+                            @foreach ($avaliacao as $avaliacao)
+                                <div class="grid-container detalhes-foto-nome">
+                                    <div>
+
+                                        @if($avaliacao->gostou)
+                                            <i class="fa-solid fa-thumbs-up"></i>
+                                        @else
+                                            <i class="fa-solid fa-thumbs-down"></i>
+                                        @endif
+
+                                    </div>
+                                    <div>
+                                        <h4>{{$avaliacao->nome}} {{$avaliacao->sobrenome}}</h4>
+                                        <p>{{$avaliacao->texto_avaliacao}}</p>
+                                    </div>
+                                </div>
+                            @endforeach
+
+                        @else
+                            <h4>Ainda não há avaliações para o produto</h4>
+                        @endif
+
+                    </div>
+                </div>
+            @endif
+  </div>
 
         {{-- </div> --}}
 
