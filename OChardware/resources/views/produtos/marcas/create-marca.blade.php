@@ -3,9 +3,11 @@
 @section('title','criar produto')
 
 @section('conteudo')
-    <section class="margem">
-        <h2>Adicionar Marca</h2>
-        <div class="flex-container form">
+    <section class="flex-container corpo flex-form">
+        <div class="grid-container form-creation bg-gray margin-new padding-detalhes">
+
+            <h1>Adicionar Marca</h1>
+
             <form action="/marcas/create" method="post">
                 @csrf
 
@@ -13,6 +15,8 @@
 
                 <button class="bt-red">Adicionar</button>
             </form>
+
         </div>
+
     </section>
 @endsection

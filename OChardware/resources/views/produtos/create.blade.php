@@ -3,55 +3,64 @@
 @section('title','criar produto')
 
 @section('conteudo')
-    <section class="flex-container form">
-        <form action="/produtos/create" method="POST" enctype="multipart/form-data">
-            @csrf
+    <section class="flex-container corpo flex-form">
+        <div class="grid-container form-creation bg-gray margin-new padding-detalhes border-10">
 
-            <input type="text" name="nome" id="nome" placeholder="nome" class="input-full">
+            <h1>Criar Produto</h1>
+            <form action="/produtos/create" method="POST" enctype="multipart/form-data" class="form-50">
+                @csrf
 
-            <label for="categoria">Categoria</label>
+                <input type="text" name="nome" id="nome" placeholder="nome" class="input-full"><br>
 
-                @if(count($categoria)>0)
+                <label for="categoria">Categoria</label>
 
-                    <select name="id_categoria" id="id_categoria" class="input-full">
-                        @foreach ($categoria as $categorias)
-                            <option value="{{$categorias->id}}" name="">{{$categorias->nome}}</option>
-                        @endforeach
-                    </select>
+                    @if(count($categoria)>0)
 
-                @else
-                    <h3>Não há categorias</h3>
-                @endif
+                        <select name="id_categoria" id="id_categoria" class="input-full">
+                            @foreach ($categoria as $categorias)
+                                <option value="{{$categorias->id}}" name="">{{$categorias->nome}}</option>
+                            @endforeach
+                        </select>
 
-
-                <label for="marca">Marca</label>
-                    @if(count($marca)>0)
-
-                    <select name="id_marca" id="id_marca" class="input-full">
-                        @foreach ($marca as $marcas)
-                            <option value="{{$marcas->id}}">{{$marcas->nome}}</option>
-                        @endforeach
-                    </select>
                     @else
-                    <h3>Não há marcas</h3>
+                        <h3>Não há categorias</h3>
                     @endif
 
 
-            <input type="text" name="preco" id="preco" placeholder="Preço" class="input-full">
+                    <label for="marca">Marca</label>
+                        @if(count($marca)>0)
 
-            <label for="descricao">Descrição: </label>
-            <textarea name="descricao" id="descricao" cols="80" rows="10"></textarea>
-            <br>
-            <label for="foto">Imagem:</label>
-            <input type="file" name="foto" id="foto">
-            <br>
-            <input type="text" name="largura" id="largura" placeholder="largura" class="input-full">
-            <input type="text" name="altura" id="altura" placeholder="altura" class="input-full">
-            <input type="text" name="peso" id="peso" placeholder="peso" class="input-full">
-            <input type="text" name="comprimento" id="comprimento" placeholder="comprimento" class="input-full">
-            <input type="text" name="quantidade" id="quantidade" placeholder="quantidade" class="input-full">
+                        <select name="id_marca" id="id_marca" class="input-full">
+                            @foreach ($marca as $marcas)
+                                <option value="{{$marcas->id}}">{{$marcas->nome}}</option>
+                            @endforeach
+                        </select>
+                        @else
+                        <h3>Não há marcas</h3>
+                        @endif
 
-            <button class="bt-red">Adicionar</button>
-        </form>
+
+                <input type="text" name="preco" id="preco" placeholder="Preço" class="input-full"><br>
+
+                <label for="descricao">Descrição: </label><br>
+                <textarea name="descricao" id="descricao" cols="80" rows="10"></textarea>
+                <br>
+                <label for="foto">Imagem:</label>
+                <input type="file" name="foto" id="foto">
+                <br>
+                <input type="text" name="largura" id="largura" placeholder="largura (cm)" class="input-full">
+                <input type="text" name="altura" id="altura" placeholder="altura (cm)" class="input-full">
+                <input type="text" name="peso" id="peso" placeholder="peso (kg)" class="input-full">
+                <input type="text" name="comprimento" id="comprimento" placeholder="comprimento (cm)" class="input-full">
+                <input type="text" name="quantidade" id="quantidade" placeholder="quantidade" class="input-full">
+
+                <div class="flex-container form">
+                    <button class="bt-red">Adicionar</button>
+                </div>
+
+            </form>
+
+        </div>
+
     </section>
 @endsection
