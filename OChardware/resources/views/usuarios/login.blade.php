@@ -12,7 +12,7 @@
             <h2>Entre ou Cadastre-se</h2>
         </div>--}}
 
-        <div class="grid-container auth">
+        <div class="grid-container auth bg-gray">
 
 
             {{-- Login --}}
