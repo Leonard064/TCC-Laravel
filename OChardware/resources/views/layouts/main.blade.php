@@ -182,13 +182,13 @@
         </main>
         <footer>
             <section class="flex-container rodape black">
-                <section class="margin-new">
+                <section class="margin-new padding-detalhes">
 
                     <section class="flex-container rodape-secao1">
                         <div class="rodape-secao1-info">
                             <h4>Siga nossos perfis</h4>
-                            <span class="fa-brands fa-facebook fa-2xl"></span>
-                            <span class="fa-brands fa-instagram fa-2xl"></span>
+                            <span class="fa-brands fa-facebook fa-2xl"></span>&nbsp;
+                            <span class="fa-brands fa-instagram fa-2xl"></span>&nbsp;
                             <span class="fa-brands fa-twitter fa-2xl"></span>
                         </div>
                     </section>
