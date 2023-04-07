@@ -473,6 +473,22 @@ body{
     grid-area: 1 / 2 / 3 / 3;
 }
 
+/* Página Perfil */
+.perfil-foto{
+    justify-content: center;
+    padding: 20px 0;
+}
+
+.perfil-foto img{
+    max-height: 150px;
+}
+
+/* Página Admin */
+.dash-pedido-produto{
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 1vw;
+}
+
 /* MEDIA-QUERIES */
 
 @media(max-width: 425px){
