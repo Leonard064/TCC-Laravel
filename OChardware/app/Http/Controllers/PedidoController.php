@@ -65,4 +65,13 @@ class PedidoController extends Controller
             }
         }
     }
+
+    //página Todos os Pedidos (Dashboard ADM)
+    public function showAdmPedidos(){
+        $pedido = Pedido::all();
+
+        return view('pedidos.showAdmPedidos', ['pedido' => $pedido]);
+    }
+
+
 }

@@ -144,4 +144,6 @@ Route::get('remover-produto/{id}', [ProdutoController::class, 'removerProduto'])
 
 Route::get('/todos-produtos', [ProdutoController::class, 'showAdmProdutos']);
 
+Route::get('/todos-pedidos', [PedidoController::class, 'showAdmPedidos']);
+
 Route::get('/editar-pedido/{id}', [PedidoController::class, 'editPedidoStat']);
