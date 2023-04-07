@@ -306,8 +306,8 @@ body{
     text-align: center;
 }
 
-.rodape-secao1, .rodape-secao2-esquerda, .rodape-secao2-meio, .rodape-secao2-direita {
-    margin: 20px 40px;
+.rodape-secao1-info{
+    margin-bottom: 3vh;
 }
 
 .rodape-secao2-meio, .rodape-secao2-direita{
@@ -341,7 +341,6 @@ body{
 .auth{
     width: 500px;
     margin: 5vh 30%;
-    background-color: #D6D6D6;
     border-radius: 2%;
 }
 
@@ -671,6 +670,11 @@ body{
     box-sizing: border-box;
     border: none;
     border-bottom: solid 2px #212121;
+}
+
+.form-50 input, select{
+    width: 49%;
+    margin: 10px 0;
 }
 
 .input-form{
