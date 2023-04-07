@@ -113,7 +113,7 @@
                                     </div>
 
                                     <label for="texto">Deixe sua avaliação: (máx. 100 caracteres)</label>
-                                    <textarea name="texto_avaliacao" id="texto" cols="80" rows="10" class=""></textarea>
+                                    <textarea name="texto_avaliacao" id="texto" cols="80" rows="10" class="border-10"></textarea>
                                     <button class="bt-red">Enviar</button>
 
                                 </form>
