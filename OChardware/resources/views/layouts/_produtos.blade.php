@@ -10,7 +10,7 @@
                 <span>{{$produto->nome}}</span>
             </div>
             <div class="comprar">
-                <span>R${{$produto->preco}}</span>
+                <span>R$ {{number_format($produto->preco,2,',','.')}}</span>
                 <form action="/addCarrinho" method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{$produto->id}}">
