@@ -472,6 +472,10 @@ body{
     grid-area: 1 / 2 / 3 / 3;
 }
 
+.carrinho-img{
+    max-width: 70px;
+}
+
 /* Página Perfil */
 .perfil-foto{
     justify-content: center;
