@@ -3,7 +3,7 @@
 @section('title', 'Meu Perfil - OCHardware')
 
 @section('conteudo')
-    <section class="flex-container corpo-detalhes">
+    <section class="flex-container corpo">
         <section class="detalhes-topo bg-gray border-10 margin-new">
             <div class="grid-container detalhes-foto-nome">
                 <div class="flex-container perfil-foto">
@@ -12,8 +12,9 @@
                 <div class="flex-container detalhes-nome">
                     <h1>{{Auth::user()->nome}} {{Auth::user()->sobrenome}}</h1>
                     <div class="flex-container perfil-opcoes">
-                        <a href="/editar-perfil">Editar cadastro</a>&nbsp;
+                        <a href="/editar-perfil">Editar Cadastro</a>&nbsp;
                         <a href="/editar-perfil">Alterar Senha</a>&nbsp;
+                        <a href="/editar-perfil">Meus Pedidos</a>&nbsp;
                         <a href="/adicionar-endereco">Meus Endereços</a>
                     </div>
                     {{-- <hr>
@@ -51,6 +52,8 @@
                     </table>
                 @endforeach
 
+                <a href="#">Ver Todos os Pedidos</a>
+
             @else
                 <i class="fa-solid fa-triangle-exclamation"></i>
                 <h2>Ainda não foram realizadas Compras</h2>
@@ -59,7 +62,7 @@
 
         </div>
 
-        <div class="flex-container secao black">
+        {{-- <div class="flex-container secao black">
             <i class="fa-solid fa-square red"></i> &nbsp;
             <h3>Meus Pedidos</h3>
         </div>
@@ -90,6 +93,6 @@
                 <h2>Ainda não foram realizadas Compras</h2>
             @endif
 
-        </div>
+        </div> --}}
     </section>
 @endsection

@@ -9,8 +9,14 @@
 
             <div class="grid-container carrinho">
                 <div class="grid-container carrinho-lista bg-gray border-10 padding-detalhes">
-                    <i class="fa-solid fa-square red"></i> &nbsp;
-                    <h2>Carrinho</h2>
+
+                    <div class="flex-container topo-secao">
+                        <i class="fa-solid fa-square red"></i>
+                        <h2>Carrinho</h2>
+                    </div>
+
+                    {{-- <i class="fa-solid fa-square red"></i> &nbsp; --}}
+                    <h2></h2>
 
                     <div class="tabela">
                         <table>
@@ -28,7 +34,10 @@
                             @foreach ($prod_carrinho as $itens)
 
                                 <tr>
-                                    <td>{{$itens->foto}}</td> {{-- depois chamar a imagem real--}}
+                                    <td>
+                                        <img src="../img/produtos/{{$itens->foto}}" class="carrinho-img border-10">
+                                    </td>
+                                    {{-- <td>{{$itens->foto}}</td> depois chamar a imagem real --}}
 
                                     <td>{{$itens->nome}}</td>
                                     <td>
@@ -67,13 +76,19 @@
                 </div>{{-- fim div lista--}}
 
                 <div class="grid-container carrinho-total bg-gray border-10 padding-detalhes">
-                    <i class="fa-solid fa-square red"></i> &nbsp;
-                    <h2>Total</h2>
+
+                    <div class="flex-container topo-secao">
+                        <i class="fa-solid fa-square red"></i>
+                        <h2>Total</h2>
+                    </div>
+
+                    {{-- <i class="fa-solid fa-square red"></i> &nbsp; --}}
+                    {{-- <h2>Total</h2> --}}
 
                     <form action="/checkout" method="post">
                         @csrf
 
-                        <h3>R${{number_format($total,2,',','.')}}</h3>
+                        <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2>
 
                         {{-- <input type="hidden" name="total" value="{{$total}}">--}}
 
