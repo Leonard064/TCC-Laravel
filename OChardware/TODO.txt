@@ -7,6 +7,8 @@ front-end:
  ajustar carrinho
  ajustar checkout
  ajustar perfil
+    - criar ver todos os pedidos
+
  ajustar Administrador
 
 
