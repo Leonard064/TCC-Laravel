@@ -3,11 +3,16 @@ A fazer:
 front-end:
  páginas de autenticaçao (checar o vh do padding - muito grande)
 
+ -estilizar tabelas
+ -timeout em msh flash
+
  ajustar página detalhes
+    - ajustar campo do botão
+
  ajustar carrinho
  ajustar checkout
  ajustar perfil
-    - criar ver todos os pedidos
+    - criar funcao alterar senha
 
  ajustar Administrador
 
