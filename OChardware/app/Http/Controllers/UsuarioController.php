@@ -28,9 +28,15 @@ class UsuarioController extends Controller
 
     public function perfil(){
 
-        $pedidos = Pedido::where('id_usuario', \Auth::user()->id)->get();
+        $pedidos = Pedido::where('id_usuario', \Auth::user()->id)->take(5)->get();
 
         return view('usuarios.perfil', ['pedidos' => $pedidos]);
+    }
+
+    public function showUserPedidos(){
+        $pedidos = Pedido::where('id_usuario', \Auth::user()->id)->get();
+
+        return view('pedidos.showUserPedidos', ['pedidos' => $pedidos]);
     }
 
 
@@ -49,11 +55,26 @@ class UsuarioController extends Controller
 
     }
 
+    public function showAlterarSenha(){
+        try{
+            if(Usuario::findOrFail(\Auth::user()->id)){
+                return view('usuarios.alterar-senha');
+            }else{
+                return redirect('/');
+            }
+
+        }catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
+        }
+    }
+
     public function dashboard(){
         if(\Auth::user()->tipo == 'adm'){
 
-            $pedidos = Pedido::all()->take(2);
-            $produtos = Produto::all()->take(2);
+            $pedidos = Pedido::all()->take(5);
+            $produtos = Produto::all()->take(5);
 
             return view('usuarios.dashboard', ['pedidos' => $pedidos, 'produtos' => $produtos]);
 

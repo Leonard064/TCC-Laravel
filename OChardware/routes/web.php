@@ -127,7 +127,11 @@ Route::get('/logout',[UsuarioController::class, 'logout']);
 
 Route::get('/perfil',[UsuarioController::class, 'perfil']);
 
+Route::get('meus-pedidos', [UsuarioController::class, 'showUserPedidos']);
+
 Route::get('/editar-perfil',[UsuarioController::class, 'showEditPerfil']);
+
+Route::get('/alterar-senha', [UsuarioController::class, 'showAlterarSenha']);
 
 Route::get('/adicionar-endereco', [EnderecoController::class, 'showAddEndereco']);
 

@@ -614,12 +614,20 @@ body{
 }
 
 /* a sem decoration */
-.no-deco-white{
+.no-deco{
     text-decoration: none;
-    color: #fff;
+    /* color: #fff; */
 }
 
 /* cores */
+.white{
+    color: #fff;
+}
+
+.font-black{
+    color: #212121;
+}
+
 .black{
     background: #212121;
     color: #fff;
