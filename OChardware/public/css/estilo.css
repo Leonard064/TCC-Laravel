@@ -476,6 +476,16 @@ body{
     max-width: 70px;
 }
 
+/* Página Sucesso */
+#pedido-concluido-corpo{
+    flex-direction: column;
+    align-items: center;
+}
+
+#pedido-concluido-corpo h1{
+    font-size: 2em;
+}
+
 /* Página Perfil */
 .perfil-foto{
     justify-content: center;

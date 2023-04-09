@@ -10,6 +10,7 @@ use App\Http\Controllers\MarcaController;
 use App\Http\Controllers\AvaliacaoController;
 use App\Http\Controllers\EnderecoController;
 use App\Http\Controllers\PedidoController;
+use App\Http\Controllers\Prod_vendidoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -96,6 +97,7 @@ Route::get('/remover-endereco/{id}', [EnderecoController::class, 'removerEnderec
    ====================*/
 Route::post('pedido/create', [PedidoController::class, 'store']);
 
+Route::get('/pedido-concluido', [Prod_vendidoController::class, 'showSucesso']);
 
 /* ====================
     --- Avaliação ---

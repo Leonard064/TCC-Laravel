@@ -9,6 +9,10 @@ use Illuminate\Http\Request;
 class Prod_vendidoController extends Controller
 {
 
+    public function showSucesso(){
+        return view('pedidos.pedido-concluido');
+    }
+
     public static function store($id_pedido){
 
         //pega todos os itens do carrinho no banco
@@ -52,10 +56,8 @@ class Prod_vendidoController extends Controller
         }
 
 
-        //Redireciona ao Index
-        //--- depois criar página de sucesso ---
-        \Session::flash('ok','Pedido concluído!');
-        return redirect('/');
+        //Redireciona a pagina de sucesso
+        return redirect('/pedido-concluido');
 
     }
 }
