@@ -3,7 +3,7 @@
 @section('title','Todos os Produtos')
 
 @section('conteudo')
-    <section class="flex-container corpo">
+    <section class="flex-container corpo-detalhes">
 
         <div class="todos-produtos bg-gray border-10 margin-new padding-detalhes">
             <div class="flex-container topo-secao">
@@ -44,7 +44,7 @@
         </div>
 
 
-        <div class="flex-container margem">
+        {{-- <div class="flex-container margem">
 
             @if(count($produto) > 0)
                 <table>
@@ -73,6 +73,6 @@
 
             @endif
 
-        </div>
+        </div> --}}
     </section>
 @endsection

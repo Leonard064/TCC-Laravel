@@ -41,12 +41,12 @@
 
                                     <td>{{$itens->nome}}</td>
                                     <td>
-                                        <a href="/removerQtd/{{$itens->id}}"><i class="fa-solid fa-minus"></i></a>
+                                        <a class="red" href="/removerQtd/{{$itens->id}}"><i class="fa-solid fa-minus"></i></a>
                                             {{$itens->quantidade}}
-                                        <a href="/addQtd/{{$itens->id}}"><i class="fa-solid fa-plus"></i></a>
+                                        <a class="red" href="/addQtd/{{$itens->id}}"><i class="fa-solid fa-plus"></i></a>
                                     </td>
                                     <td>R${{number_format($itens->preco, 2,',','.')}}</td>
-                                    <td><a href="/removerCarrinho/{{$itens->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                    <td><a class="red" href="/removerCarrinho/{{$itens->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
                                 </tr>
 
                                     @php

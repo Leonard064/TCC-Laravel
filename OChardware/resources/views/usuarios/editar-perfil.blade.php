@@ -7,7 +7,7 @@
 
         <div class="grid-container form-creation bg-gray margin-new padding-detalhes border-10">
             <h1>Editar Cadastro</h1>
-            <form action="/update-perfil" method="POST" enctype="multipart/form-data" class="form-50">
+            <form action="/update-perfil" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 {{-- campos Login, Email e CPF são UNIQUE --}}
@@ -17,6 +17,9 @@
                 <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="input-full" value="{{$usuario->sobrenome}}">
                 {{-- <input type="text" name="cpf" id="cpf" placeholder="CPF" class="input-full"> --}}
                 {{-- <input type="email" name="email" id="email-logon" placeholder="Email" class="input-full" value="{{$usuario->email}}"> --}}
+                <br>
+                <p>Deseja trocar de senha?</p>
+                <a href="/alterar-senha">Faça Aqui</a>
                 <br>
                 <label for="foto">Imagem: (Padrão: {{$usuario->foto}})</label><br>
                 <input type="file" name="foto" id="foto">

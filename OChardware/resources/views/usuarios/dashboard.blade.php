@@ -7,8 +7,8 @@
         <div class="detalhes-topo bg-gray border-10 margin-new padding-detalhes">
             <h1>Painel Administrador</h1>
             {{-- <a href="/create-categoria">Criar Categoria</a>&nbsp; --}}
-            <a href="/create-marca">Criar Marca</a>&nbsp;
-            <a href="/create-produto">Criar Produto</a>
+            <a class="no-deco font-black" href="/create-marca">Criar Marca</a>&nbsp;
+            <a class="no-deco font-black" href="/create-produto">Criar Produto</a>
 
         </div>
 
