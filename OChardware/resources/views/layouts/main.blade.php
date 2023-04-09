@@ -87,7 +87,7 @@
                                         <a class="no-deco-white" href="/login"> Entrar</a>
                                     </span>
                                     <span class="sair">
-                                        <a class="no-deco-white" href="/cadastre-se"> Cadastre</a>
+                                        <a class="no-deco-white" href="/cadastre-se"> Cadastrar</a>
                                     </span>
                                 </div>
 

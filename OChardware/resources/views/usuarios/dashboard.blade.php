@@ -89,7 +89,7 @@
         </div>
 
         {{-- versão 2 --}}
-        <div class="flex-container secao black">
+        {{-- <div class="flex-container secao black">
             <i class="fa-solid fa-square red"></i> &nbsp;
             <h3>Últimos Pedidos Abertos</h3>
         </div>
@@ -161,7 +161,7 @@
 
             @endif
 
-        </div>
+        </div> --}}
     </div>
 
 @endsection

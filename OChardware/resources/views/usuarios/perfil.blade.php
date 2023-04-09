@@ -14,7 +14,7 @@
                     <div class="flex-container perfil-opcoes">
                         <a href="/editar-perfil">Editar Cadastro</a>&nbsp;
                         <a href="/editar-perfil">Alterar Senha</a>&nbsp;
-                        <a href="/editar-perfil">Meus Pedidos</a>&nbsp;
+                        <a href="/meus-pedidos">Meus Pedidos</a>&nbsp;
                         <a href="/adicionar-endereco">Meus Endereços</a>
                     </div>
                     {{-- <hr>
@@ -52,7 +52,7 @@
                     </table>
                 @endforeach
 
-                <a href="#">Ver Todos os Pedidos</a>
+                <a href="/meus-pedidos">Ver Todos os Pedidos</a>
 
             @else
                 <i class="fa-solid fa-triangle-exclamation"></i>
