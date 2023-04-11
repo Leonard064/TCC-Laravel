@@ -3,8 +3,8 @@ A fazer:
 front-end:
  páginas de autenticaçao (checar o vh do padding - muito grande)
 
- -estilizar tabelas
- -timeout em msh flash
+ -estilizar tabelas (terminar)
+ -timeout em msg flash
 
  ajustar página detalhes
     - ajustar campo do botão
