@@ -382,7 +382,7 @@ body{
 /* Página ITEM */
 
 .corpo-detalhes{
-    min-height: 765px;
+    min-height: 500px;
     flex-direction: column;
 }
 
@@ -641,6 +641,10 @@ body{
     background: #D6D6D6;
 }
 
+.bg-white{
+    background: #fff;
+}
+
 /* fontes */
 .heading{
     font-family: 'Passion One', cursive;
@@ -702,4 +706,62 @@ body{
 .input-form{
     width: 50%;
     margin: 20px 50px;
+}
+
+/* ---------------------- */
+/* Tabelas */
+/* .tabela{
+    width: 100%;
+    border: 2px solid #212121;
+    border-collapse: collapse;
+}
+
+.tabela th, td{
+    padding: 5px 0;
+    text-align: center;
+    border: 1px solid #212121;
+}
+
+.tabela td{
+    background-color: #fff;
+} */
+
+.tabela-geral{
+    width: 100%;
+    padding: 5px 0;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.border-black{
+    border: 1px solid #212121;
+}
+
+.border-white{
+    border-bottom: 1px solid #fff;
+}
+
+.t-geral{
+    width: 100%;
+    padding: 5px 0;
+    text-align: center;
+}
+
+.t-red{
+    background-color: #e00009;
+    color: #fff;
+}
+
+.t-red-corpo{
+    background-color: #fff;
+    border: 2px solid #212121;
+    border-collapse: collapse;
+}
+
+.table-carrinho{
+    width: 100%;
+}
+
+.t-branco{
+    border-bottom: 2px solid #fff;
 }
