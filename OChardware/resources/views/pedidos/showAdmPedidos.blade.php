@@ -13,20 +13,21 @@
 
             <div id="tabela-todos-pedidos">
                 @if (count($pedido) > 0)
-                    <table>
-                        <tr>
-                            <th>Data e hora</th>
-                            <th>Pagamento</th>
-                            <th>Valor</th>
-                            <th>Status</th>
+                    <table class="tabela-geral">
+                        <tr class="black">
+                            <th class="border-black">Data e hora</th>
+                            <th class="border-black">Pagamento</th>
+                            <th class="border-black">Valor</th>
+                            <th class="border-black">Status</th>
+                            <th class="border-black">Opções</th>
                         </tr>
                     @foreach ($pedido as $pedidos)
-                        <tr>
-                            <td>{{$pedidos->created_at}}</td>
-                            <td>{{$pedidos->pagamento_tipo}}</td>
-                            <td>{{$pedidos->total_pedido}}</td>
-                            <td>{{$pedidos->status}}</td>
-                            <td><a href="/editar-pedido/{{$pedidos->id}}">Editar Status</a></td>
+                        <tr class="bg-white">
+                            <td class="border-black">{{$pedidos->created_at}}</td>
+                            <td class="border-black">{{$pedidos->pagamento_tipo}}</td>
+                            <td class="border-black">{{$pedidos->total_pedido}}</td>
+                            <td class="border-black" class="border-black">{{$pedidos->status}}</td>
+                            <td class="border-black"><a href="/editar-pedido/{{$pedidos->id}}">Editar Status</a></td>
                         </tr>
                     @endforeach
                     </table>

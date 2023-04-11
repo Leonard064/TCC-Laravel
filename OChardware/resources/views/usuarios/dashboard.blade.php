@@ -19,36 +19,40 @@
                     <h3>Pedidos Abertos</h3>
                 </div>
 
-                @if (count($pedidos) > 0)
+                <div class="dashboard-tabela-pedidos">
+                    @if (count($pedidos) > 0)
 
-                @foreach ($pedidos as $pedido)
-                    <table>
-                        <caption>Pedido: {{$pedido->id}}</caption>
-                        <tr>
-                            <th>Data e hora</th>
-                            <th>Pagamento</th>
-                            <th>Valor</th>
-                            <th>Status</th>
-                        </tr>
-                        <tr>
-                            <td>{{$pedido->created_at}}</td>
-                            <td>{{$pedido->pagamento_tipo}}</td>
-                            <td>{{$pedido->total_pedido}}</td>
-                            <td>{{$pedido->status}}</td>
-                            <td><a href="/editar-pedido/{{$pedido->id}}">Editar Status</a></td>
-                        </tr>
-                    </table>
+                        @foreach ($pedidos as $pedido)
+                            <table class="tabela-geral">
+                                <caption>Pedido: {{$pedido->id}}</caption>
+                                <tr class="black">
+                                    <th class="border-black">Data e hora</th>
+                                    <th class="border-black">Pagamento</th>
+                                    <th class="border-black">Valor</th>
+                                    <th class="border-black">Status</th>
+                                    <th class="border-black">Opções</th>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border-black">{{$pedido->created_at}}</td>
+                                    <td class="border-black">{{$pedido->pagamento_tipo}}</td>
+                                    <td class="border-black">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
+                                    <td class="border-black">{{$pedido->status}}</td>
+                                    <td class="border-black"><a href="/editar-pedido/{{$pedido->id}}">Editar Status</a></td>
+                                </tr>
+                            </table>
 
-                @endforeach
+                        @endforeach
 
-                <a href="/todos-pedidos">
-                    <button class="bt-red">Visualizar todos os Pedidos</button>
-                </a>
+                        <a href="/todos-pedidos">
+                            <button class="bt-red">Visualizar todos os Pedidos</button>
+                        </a>
 
-            @else
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                <h2>Ainda não foram realizados Pedidos</h2>
-            @endif
+                    @else
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <h2>Ainda não foram realizados Pedidos</h2>
+                    @endif
+
+                </div>
 
             </div>
             <div class= "todos-produtos bg-gray border-10 padding-detalhes">
@@ -57,33 +61,35 @@
                     <h3>Produtos</h3>
                 </div>
 
-                @if (count($produtos) > 0)
+                <div class="dashboard-tabela-produtos">
+                    @if (count($produtos) > 0)
 
-                <table>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Opções</th>
-                    </tr>
-                    @foreach ($produtos as $produto)
-
-                            <tr>
-                                <td>{{$produto->nome}}</td>
-                                <td><a href="/editar-produto/{{$produto->id}}">Editar</a></td>
-                                <td><a href="/remover-produto/{{$produto->id}}">Excluir</a></td>
+                        <table class="tabela-geral">
+                            <tr class="black">
+                                <th class="border-black">Nome</th>
+                                <th class="border-black">Opções</th>
                             </tr>
+                            @foreach ($produtos as $produto)
 
-                    @endforeach
+                                    <tr class="bg-white">
+                                        <td class="border-black">{{$produto->nome}}</td>
+                                        <td class="border-black"><a href="/editar-produto/{{$produto->id}}">Editar</a>
+                                        <a href="/remover-produto/{{$produto->id}}">Excluir</a></td>
+                                    </tr>
 
-                </table>
+                            @endforeach
 
-                <a href="/todos-produtos">
-                    <button class="bt-red">Visualizar todos os Produtos</button>
-                </a>
+                        </table>
 
-            @else
-                <h2>Não há Produtos</h2>
+                        <a href="/todos-produtos">
+                            <button class="bt-red">Visualizar todos os Produtos</button>
+                        </a>
 
-            @endif
+                    @else
+                        <h2>Não há Produtos</h2>
+
+                    @endif
+                </div>
 
             </div>
         </div>

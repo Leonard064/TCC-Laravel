@@ -13,23 +13,23 @@
 
             <div id="tabela-todos-produtos">
                 @if(count($produto) > 0)
-                <table>
-                    <tr>
-                        <th>Foto</th>
-                        <th>Nome</th>
-                        <th>Quantidade</th>
-                        <th>Valor</th>
-                        <th>Opções</th>
+                <table class="tabela-geral">
+                    <tr class="black">
+                        <th class="border-black">Foto</th>
+                        <th class="border-black">Nome</th>
+                        <th class="border-black">Quantidade</th>
+                        <th class="border-black">Valor</th>
+                        <th class="border-black">Opções</th>
                     </tr>
 
                     @foreach ($produto as $produtos)
-                        <tr>
-                            <td>{{$produtos->foto}}</td>
-                            <td>{{$produtos->nome}}</td>
-                            <td>{{$produtos->quantidade}}</td>
-                            <td>{{$produtos->preco}}</td>
-                            <td><a href="/editar-produto/{{$produtos->id}}">Editar</a></td>
-                            <td><a href="/remover-produto/{{$produtos->id}}">Excluir</a></td>
+                        <tr class="bg-white">
+                            <td class="border-black">{{$produtos->foto}}</td>
+                            <td class="border-black">{{$produtos->nome}}</td>
+                            <td class="border-black">{{$produtos->quantidade}}</td>
+                            <td class="border-black">{{$produtos->preco}}</td>
+                            <td class="border-black"><a href="/editar-produto/{{$produtos->id}}">Editar</a>
+                            <a href="/remover-produto/{{$produtos->id}}">Excluir</a></td>
                         </tr>
                     @endforeach
 

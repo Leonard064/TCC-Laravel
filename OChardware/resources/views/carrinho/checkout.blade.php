@@ -14,8 +14,8 @@
 
                 {{-- <h2>Checkout</h2> --}}
 
-                <table>
-                    <tr>
+                <table class="tabela-geral">
+                    <tr class="border-white">
                         <th>Foto</th>
                         <th>Nome</th>
                         <th>Quantidade</th>
@@ -28,7 +28,7 @@
                         @endphp
 
                         @foreach ($prod_carrinho as $itens)
-                            <tr>
+                            <tr class="border-white">
 
                                 <td>
                                     <img src="../img/produtos/{{$itens->foto}}" class="carrinho-img border-10">

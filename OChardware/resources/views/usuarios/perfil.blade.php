@@ -32,33 +32,35 @@
                 <h3>Últimos Pedidos</h3>
             </div>
 
-            @if (count($pedidos) > 0)
+            <div class="perfil-tabela">
+                @if (count($pedidos) > 0)
 
-                @foreach ($pedidos as $pedido)
-                    <table>
-                        <caption>Pedido: {{$pedido->id}}</caption>
-                        <tr>
-                            <th>Data e hora</th>
-                            <th>Pagamento</th>
-                            <th>Valor</th>
-                            <th>Status</th>
-                        </tr>
-                        <tr>
-                            <td>{{$pedido->created_at}}</td>
-                            <td>{{$pedido->pagamento_tipo}}</td>
-                            <td>{{$pedido->total_pedido}}</td>
-                            <td>{{$pedido->status}}</td>
-                        </tr>
-                    </table>
-                @endforeach
+                <table class="tabela-geral">
+                    @foreach ($pedidos as $pedido)
+                            <caption>Pedido: {{$pedido->id}}</caption>
+                            <tr class="black">
+                                <th class="border-black">Data e hora</th>
+                                <th class="border-black">Pagamento</th>
+                                <th class="border-black">Valor</th>
+                                <th class="border-black">Status</th>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border-black">{{$pedido->created_at}}</td>
+                                <td class="border-black">{{$pedido->pagamento_tipo}}</td>
+                                <td class="border-black">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
+                                <td class="border-black">{{$pedido->status}}</td>
+                            </tr>
+                    @endforeach
+                </table>
 
-                <a href="/meus-pedidos">Ver Todos os Pedidos</a>
+                    <a href="/meus-pedidos">Ver Todos os Pedidos</a>
 
-            @else
-                <i class="fa-solid fa-triangle-exclamation"></i>
-                <h2>Ainda não foram realizadas Compras</h2>
-            @endif
+                @else
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h2>Ainda não foram realizadas Compras</h2>
+                @endif
 
+            </div>
 
         </div>
 

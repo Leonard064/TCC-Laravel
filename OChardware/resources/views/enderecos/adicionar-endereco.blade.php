@@ -14,20 +14,20 @@
             <div class="tabela-enderecos">
                 @if (count($enderecos) > 0)
 
-                    <table>
-                        <tr>
+                    <table class="tabela-geral">
+                        <tr class="border-white">
                             <th>Endereço</th>
                             <th>Estado</th>
                             <th>Opções</th>
                         </tr>
 
                             @foreach ($enderecos as $endereco)
-
-                                <td>{{$endereco->endereco}}</td>
-                                <td>{{$endereco->estado}}</td>
-                                <td><a href="/editar-endereco/{{$endereco->id}}">Editar</a></td>
-                                <td><a href="/remover-endereco/{{$endereco->id}}">Excluir</a></td>
-
+                                <tr class="border-white">
+                                    <td>{{$endereco->endereco}}</td>
+                                    <td>{{$endereco->estado}}</td>
+                                    <td><a href="/editar-endereco/{{$endereco->id}}">Editar</a>
+                                    <a href="/remover-endereco/{{$endereco->id}}">Excluir</a></td>
+                                </tr>
                             @endforeach
                     </table>
 

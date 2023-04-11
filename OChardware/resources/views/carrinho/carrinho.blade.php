@@ -3,7 +3,7 @@
 @section('title', 'Carrinho - OCHardware')
 
 @section('conteudo')
-    <div class="flex-container corpo margin-new">
+    <div class="flex-container corpo-detalhes margin-new">
 
         @if (count($prod_carrinho) > 0)
 
@@ -18,9 +18,9 @@
                     {{-- <i class="fa-solid fa-square red"></i> &nbsp; --}}
                     <h2></h2>
 
-                    <div class="tabela">
-                        <table>
-                            <tr>
+                    <div class="itens-carrinho">
+                        <table class="tabela-geral">
+                            <tr class="border-white">
                                 <th>Foto</th>
                                 <th>Nome</th>
                                 <th>Quantidade</th>
@@ -33,7 +33,7 @@
 
                             @foreach ($prod_carrinho as $itens)
 
-                                <tr>
+                                <tr class="border-white">
                                     <td>
                                         <img src="../img/produtos/{{$itens->foto}}" class="carrinho-img border-10">
                                     </td>
@@ -107,7 +107,11 @@
                 <div class="vazio bg-gray padding-detalhes border-10">
                     <i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
                     <h2>Seu carrinho está vazio!</h2>
-                    <a href="/">Vá as compras</a>
+                    <div>
+                        <a href="/">Vá as compras</a>
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    </div>
+
                 </div>
             </div>
 
