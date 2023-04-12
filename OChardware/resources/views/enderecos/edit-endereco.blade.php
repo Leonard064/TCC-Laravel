@@ -3,19 +3,15 @@
 @section('title','Editar Produto')
 
 @section('conteudo')
-    <section class="flex-container corpo">
-        <div class="flex-container secao black">
-            <i class="fa-solid fa-square red"></i> &nbsp;
-            <h2>Editar Cadastro</h2>
-        </div>
+    <section class="flex-container corpo flex-form">
+        <div class="grid-container form-edit-endereco bg-gray border-10 margin-new padding-detalhes">
 
-        <div class="grid-container forms margem">
+            <div class="flex-container topo-secao">
+                <i class="fa-solid fa-square red"></i>
+                <h1>Editar Cadastro</h1>
+            </div>
 
-            {{-- Editar Endereco --}}
-
-            <div class="flex-container form">
-
-                <form action="/update-endereco" method="POST">
+                <form action="/update-endereco" method="POST" class="form-50">
                     @csrf
 
                     <input type="text" name="cep" id="cep" placeholder="cep" class="input-full" value="{{$endereco->cep}}">
@@ -31,9 +27,8 @@
                     <button class="bt-red">Atualizar Endereço</button>
 
                 </form>
-            </div>
 
-        </div> {{-- FIM Grid-container --}}
+        </div>
 
     </section>
 @endsection

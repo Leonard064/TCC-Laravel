@@ -21,15 +21,17 @@
 
                         <hr>
                         <div class="flex-container reverso">
-                            <h3>{{$produto->quantidade}} Peças disponíveis</h3>
-                            <h1 class="label-preco red">R$ {{number_format($produto->preco,2,',','.')}}</h1>
-                            {{-- <h4>Valor em pix/ à vista no cartão</h4>
-                            <h4>10x de 99,90 sem juros</h4> --}}
-                            <form action="/addCarrinho" method="post">
-                                @csrf
-                                <input type="hidden" name="id" value="{{$produto->id}}">
-                                <button class="bt-red">Comprar</button>
-                            </form>
+                            <div id="detalhes-preco">
+                                <h3>{{$produto->quantidade}} Peças disponíveis</h3>
+                                <h1 class="label-preco red">R$ {{number_format($produto->preco,2,',','.')}}</h1>
+                                {{-- <h4>Valor em pix/ à vista no cartão</h4>
+                                <h4>10x de 99,90 sem juros</h4> --}}
+                                <form action="/addCarrinho" method="post">
+                                    @csrf
+                                    <input type="hidden" name="id" value="{{$produto->id}}">
+                                    <button class="bt-red">Comprar</button>
+                                </form>
+                            </div>
 
                         </div>
 
