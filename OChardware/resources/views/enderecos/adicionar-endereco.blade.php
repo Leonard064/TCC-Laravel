@@ -16,16 +16,16 @@
 
                     <table class="tabela-geral">
                         <tr class="border-white">
-                            <th>Endereço</th>
-                            <th>Estado</th>
-                            <th>Opções</th>
+                            <th class="padding-tabela-vh">Endereço</th>
+                            <th class="padding-tabela-vh">Estado</th>
+                            <th class="padding-tabela-vh">Opções</th>
                         </tr>
 
                             @foreach ($enderecos as $endereco)
                                 <tr class="border-white">
-                                    <td>{{$endereco->endereco}}</td>
-                                    <td>{{$endereco->estado}}</td>
-                                    <td><a href="/editar-endereco/{{$endereco->id}}">Editar</a>
+                                    <td class="padding-tabela-vh">{{$endereco->endereco}}</td>
+                                    <td class="padding-tabela-vh">{{$endereco->estado}}</td>
+                                    <td class="padding-tabela-vh"><a href="/editar-endereco/{{$endereco->id}}">Editar</a>
                                     <a href="/remover-endereco/{{$endereco->id}}">Excluir</a></td>
                                 </tr>
                             @endforeach

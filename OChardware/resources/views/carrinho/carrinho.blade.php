@@ -21,10 +21,10 @@
                     <div class="itens-carrinho">
                         <table class="tabela-geral">
                             <tr class="border-white">
-                                <th>Foto</th>
-                                <th>Nome</th>
-                                <th>Quantidade</th>
-                                <th>Valor</th>
+                                <th class="padding-tabela-vh">Foto</th>
+                                <th class="padding-tabela-vh">Nome</th>
+                                <th class="padding-tabela-vh">Quantidade</th>
+                                <th class="padding-tabela-vh">Valor</th>
                             </tr>
 
                         @php
@@ -34,19 +34,19 @@
                             @foreach ($prod_carrinho as $itens)
 
                                 <tr class="border-white">
-                                    <td>
+                                    <td class="padding-tabela-vh">
                                         <img src="../img/produtos/{{$itens->foto}}" class="carrinho-img border-10">
                                     </td>
                                     {{-- <td>{{$itens->foto}}</td> depois chamar a imagem real --}}
 
-                                    <td>{{$itens->nome}}</td>
-                                    <td>
+                                    <td class="padding-tabela-vh">{{$itens->nome}}</td>
+                                    <td class="padding-tabela-vh">
                                         <a class="red" href="/removerQtd/{{$itens->id}}"><i class="fa-solid fa-minus"></i></a>
                                             {{$itens->quantidade}}
                                         <a class="red" href="/addQtd/{{$itens->id}}"><i class="fa-solid fa-plus"></i></a>
                                     </td>
-                                    <td>R${{number_format($itens->preco, 2,',','.')}}</td>
-                                    <td><a class="red" href="/removerCarrinho/{{$itens->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
+                                    <td class="padding-tabela-vh">R${{number_format($itens->preco, 2,',','.')}}</td>
+                                    <td class="padding-tabela-vh"><a class="red" href="/removerCarrinho/{{$itens->id}}"><i class="fa-solid fa-trash-can"></i></a></td>
                                 </tr>
 
                                     @php

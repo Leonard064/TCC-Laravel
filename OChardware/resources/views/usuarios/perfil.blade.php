@@ -39,16 +39,16 @@
                     @foreach ($pedidos as $pedido)
                             <caption>Pedido: {{$pedido->id}}</caption>
                             <tr class="black">
-                                <th class="border-black">Data e hora</th>
-                                <th class="border-black">Pagamento</th>
-                                <th class="border-black">Valor</th>
-                                <th class="border-black">Status</th>
+                                <th class="border-black padding-tabela-vh">Data e hora</th>
+                                <th class="border-black padding-tabela-vh">Pagamento</th>
+                                <th class="border-black padding-tabela-vh">Valor</th>
+                                <th class="border-black padding-tabela-vh">Status</th>
                             </tr>
                             <tr class="bg-white">
-                                <td class="border-black">{{$pedido->created_at}}</td>
-                                <td class="border-black">{{$pedido->pagamento_tipo}}</td>
-                                <td class="border-black">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
-                                <td class="border-black">{{$pedido->status}}</td>
+                                <td class="border-black padding-tabela-vh">{{$pedido->created_at}}</td>
+                                <td class="border-black padding-tabela-vh">{{$pedido->pagamento_tipo}}</td>
+                                <td class="border-black padding-tabela-vh">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
+                                <td class="border-black padding-tabela-vh">{{$pedido->status}}</td>
                             </tr>
                     @endforeach
                 </table>
