@@ -102,10 +102,10 @@
 
             <div class="grid-container carrinho-total checkout-total bg-gray border-10 padding-detalhes">
 
-                <h2>Total</h2>
+                {{-- <h2>Total</h2>
 
-                {{-- <h2>Total</h2> --}}
-                <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2>
+                {{-- <h2>Total</h2> --
+                <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2> --}}
 
                 <h2>Peso</h2>
                 <p>{{number_format($peso,2,',','.')}}Kg</p>
@@ -121,7 +121,13 @@
                         <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
                     </div>
 
+                <div class="flex-container carrinho-preco bg-teste border-10">
+                    <h2>Total</h2>
+                    <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2>
+
                     <button class="bt-red">Finalizar Compra</button>
+
+                </div>
 
                 </form>{{-- fim do form PEDIDO-CREATE --}}
             </div>
@@ -239,7 +245,9 @@
 
             document.getElementById('frete').appendChild(hidd)
 
-            alert("Input Criado!\n totalPAC: "+ totalPAC)
+            mudaPreco(totalPAC)
+
+            // alert("Input Criado!\n totalPAC: "+ totalPAC)
         }
 
         var selecionaSedex = function(){
@@ -251,9 +259,22 @@
 
             document.getElementById('frete').appendChild(hidd)
 
-            alert("Input Criado\n totalSEDEX: "+ totalSEDEX)
-    }
+            mudaPreco(totalSEDEX)
 
+            // alert("Input Criado\n totalSEDEX: "+ totalSEDEX)
+        }
+
+        function mudaPreco(preco){
+            // let campo = document.getElementByClassName("label-preco")
+            let totalJS = document.querySelector(".label-preco").innerHTML
+            let t = totalJS.replace("R$","")
+            let t2 = t.replace(".", "")
+            let t3 = t2.replace(",", ".")
+            let soma = new Intl.NumberFormat().format(parseFloat(t3) + parseFloat(preco))
+
+            document.querySelector(".label-preco").innerHTML = "R$" + soma
+
+        }
 
         function ajax(id,peso){
 
