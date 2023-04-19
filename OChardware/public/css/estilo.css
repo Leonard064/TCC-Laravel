@@ -223,7 +223,7 @@ body{
 
 .itens{
     background: #fff;
-    justify-content: space-evenly;
+    /* justify-content: space-evenly; */
     align-content: center;
     flex-wrap: wrap;
 }
@@ -245,7 +245,8 @@ body{
     border-radius: 20px;
     background: #d6d6d6;
     padding: 10px;
-    margin: 10px 5px;
+    /* margin: 10px 5px; */
+    margin: 20px;
 }
 
 .card-img{
@@ -321,22 +322,30 @@ body{
 .corpo-produtos{
     grid-template-columns: 1fr 3fr;
     grid-template-rows: 1fr;
+    min-height: 500px;
 }
 
-.lateral{
-    min-height: 669px;
-}
+/* .lateral{
+    /* min-height: 669px;
+} */
 
 .nav-lateral{
     /* min-height: 100vh; */
     flex-direction: column;
     align-items: center;
     margin: 2vh;
-    background: #d6d6d6;
-    border-radius: 10px;
+    /* background: #d6d6d6; */
+    /* border-radius: 10px; */
 }
 
-/* Página LOGIN */
+.number{
+    border: 1px solid #b9b9b9;
+    width: 60px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+}
+
+/* Página LOGIN e Cadastre-se */
 
 .auth{
     width: 500px;
@@ -346,6 +355,22 @@ body{
 
 .flex-form{
     align-items: center;
+}
+
+.form-left{
+    grid-area: 1/1/2/2;
+}
+
+.form-right{
+    grid-area: 1/2/2/3;
+}
+
+.form-center{
+    grid-area: 2/1/3/3;
+}
+
+.form-button{
+    grid-area: 3/1/4/3;
 }
 
 .banner-login{
@@ -465,6 +490,21 @@ body{
     grid-column-gap: 20px;
 }
 
+.secao-carrinho-checkout{
+    margin-bottom: 2vh;
+    padding: 5px 2vh;
+}
+
+.total-bottom{
+    align-items: flex-end;
+}
+
+.carrinho-preco{
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
+
 /* Página Checkout */
 .checkout{
     grid-row-gap: 20px;
@@ -504,6 +544,20 @@ body{
 
 .perfil-foto img{
     max-height: 150px;
+}
+
+.perfil-opcoes{
+    margin-top: 30px;
+}
+
+.perfil-opcoes a{
+    margin-right: 15px;
+    font-weight: bold;
+}
+
+.perfil-opcoes a:hover{
+    color: #e00009;
+    text-decoration: underline;
 }
 
 /* Página Admin */
@@ -655,6 +709,10 @@ body{
     background: #fff;
 }
 
+.bg-teste{
+    background: #3d3d3d;
+}
+
 /* fontes */
 .heading{
     font-family: 'Passion One', cursive;
@@ -696,11 +754,12 @@ body{
 }
 
 .form-cadastro{
-    margin: 0 20px;
+    grid-template-columns: repeat(2, 1fr);
+    /* margin: 0 20px; */
 }
 
-.teste-form{
-    width: 49%;
+.teste-form input{
+    width: 100%;
     padding: 10px 10px;
     margin: 7px 0;
     box-sizing: border-box;
