@@ -4,15 +4,16 @@
 
 @section('conteudo')
     <div class="flex-container corpo margin-new">
+
+        <div class="flex-container topo-secao bg-gray border-10 secao-carrinho-checkout">
+            <i class="fa-solid fa-square red"></i>
+            <h2>Checkout</h2>
+        </div>
+
         <div class="grid-container carrinho checkout">
             <div class="grid-container carrinho-lista checkout-lista bg-gray border-10 padding-detalhes">
 
-                <div class="flex-container topo-secao">
-                    <i class="fa-solid fa-square red"></i>
-                    <h2>Checkout</h2>
-                </div>
-
-                {{-- <h2>Checkout</h2> --}}
+                <h2>Itens</h2>
 
                 <table class="tabela-geral">
                     <tr class="border-white">
@@ -58,10 +59,8 @@
 
             <div class="grid-container frete bg-gray border-10 padding-detalhes">
 
-                <div class="flex-container topo-secao">
-                    <i class="fa-solid fa-square red"></i>
-                    <h2>Endereço de Entrega</h2>
-                </div>
+
+                <h2>Endereço de Entrega</h2>
 
                 {{-- <h2>Endereço de Entrega</h2> --}}
 
@@ -79,10 +78,7 @@
 
                             @endforeach
 
-                            <div class="flex-container topo-secao">
-                                <i class="fa-solid fa-square red"></i>
-                                <h2>Frete e Prazos</h2>
-                            </div>
+                            <h2>Frete e Prazos</h2>
 
                             {{-- <h2>Frete e Prazos</h2> --}}
 
@@ -106,10 +102,7 @@
 
             <div class="grid-container carrinho-total checkout-total bg-gray border-10 padding-detalhes">
 
-                <div class="flex-container topo-secao">
-                    <i class="fa-solid fa-square red"></i>
-                    <h2>Total</h2>
-                </div>
+                <h2>Total</h2>
 
                 {{-- <h2>Total</h2> --}}
                 <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2>
@@ -119,12 +112,7 @@
 
                 <input type="hidden" name="total_pedido" value="{{$total}}">
 
-                <div class="flex-container topo-secao">
-                    <i class="fa-solid fa-square red"></i>
-                    <h2>Pagamento</h2>
-                </div>
-
-                {{-- <h2>Pagamento</h2> --}}
+                <h2>Pagamento</h2>
 
                     <div class="form-opcoes">
                         <input type="radio" name="pagamento_tipo" value="boleto">Boleto

@@ -3,11 +3,11 @@
 @section('title', 'OC Hardware - Produtos')
 
 @section('conteudo')
-    <section class="grid-container corpo-produtos margem">
+    <section class="grid-container corpo-produtos margin-new">
         <div class="lateral">
-            <div class="flex-container nav-lateral">
+            <div class="flex-container nav-lateral bg-gray border-10">
                 <h2>Busca Específica</h2>
-                <form action="/pesquisa-produtos" method="POST">
+                <form action="/pesquisa-produtos" method="POST" class="margin-new">
                     @csrf
 
                     <h3>Marcas</h3>
@@ -36,11 +36,11 @@
 
                     <h3>Preço</h3>
 
-                    <label for="valorMin">De:</label><br>
-                    <input type="number" name="valorMin" id="valorMin" min="1"><br>
+                    <label for="valorMin">De:</label>
+                    <input type="number" name="valorMin" id="valorMin" min="1" class="number">
 
-                    <label for="valorMax">Até:</label><br>
-                    <input type="number" name="valorMax" id="valorMax" min="1">
+                    <label for="valorMax">Até:</label>
+                    <input type="number" name="valorMax" id="valorMax" min="1" class="number">
 
                     {{-- <input type="radio" name="valor" value="baixo"><label for="baixo">R$0,00 até R$100,00</label><br>
                     <input type="radio" name="valor" value="medio"><label for="medio">R$100,00 até R$500,00</label><br>

@@ -15,20 +15,20 @@
                 @if(count($produto) > 0)
                 <table class="tabela-geral">
                     <tr class="black">
-                        <th class="border-black">Foto</th>
-                        <th class="border-black">Nome</th>
-                        <th class="border-black">Quantidade</th>
-                        <th class="border-black">Valor</th>
-                        <th class="border-black">Opções</th>
+                        <th class="border-black padding-tabela-vh">Foto</th>
+                        <th class="border-black padding-tabela-vh">Nome</th>
+                        <th class="border-black padding-tabela-vh">Quantidade</th>
+                        <th class="border-black padding-tabela-vh">Valor</th>
+                        <th class="border-black padding-tabela-vh">Opções</th>
                     </tr>
 
                     @foreach ($produto as $produtos)
                         <tr class="bg-white">
-                            <td class="border-black">{{$produtos->foto}}</td>
-                            <td class="border-black">{{$produtos->nome}}</td>
-                            <td class="border-black">{{$produtos->quantidade}}</td>
-                            <td class="border-black">{{$produtos->preco}}</td>
-                            <td class="border-black"><a href="/editar-produto/{{$produtos->id}}">Editar</a>
+                            <td class="border-black padding-tabela-vh">{{$produtos->foto}}</td>
+                            <td class="border-black padding-tabela-vh">{{$produtos->nome}}</td>
+                            <td class="border-black padding-tabela-vh">{{$produtos->quantidade}}</td>
+                            <td class="border-black padding-tabela-vh">{{$produtos->preco}}</td>
+                            <td class="border-black padding-tabela-vh"><a href="/editar-produto/{{$produtos->id}}">Editar</a>
                             <a href="/remover-produto/{{$produtos->id}}">Excluir</a></td>
                         </tr>
                     @endforeach

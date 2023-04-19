@@ -5,10 +5,18 @@
 @section('conteudo')
     <div class="flex-container corpo-detalhes">
         <div class="detalhes-topo bg-gray border-10 margin-new padding-detalhes">
-            <h1>Painel Administrador</h1>
+
+            <div class="flex-container topo-secao">
+                <i class="fa-solid fa-square red"></i>
+                <h1>Painel Administrador</h1>
+            </div>
+
+            {{-- <h1>Painel Administrador</h1> --}}
             {{-- <a href="/create-categoria">Criar Categoria</a>&nbsp; --}}
-            <a class="no-deco font-black" href="/create-marca">Criar Marca</a>&nbsp;
+            <div class="flex-container perfil-opcoes">
+                <a class="no-deco font-black" href="/create-marca">Criar Marca</a>
             <a class="no-deco font-black" href="/create-produto">Criar Produto</a>
+            </div>
 
         </div>
 
@@ -26,18 +34,18 @@
                             <table class="tabela-geral">
                                 <caption>Pedido: {{$pedido->id}}</caption>
                                 <tr class="black">
-                                    <th class="border-black">Data e hora</th>
-                                    <th class="border-black">Pagamento</th>
-                                    <th class="border-black">Valor</th>
-                                    <th class="border-black">Status</th>
-                                    <th class="border-black">Opções</th>
+                                    <th class="border-black padding-tabela-vh">Data e hora</th>
+                                    <th class="border-black padding-tabela-vh">Pagamento</th>
+                                    <th class="border-black padding-tabela-vh">Valor</th>
+                                    <th class="border-black padding-tabela-vh">Status</th>
+                                    <th class="border-black padding-tabela-vh">Opções</th>
                                 </tr>
                                 <tr class="bg-white">
-                                    <td class="border-black">{{$pedido->created_at}}</td>
-                                    <td class="border-black">{{$pedido->pagamento_tipo}}</td>
-                                    <td class="border-black">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
-                                    <td class="border-black">{{$pedido->status}}</td>
-                                    <td class="border-black"><a href="/editar-pedido/{{$pedido->id}}">Editar Status</a></td>
+                                    <td class="border-black padding-tabela-vh">{{$pedido->created_at}}</td>
+                                    <td class="border-black padding-tabela-vh">{{$pedido->pagamento_tipo}}</td>
+                                    <td class="border-black padding-tabela-vh">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
+                                    <td class="border-black padding-tabela-vh">{{$pedido->status}}</td>
+                                    <td class="border-black padding-tabela-vh"><a href="/editar-pedido/{{$pedido->id}}">Editar Status</a></td>
                                 </tr>
                             </table>
 
@@ -66,14 +74,14 @@
 
                         <table class="tabela-geral">
                             <tr class="black">
-                                <th class="border-black">Nome</th>
-                                <th class="border-black">Opções</th>
+                                <th class="border-black padding-tabela-vh">Nome</th>
+                                <th class="border-black padding-tabela-vh">Opções</th>
                             </tr>
                             @foreach ($produtos as $produto)
 
                                     <tr class="bg-white">
-                                        <td class="border-black">{{$produto->nome}}</td>
-                                        <td class="border-black"><a href="/editar-produto/{{$produto->id}}">Editar</a>
+                                        <td class="border-black padding-tabela-vh">{{$produto->nome}}</td>
+                                        <td class="border-black padding-tabela-vh"><a href="/editar-produto/{{$produto->id}}">Editar</a>
                                         <a href="/remover-produto/{{$produto->id}}">Excluir</a></td>
                                     </tr>
 

@@ -53,7 +53,10 @@
                     @endforeach
                 </table>
 
-                    <a href="/meus-pedidos">Ver Todos os Pedidos</a>
+                    <a href="/meus-pedidos">
+                        <button class="bt-red">Ver Todos os Pedidos</button>
+                    </a>
+                    {{-- <a href="/meus-pedidos">Ver Todos os Pedidos</a> --}}
 
                 @else
                     <i class="fa-solid fa-triangle-exclamation"></i>

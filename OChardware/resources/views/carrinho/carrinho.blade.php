@@ -5,18 +5,18 @@
 @section('conteudo')
     <div class="flex-container corpo-detalhes margin-new">
 
+        <div class="flex-container topo-secao bg-gray border-10 secao-carrinho-checkout">
+            <i class="fa-solid fa-square red"></i>
+            <h2>Carrinho</h2>
+        </div>
+
         @if (count($prod_carrinho) > 0)
 
             <div class="grid-container carrinho">
                 <div class="grid-container carrinho-lista bg-gray border-10 padding-detalhes">
 
-                    <div class="flex-container topo-secao">
-                        <i class="fa-solid fa-square red"></i>
-                        <h2>Carrinho</h2>
-                    </div>
-
                     {{-- <i class="fa-solid fa-square red"></i> &nbsp; --}}
-                    <h2></h2>
+                    <h2>Itens</h2>
 
                     <div class="itens-carrinho">
                         <table class="tabela-geral">
@@ -77,25 +77,24 @@
 
                 <div class="grid-container carrinho-total bg-gray border-10 padding-detalhes">
 
-                    <div class="flex-container topo-secao">
-                        <i class="fa-solid fa-square red"></i>
-                        <h2>Total</h2>
-                    </div>
+                    <h2>Total</h2>
 
                     {{-- <i class="fa-solid fa-square red"></i> &nbsp; --}}
                     {{-- <h2>Total</h2> --}}
 
-                    <form action="/checkout" method="post">
-                        @csrf
+                    <div class="flex-container total-bottom">
+                        <form action="/checkout" method="post" class="flex-container carrinho-preco">
+                            @csrf
 
-                        <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2>
+                            <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2>
 
-                        {{-- <input type="hidden" name="total" value="{{$total}}">--}}
+                            {{-- <input type="hidden" name="total" value="{{$total}}">--}}
 
 
-                        <button class="bt-red">Finalizar Compra</button>
+                            <button class="bt-red">Finalizar Compra</button>
 
-                    </form>
+                        </form>
+                    </div>
 
                 </div>{{-- fim grid total--}}
 

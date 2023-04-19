@@ -15,19 +15,19 @@
                 @if (count($pedido) > 0)
                     <table class="tabela-geral">
                         <tr class="black">
-                            <th class="border-black">Data e hora</th>
-                            <th class="border-black">Pagamento</th>
-                            <th class="border-black">Valor</th>
-                            <th class="border-black">Status</th>
-                            <th class="border-black">Opções</th>
+                            <th class="border-black padding-tabela-vh">Data e hora</th>
+                            <th class="border-black padding-tabela-vh">Pagamento</th>
+                            <th class="border-black padding-tabela-vh">Valor</th>
+                            <th class="border-black padding-tabela-vh">Status</th>
+                            <th class="border-black padding-tabela-vh">Opções</th>
                         </tr>
                     @foreach ($pedido as $pedidos)
                         <tr class="bg-white">
-                            <td class="border-black">{{$pedidos->created_at}}</td>
-                            <td class="border-black">{{$pedidos->pagamento_tipo}}</td>
-                            <td class="border-black">{{$pedidos->total_pedido}}</td>
-                            <td class="border-black" class="border-black">{{$pedidos->status}}</td>
-                            <td class="border-black"><a href="/editar-pedido/{{$pedidos->id}}">Editar Status</a></td>
+                            <td class="border-black padding-tabela-vh">{{$pedidos->created_at}}</td>
+                            <td class="border-black padding-tabela-vh">{{$pedidos->pagamento_tipo}}</td>
+                            <td class="border-black padding-tabela-vh">{{$pedidos->total_pedido}}</td>
+                            <td class="border-black padding-tabela-vh" class="border-black">{{$pedidos->status}}</td>
+                            <td class="border-black padding-tabela-vh"><a href="/editar-pedido/{{$pedidos->id}}">Editar Status</a></td>
                         </tr>
                     @endforeach
                     </table>
