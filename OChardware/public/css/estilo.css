@@ -754,17 +754,28 @@ body{
 }
 
 .form-cadastro{
-    grid-template-columns: repeat(2, 1fr);
-    /* margin: 0 20px; */
+    grid-template-columns: 1fr 1fr;
+    margin: 0 7px;
 }
 
-.teste-form input{
-    width: 100%;
+.form-cadastro input{
+    width: 90%;
     padding: 10px 10px;
     margin: 7px 0;
     box-sizing: border-box;
     border: none;
     border-bottom: solid 2px #212121;
+}
+
+.span-2{
+    grid-column: 1 / span 2;
+}
+
+.err-form{
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 0.8em;
+    color: #e00009;
 }
 
 .form-50 input, select{
