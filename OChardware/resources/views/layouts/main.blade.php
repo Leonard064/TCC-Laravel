@@ -6,11 +6,16 @@
         <link rel="icon" type="image/png" sizes="32x32" href="../img/favicon-32x32.png">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Overclock® Hardware - Dê um OverClock!</title>
+
+        {{-- estilo próprio --}}
         <link rel="stylesheet" href="../css/estilo.css">
+
+        {{-- fontes e icones --}}
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Inter&family=Passion+One&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="../fontawesome/css/all.css">
+
     </head>
     <body>
         <header>
@@ -169,13 +174,15 @@
         </nav>
         <main>
             @if($message = Session::get('err'))
-                <div class="flex-container secao black">
+                <div class="flex-container secao secao red white message">
                     <h2>{{$message}}</h2>
+                    <a href="#" onclick="fechaTeste()">Fechar</a>
                 </div>
             @endif
             @if($message = Session::get('ok'))
-                <div class="flex-container secao black">
+                <div class="flex-container secao red white message">
                     <h2>{{$message}}</h2>
+                    <a href="#" onclick="fechaTeste()">Fechar</a>
                 </div>
             @endif
             @yield('conteudo')
@@ -226,18 +233,6 @@
         </footer>
     </body>
 </html>
-    @stack('scripts')
-<script>
-    function funcao(){
-        var x = document.getElementById('mobile-nav')
 
-        // alert(x)
-
-        if(x.style.display === "block"){
-            x.style.display = "none"
-        }else{
-            x.style.display = "block"
-        }
-    }
-
-</script>
+<script src="../js/scripts.js"></script>
+@stack('scripts')
