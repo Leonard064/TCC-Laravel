@@ -49,6 +49,17 @@ body{
     align-items: center;
 }
 
+.message{
+    margin: 1vh 15%;
+    padding: 0 1vw;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.fecha-icon{
+    cursor: pointer;
+}
+
 /* fonte */
 .topo-secao h3{
     margin: 10px;

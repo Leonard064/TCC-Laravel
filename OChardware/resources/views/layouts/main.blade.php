@@ -173,16 +173,22 @@
             </section>
         </nav>
         <main>
+
+            {{-- <div class="flex-container message bg-gray border-10" id="msg">
+                <h2>Atenção! Mensagem aqui</h2>
+                <i class="fa-solid fa-xmark fecha-icon" onclick="fechaTeste()"></i>
+            </div> --}}
+
             @if($message = Session::get('err'))
-                <div class="flex-container secao secao red white message">
+                <div class="flex-container message bg-gray border-10" id="msg">
                     <h2>{{$message}}</h2>
-                    <a href="#" onclick="fechaTeste()">Fechar</a>
+                    <i class="fa-solid fa-xmark fecha-icon" onclick="fechaTeste()"></i>
                 </div>
             @endif
             @if($message = Session::get('ok'))
-                <div class="flex-container secao red white message">
+                <div class="flex-container message bg-gray border-10" id="msg">
                     <h2>{{$message}}</h2>
-                    <a href="#" onclick="fechaTeste()">Fechar</a>
+                    <i class="fa-solid fa-xmark fecha-icon" onclick="fechaTeste()"></i>
                 </div>
             @endif
             @yield('conteudo')

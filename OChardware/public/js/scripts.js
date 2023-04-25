@@ -15,7 +15,7 @@ function funcao(){
 
 // função para fechar as msgs de aviso
 function fechaTeste(){
-    document.getElementsByClassName('message').style.display = 'none'
+    document.getElementById('msg').setAttribute('style', 'display:none')
 }
 
 
