@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Usuario;
 use App\Models\Pedido;
 use App\Models\Produto;
@@ -89,58 +90,92 @@ class UsuarioController extends Controller
 
     //cadastro de usuário
     public function store(Request $request){
-        $valores = $request->all();
 
-        $usuario = new Usuario;
-        $usuario->fill($valores);
+        $valida = Validator::make($request->all(),[
+            'login' => 'required|unique:usuarios|min:5',
+            'nome' => 'required|min:4',
+            'sobrenome' => 'required|min:4',
+            'cpf' => 'required|unique:usuarios|min:4|max:11',
+            'email' => 'required|unique:usuarios|min:7',
+            'senha' => 'required|unique:usuarios|min:6',
+            'teste-senha' => 'required|same:senha',
+        ],
+        [
+            'required' => 'O campo :attribute é obrigatório',
+            'unique' => ':attribute já foi cadastrado, tente outro.',
+            'min' => 'Campo :attribute menor que o valor esperado.',
+            'max' => 'Campo :attribute maior que o valor esperado.',
+            'same' => 'Senhas digitadas não são iguais',
+        ]);
 
-            /* Checa se o usuário especificou uma foto no ato de cadastro */
-            if($request->hasFile('foto') && $request->file('foto')->isValid()){
+        // $this->validate($request,[
+        //     'login' => 'required|unique:usuarios|min:5',
+        //     'nome' => 'required|min:4',
+        //     'sobrenome' => 'required|min:4',
+        //     'cpf' => 'required|unique:usuarios|min:4|max:11',
+        //     'email' => 'required|unique:usuarios|min:7',
+        //     'senha' => 'required|unique:usuarios|min:6',
+        // ]);
 
-                $requestImage = $request->foto;
-                $extensao = $requestImage->extension();
-                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+        if ($valida->fails()) {
+            return redirect('/cadastre-se')
+                        ->withErrors($valida)
+                        ->withInput();
 
-                $requestImage->move(public_path('img/usuarios'),$nomeFoto);
+        }else{
+            $valores = $valida->validated();
 
-                $usuario->foto = $nomeFoto;
+            $usuario = new Usuario;
+            $usuario->fill($valores);
 
-            }else{ //caso não, ele salvará a foto "default"
+                /* Checa se o usuário especificou uma foto no ato de cadastro */
+                if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
-               $usuario->foto = 'foto-padrao.png';
+                    $requestImage = $request->foto;
+                    $extensao = $requestImage->extension();
+                    $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
 
-            }
+                    $requestImage->move(public_path('img/usuarios'),$nomeFoto);
 
+                    $usuario->foto = $nomeFoto;
 
-            $usuario->senha = Hash::make($request->senha); //criptografa a senha
+                }else{ //caso não, ele salvará a foto "default"
 
-            $usuario->tipo = 'user'; //todos os cadastros diretos do site são 'users'
+                   $usuario->foto = 'foto-padrao.png';
 
-
-                try{
-
-                    //checa se já existe um email igual cadastrado no sistema
-                    $dbUsuario = Usuario::where('login', $usuario->login)->first();
-                    if($dbUsuario){
-
-                        $request->session()->flash('err', 'Credencial já existe no banco.');
-
-                    }
-
-                        DB::beginTransaction();
-                        $usuario->save();
-                        DB::commit();
-
-                        //chama a função de login - e manda os campos preenchidos no cadastro
-                        return $this->authenticate($request);
-
-                }catch(\Exception $e){
-
-                    echo $e->getMessage();
-                    DB::rollback();
-
-                    $request->session()->flash('err', 'Usuário não pode ser cadastrado');
                 }
+
+
+                $usuario->senha = Hash::make($request->senha); //criptografa a senha
+
+                $usuario->tipo = 'user'; //todos os cadastros diretos do site são 'users'
+
+
+                    try{
+
+                        //checa se já existe um email igual cadastrado no sistema
+                        $dbUsuario = Usuario::where('login', $usuario->login)->first();
+                        if($dbUsuario){
+
+                            $request->session()->flash('err', 'Credencial já existe no banco.');
+
+                        }
+
+                            DB::beginTransaction();
+                            $usuario->save();
+                            DB::commit();
+
+                            //chama a função de login - e manda os campos preenchidos no cadastro
+                            return $this->authenticate($request);
+
+                    }catch(\Exception $e){
+
+                        echo $e->getMessage();
+                        DB::rollback();
+
+                        $request->session()->flash('err', 'Usuário não pode ser cadastrado');
+                    }
+        }
 
     }
 
@@ -177,6 +212,7 @@ class UsuarioController extends Controller
 
         Auth::logout();
 
+        $request->session()->flash('ok','Usuário deslogado com sucesso');
         return redirect('/');
     }
 
@@ -184,32 +220,51 @@ class UsuarioController extends Controller
     //Editar Cadastro
     public function updatePerfil(Request $request){
 
-        try {
-            $usuario = Usuario::find(\Auth::user()->id);
+        $valida = Validator::make($request->all(),[
+            'login' => 'required|min:5',
+            'nome' => 'required|min:4',
+            'sobrenome' => 'required|min:4',
+            'email' => 'required|min:7',
+        ],
+        [
+            'required' => 'O campo :attribute é obrigatório',
+            'min' => 'Campo :attribute menor que o valor esperado.',
+            'max' => 'Campo :attribute maior que o valor esperado.',
+        ]);
 
-            $usuario->nome = $request->nome;
-            $usuario->sobrenome = $request->sobrenome;
+        if ($valida->fails()) {
+            return redirect('/editar-perfil')
+                        ->withErrors($valida)
+                        ->withInput();
+        } else {
+            try {
+                $usuario = Usuario::find(\Auth::user()->id);
 
-            if($request->hasFile('foto') && $request->file('foto')->isValid()){
+                $usuario->nome = $request->nome;
+                $usuario->sobrenome = $request->sobrenome;
 
-                $requestImage = $request->foto;
-                $extensao = $requestImage->extension();
-                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+                if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
-                $requestImage->move(public_path('img/usuarios'),$nomeFoto);
+                    $requestImage = $request->foto;
+                    $extensao = $requestImage->extension();
+                    $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
 
-                $usuario->foto = $nomeFoto;
+                    $requestImage->move(public_path('img/usuarios'),$nomeFoto);
+
+                    $usuario->foto = $nomeFoto;
+
+                }
+
+                $usuario->save();
+
+                return redirect('/perfil');
+
+            } catch (\Throwable $th) {
+
+                echo $th->getMessage();
 
             }
-
-            $usuario->save();
-
-            return redirect('/perfil');
-
-        } catch (\Throwable $th) {
-
-            echo $th->getMessage();
-
         }
+
     }
 }

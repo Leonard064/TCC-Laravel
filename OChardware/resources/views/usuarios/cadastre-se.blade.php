@@ -12,27 +12,111 @@
             <h2>Entre ou Cadastre-se</h2>
         </div> --}}
 
-        <div class="grid-container auth bg-gray">
+        <div class="grid-container auth bg-gray border-10">
 
             {{-- Cadastro --}}
 
             <div class="flex-container form">
                 <h2>Cadastre-se</h2>
-                <form action="/registrar" method="POST" enctype="multipart/form-data" class="form-cadastro">
+                <form action="/registrar" method="POST" enctype="multipart/form-data" class="grid-container form-cadastro">
                     @csrf
-                    <input type="text" name="nome" id="nome" placeholder="Nome" class="teste-form">
-                    <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="teste-form">
-                    <input type="text" name="login" id="login" placeholder="Login" class="teste-form">
-                    <input type="text" name="cpf" id="cpf" placeholder="CPF" class="teste-form">
-                    <input type="email" name="email" id="email-logon" placeholder="Email" class="teste-form">
-                    <br><br>
-                    <label for="foto">Imagem:</label>
-                    <input type="file" name="foto" id="foto">
-                    <br><br>
-                    <input type="password" name="senha" id="senha-logon" placeholder="Senha" class="teste-form">
-                    <input type="password" name="" id="testa-senha-logon" placeholder="Insira novamente sua senha" class="teste-form">
+                    <div>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" placeholder="Insira seu nome" class="teste-form">
 
-                    <div class="flex-container bt-auth">
+                        @if ($errors->get('nome'))
+                            @foreach ($errors->get('nome') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div>
+                        <label for="sobrenome">Sobrenome:</label><br>
+                        <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="teste-form">
+
+                        @if ($errors->get('sobrenome'))
+                            @foreach ($errors->get('sobrenome') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div>
+                        <label for="login">Login:</label>
+                        <input type="text" name="login" id="login" placeholder="Login" class="teste-form" value="{{old('nome')}}">
+
+                        @if ($errors->get('login'))
+                            @foreach ($errors->get('login') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div>
+                        <label for="cpf">CPF:</label><br>
+                        <input type="text" name="cpf" id="cpf" placeholder="CPF (sem pontos e traços)" class="teste-form">
+
+                        @if ($errors->get('cpf'))
+                            @foreach ($errors->get('cpf') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div>
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email-logon" placeholder="Email" class="teste-form">
+
+                        @if ($errors->get('email'))
+                            @foreach ($errors->get('email') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div class="span-2">
+                        <label for="foto">Imagem: (opcional)</label>
+                        <input type="file" name="foto" id="foto">
+                    </div>
+
+                    <div class="span-2">
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" id="senha-logon" placeholder="Senha (min. 6 digitos)" class="teste-form">
+
+                        @if ($errors->first('senha'))
+                            @foreach ($errors->get('senha') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div class="span-2">
+                        <label for="teste-senha">Insira Novamente a senha:</label>
+                        <input type="password" name="teste-senha" id="testa-senha-logon" placeholder="Insira novamente sua senha" class="teste-form">
+
+                        @if ($errors->first('teste-senha'))
+                            @foreach ($errors->get('teste-senha') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div class="bt-auth span-2">
                         <button class="bt-red">Entrar</button>
                     </div>
 
