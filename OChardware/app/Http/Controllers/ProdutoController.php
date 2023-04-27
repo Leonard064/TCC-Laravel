@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Produto;
 use App\Models\Usuario;
 use App\Models\Categoria;
@@ -146,39 +147,65 @@ class ProdutoController extends Controller
     //Criar Produto
     public function store(Request $request){
 
-        $valores = $request->all();
-        $produto = new Produto;
+        $valida = Validator::make($request->all(),[
+            'nome' => 'required',
+            'id_categoria' => 'required',
+            'id_marca' => 'required',
+            'preco' => 'required',
+            'descricao' => 'required',
+            'foto' => 'required',
+            'largura' => 'required',
+            'altura' => 'required',
+            'peso' => 'required',
+            'comprimento' => 'required',
+            'quantidade' => 'required|min:1',
+        ],[
+            'required' => 'Campo :attribute não pode estar vazio.',
+            'min' => ':attribute não contempla valor mínimo.'
+        ]);
 
-        // $produto->nome = $request->nome;
-        // $produto->categoria = $request->categoria;
-        // $produto->preco = $request->preco;
-        // $produto->descricao = $request->descricao;
+        if($valida->fails()){
+            return redirect('/create-produto')
+                            ->withErrors($valida);
+        }else{
+            $valores = $valida->validate();
+            $produto = new Produto;
 
-        $produto->fill($valores);
+            // $produto->nome = $request->nome;
+            // $produto->categoria = $request->categoria;
+            // $produto->preco = $request->preco;
+            // $produto->descricao = $request->descricao;
 
-            if($request->hasFile('foto') && $request->file('foto')->isValid()){
-                $requestImage = $request->foto;
-                $extensao = $requestImage->extension();
-                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+            $produto->fill($valores);
 
-                $requestImage->move(public_path('img/produtos'),$nomeFoto);
+                if($request->hasFile('foto') && $request->file('foto')->isValid()){
+                    $requestImage = $request->foto;
+                    $extensao = $requestImage->extension();
+                    $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
 
-                $produto->foto = $nomeFoto;
-            }else{
-                return 0;
-            }
+                    $requestImage->move(public_path('img/produtos'),$nomeFoto);
 
-
-                try {
-
-                    $produto->save();
-                    return redirect('/');
-
-                } catch (\Exception $e) {
-
-                    echo $e->getMessage();
-
+                    $produto->foto = $nomeFoto;
+                }else{
+                    return 0;
                 }
+
+                    try {
+
+                        $produto->save();
+
+                        $request->session()->flash('ok','Produto adicionado com sucesso.');
+                        return redirect('/');
+
+                    } catch (\Exception $e) {
+
+                        echo $e->getMessage();
+
+                    }
+
+        }
+
+
 
     }
 
