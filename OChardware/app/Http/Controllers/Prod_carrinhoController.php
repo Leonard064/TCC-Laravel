@@ -192,7 +192,7 @@ class Prod_carrinhoController extends Controller
 
         try {
             if(Prod_Carrinho::destroy($id)) {
-                return redirect('/carrinho');
+                return redirect('/carrinho')->with('ok','Item removido do carrinho');
 
             }else{
                 dd('Não foi possível deletar o item');

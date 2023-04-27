@@ -361,7 +361,7 @@ body{
 .auth{
     width: 500px;
     margin: 5vh 30%;
-    border-radius: 2%;
+    /* border-radius: 2%; */
 }
 
 .flex-form{
@@ -403,7 +403,7 @@ body{
     align-items: center;
     flex-direction: column;
     box-sizing: border-box;
-    margin: 3vh 0;
+    margin: 3vh;
 }
 
 .form button{
@@ -761,21 +761,26 @@ body{
     border: none;
     border-bottom: solid 2px #212121;
     padding: 10px;
-    margin: 5px 10px 5px 0;
+    margin: 5px 0 15px 0;
 }
 
 .form-cadastro{
     grid-template-columns: 1fr 1fr;
-    margin: 0 7px;
+    grid-column-gap: 20px;
+    /* margin: 0 7px; */
 }
 
 .form-cadastro input{
-    width: 90%;
+    width: 100%;
     padding: 10px 10px;
     margin: 7px 0;
     box-sizing: border-box;
     border: none;
     border-bottom: solid 2px #212121;
+}
+
+.form-cadastro input[type="password"]{
+    width: 100%;
 }
 
 .span-2{

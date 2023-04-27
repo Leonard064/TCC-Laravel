@@ -15,7 +15,8 @@
             {{-- <a href="/create-categoria">Criar Categoria</a>&nbsp; --}}
             <div class="flex-container perfil-opcoes">
                 <a class="no-deco font-black" href="/create-marca">Criar Marca</a>
-            <a class="no-deco font-black" href="/create-produto">Criar Produto</a>
+                <a class="no-deco font-black" href="/create-produto">Criar Produto</a>
+                <a class="no-deco font-black" href="/alterar-senha">Alterar Senha</a>
             </div>
 
         </div>
