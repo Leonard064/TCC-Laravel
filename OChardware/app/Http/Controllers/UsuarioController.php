@@ -35,7 +35,9 @@ class UsuarioController extends Controller
     }
 
     public function showUserPedidos(){
-        $pedidos = Pedido::where('id_usuario', \Auth::user()->id)->get();
+        $pedidos = Pedido::where('id_usuario', \Auth::user()->id)
+                                                            ->orderBy('created_at', 'DESC')
+                                                            ->get();
 
         return view('pedidos.showUserPedidos', ['pedidos' => $pedidos]);
     }
@@ -74,8 +76,11 @@ class UsuarioController extends Controller
     public function dashboard(){
         if(\Auth::user()->tipo == 'adm'){
 
-            $pedidos = Pedido::all()->take(5);
-            $produtos = Produto::all()->take(5);
+            $pedidos = Pedido::orderBy('created_at', 'DESC')->get()->take(5);
+            $produtos = Produto::orderBy('created_at', 'DESC')->get()->take(5);
+
+            // $pedidos = Pedido::all()->take(5);
+            // $produtos = Produto::all()->take(5);
 
             return view('usuarios.dashboard', ['pedidos' => $pedidos, 'produtos' => $produtos]);
 
@@ -183,27 +188,42 @@ class UsuarioController extends Controller
     //login de usuário
     public function authenticate(Request $request){
 
-        $login = $request->input('login');
-        $senha = $request->input('senha');
+        $valida = Validator::make($request->all(),[
+            'login' => 'required',
+            'senha' => 'required',
+        ],[
+            'required' => 'Campo :attribute está vazio.',
+        ]);
 
-        $credential = ['login' => $login, 'password'=> $senha];
+        if ($valida->fails()) {
+            return redirect('/login')->withErrors($valida);
 
-        //tenta logar o usuário
-        if(Auth::attempt($credential)){
+        } else {
+            $valores = $valida->validated();
 
-            if(Auth::user()->tipo == 'user'){
-                $request->session()->flash('ok','Usuário logado com sucesso');
-                return redirect('/');
+            $login = $valores['login'];
+            $senha = $valores['senha'];
 
-            }elseif(Auth::user()->tipo == 'adm') {
-                return redirect('/dashboard');
+            $credential = ['login' => $login, 'password'=> $senha];
 
+            //tenta logar o usuário
+            if(Auth::attempt($credential)){
+
+                if(Auth::user()->tipo == 'user'){
+                    $request->session()->flash('ok','Usuário logado com sucesso');
+                    return redirect('/');
+
+                }elseif(Auth::user()->tipo == 'adm') {
+                    return redirect('/dashboard');
+
+                }
+
+            }else{
+                $request->session()->flash('err','ERRO - credenciais inválidas');
+                return redirect('/login');
             }
-
-        }else{
-            $request->session()->flash('err','ERRO - credenciais inválidas');
-            return redirect('/login');
         }
+
     }
 
 
@@ -227,7 +247,8 @@ class UsuarioController extends Controller
             'email' => 'required|min:7',
         ],
         [
-            'required' => 'O campo :attribute é obrigatório',
+            'required' => 'Campo :attribute não pode estar vazio.',
+            'unique' => ':attribute já está em uso. tente outro.',
             'min' => 'Campo :attribute menor que o valor esperado.',
             'max' => 'Campo :attribute maior que o valor esperado.',
         ]);
@@ -240,8 +261,12 @@ class UsuarioController extends Controller
             try {
                 $usuario = Usuario::find(\Auth::user()->id);
 
-                $usuario->nome = $request->nome;
-                $usuario->sobrenome = $request->sobrenome;
+                $valores = $valida->validated();
+
+                $usuario->login = $valores['login'];
+                $usuario->nome = $valores['nome'];
+                $usuario->sobrenome = $valores['sobrenome'];
+                $usuario->email = $valores['email'];
 
                 if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
@@ -257,6 +282,7 @@ class UsuarioController extends Controller
 
                 $usuario->save();
 
+                $request->session()->flash('ok','Dados alterados com sucesso');
                 return redirect('/perfil');
 
             } catch (\Throwable $th) {
@@ -266,5 +292,58 @@ class UsuarioController extends Controller
             }
         }
 
+    }
+
+
+    public function updateSenha(Request $request){
+        $valida = Validator::make($request->all(),[
+            'senha' => 'required|min:6',
+            'senha-nova' => 'required|min:6',
+        ],
+        [
+            'required' => 'O campo não pode estar vazio.',
+            'min' => 'Senha possui menos de 6 caracteres.',
+        ]);
+
+        if ($valida->fails()) {
+            return back()
+                    ->withErrors($valida)
+                    ->withInput();
+        } else {
+
+            $valores = $valida->validated();
+
+            // checa se senha atual foi inserida corretamente
+            if(Hash::check($valores['senha'], \Auth::user()->senha)){
+
+                // checa se ambas senhas não são iguais
+                if(strcmp($valores['senha'],$valores['senha-nova']) == 0){
+                    return back()->with('error','ERRO - Essa já é sua senha.');
+                }
+
+                try {
+                    $usuario = Usuario::find(\Auth::user()->id);
+
+                    $valores = $valida->validated();
+
+                    $usuario->senha = Hash::make($valores['senha-nova']);
+
+                    $usuario->save();
+
+                    $request->session()->flash('ok','Senha alterada com sucesso');
+                    return redirect();
+
+                } catch (\Throwable $e) {
+                    echo $e->getMessage();
+
+                    $request->session()->flash('err','Não foi possível alterar a senha');
+                }
+
+            }else{
+                $request->session()->flash('error','ERRO - Senha atual invalida.');
+                return redirect('/alterar-senha');
+            }
+
+        }
     }
 }

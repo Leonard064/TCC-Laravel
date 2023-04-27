@@ -137,6 +137,8 @@ Route::get('/adicionar-endereco', [EnderecoController::class, 'showAddEndereco']
 
 Route::post('/update-perfil',[UsuarioController::class, 'updatePerfil']);
 
+Route::post('/update-senha', [UsuarioController::class, 'updateSenha']);
+
 
 //Rotas nível Admin
 
