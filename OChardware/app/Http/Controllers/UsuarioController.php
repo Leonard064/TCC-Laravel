@@ -331,7 +331,7 @@ class UsuarioController extends Controller
                     $usuario->save();
 
                     $request->session()->flash('ok','Senha alterada com sucesso');
-                    return redirect();
+                    return redirect('/perfil');
 
                 } catch (\Throwable $e) {
                     echo $e->getMessage();
