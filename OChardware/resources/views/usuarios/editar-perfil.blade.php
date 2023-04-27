@@ -5,18 +5,86 @@
 @section('conteudo')
     <section class="flex-container corpo flex-form">
 
-        <div class="grid-container form-creation bg-gray margin-new padding-detalhes border-10">
+        <div class="grid-container auth bg-gray border-10">
+            <div class="flex-form form">
+                <h2>Editar Dados</h2>
+
+                <form action="/update-perfil" method="post" enctype="multipart/form-data" class="grid-container form-cadastro">
+                @csrf
+                    <div>
+                        <label for="nome">Nome:</label>
+                        <input type="text" name="nome" id="nome" placeholder="Nome" class="input-full" value="{{$usuario->nome}}">
+                        @if ($errors->get('nome'))
+                            @foreach ($errors->get('nome') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+                    <div>
+                        <label for="sobrenome">Sobrenome:</label>
+                        <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="input-full" value="{{$usuario->sobrenome}}">
+                        @if ($errors->get('sobrenome'))
+                            @foreach ($errors->get('sobrenome') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+                    <div class="span-2">
+                        <label for="login">Login:</label>
+                        <input type="text" name="login" id="login" placeholder="Login" class="input-full" value="{{$usuario->login}}">
+                        @if ($errors->get('login'))
+                        @foreach ($errors->get('login') as $err)
+                            <p class="err-form">{{$err}}</p><br>
+                        @endforeach
+
+                        @endif
+
+                    </div>
+                    <div class="span-2">
+                        <label for="email">Email:</label>
+                        <input type="email" name="email" id="email-logon" placeholder="Email" class="input-full" value="{{$usuario->email}}">
+                        @if ($errors->get('email'))
+                            @foreach ($errors->get('email') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+                    <div class="span-2">
+                        <p>Deseja trocar de senha?</p>
+                        <a href="/alterar-senha">Faça Aqui</a>
+                    </div>
+                    <div class="span-2">
+                        <label for="foto">Imagem: (Padrão: {{$usuario->foto}})</label><br>
+                        <input type="file" name="foto" id="foto">
+                    </div>
+                    <div class="flex-container bt-auth span-2">
+                        <button class="bt-red">Atualizar</button>
+                    </div>
+
+                </form>
+            </div>
+
+        </div>
+
+        {{-- <div class="grid-container form-creation bg-gray margin-new padding-detalhes border-10">
             <h1>Editar Cadastro</h1>
+
             <form action="/update-perfil" method="POST" enctype="multipart/form-data">
                 @csrf
 
-                {{-- campos Login, Email e CPF são UNIQUE --}}
+                -- campos Login, Email e CPF são UNIQUE --
 
-                {{-- <input type="text" name="login" id="login" placeholder="Login" class="input-full" value="{{$usuario->login}}"> --}}
+                <input type="text" name="login" id="login" placeholder="Login" class="input-full" value="{{$usuario->login}}">
                 <input type="text" name="nome" id="nome" placeholder="Nome" class="input-full" value="{{$usuario->nome}}">
                 <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="input-full" value="{{$usuario->sobrenome}}">
-                {{-- <input type="text" name="cpf" id="cpf" placeholder="CPF" class="input-full"> --}}
-                {{-- <input type="email" name="email" id="email-logon" placeholder="Email" class="input-full" value="{{$usuario->email}}"> --}}
+                {{-- <input type="text" name="cpf" id="cpf" placeholder="CPF" class="input-full"> --
+                <input type="email" name="email" id="email-logon" placeholder="Email" class="input-full" value="{{$usuario->email}}">
                 <br>
                 <p>Deseja trocar de senha?</p>
                 <a href="/alterar-senha">Faça Aqui</a>
@@ -27,10 +95,10 @@
                 {{--
                 <input type="password" name="senha" id="senha-logon" placeholder="Nova Senha" class="input-full">
                 <input type="password" name="" id="testa-senha-logon" placeholder="Insira sua senha atual" class="input-full">
-                --}}
+                --
                 <button class="bt-red">Atualizar</button>
             </form>
-        </div>
+        </div> --}}
 
         {{-- <div class="grid-container forms margem">
 

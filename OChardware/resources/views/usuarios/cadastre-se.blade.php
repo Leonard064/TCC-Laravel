@@ -116,7 +116,7 @@
 
                     </div>
 
-                    <div class="bt-auth span-2">
+                    <div class="flex-container bt-auth span-2">
                         <button class="bt-red">Entrar</button>
                     </div>
 

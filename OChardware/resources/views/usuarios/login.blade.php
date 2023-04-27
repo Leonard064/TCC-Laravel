@@ -12,18 +12,40 @@
             <h2>Entre ou Cadastre-se</h2>
         </div>--}}
 
-        <div class="grid-container auth bg-gray">
+        <div class="grid-container auth bg-gray border-10">
 
 
             {{-- Login --}}
 
             <div class="flex-container form">
                 <h2>Login</h2>
-                <form action="/entrar" method="POST">
+                <form action="/entrar" method="POST" class="grid-container form-cadastro">
                     @csrf
-                    <input type="text" name="login" id="login" placeholder="Login" class="input-full">
-                    <input type="password" name="senha" id="senha-login" placeholder="Senha" class="input-full">
-                    <div class="flex-container bt-auth">
+                    <div class="span-2">
+                        <label for="login">Login:</label>
+                        <input type="text" name="login" id="login" placeholder="Login" class="input-full">
+                        @if ($errors->get('login'))
+                            @foreach ($errors->get('login') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div class="span-2">
+                        <label for="senha">Senha:</label>
+                        <input type="password" name="senha" id="senha-login" placeholder="Senha" class="input-full">
+                        @if ($errors->get('senha'))
+                            @foreach ($errors->get('senha') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
+
+                    </div>
+
+                    <div class="flex-container bt-auth span-2">
                         <button class="bt-red">Entrar</button>
                     </div>
                     <p>Não possui cadastro? <a href="/cadastre-se">Cadastrar</a></p>
