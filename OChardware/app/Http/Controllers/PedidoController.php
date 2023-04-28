@@ -23,8 +23,6 @@ class PedidoController extends Controller
         $pedido->status = 'Em Análise'; //por padrão, não há confirmação de pagamento
         $pedido->id_usuario = \Auth::user()->id;
 
-        $pedido->id_endereco = $id_endereco;
-
             // começa a salvar pedido
             try {
 
