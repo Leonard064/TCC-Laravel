@@ -22,7 +22,13 @@
                         <hr>
                         <div class="flex-container reverso">
                             <div id="detalhes-preco">
-                                <h3>{{$produto->quantidade}} Peças disponíveis</h3>
+                                @if($produto->quantidade < 500)
+                                    <h3>{{$produto->quantidade}} Peças disponíveis, corra!</h3>
+
+                                @else
+                                    <h3>Valor Unitário:</h3>
+
+                                @endif
                                 <h1 class="label-preco red">R$ {{number_format($produto->preco,2,',','.')}}</h1>
                                 {{-- <h4>Valor em pix/ à vista no cartão</h4>
                                 <h4>10x de 99,90 sem juros</h4> --}}
@@ -67,24 +73,27 @@
 
 
                     @if(count($avaliacao) > 0)
-
+                    <div class="campo-avaliacoes">
                         @foreach ($avaliacao as $avaliacao)
-                            <div class="grid-container detalhes-foto-nome">
-                                <div>
+                            <div class="grid-container card-avaliacao">
+                                <div class="grid-container grid-center">
 
                                     @if($avaliacao->gostou)
-                                        <i class="fa-solid fa-thumbs-up"></i>
+                                        <i class="fa-solid fa-thumbs-up ico-avaliacao red"></i>
                                     @else
-                                        <i class="fa-solid fa-thumbs-down"></i>
+                                        <i class="fa-solid fa-thumbs-down ico-avaliacao red"></i>
                                     @endif
 
                                 </div>
                                 <div>
                                     <h4>{{$avaliacao->nome}} {{$avaliacao->sobrenome}}</h4>
                                     <p>{{$avaliacao->texto_avaliacao}}</p>
+                                    <hr class="hr-white">
                                 </div>
+
                             </div>
                         @endforeach
+                    </div>
 
                     @else
                         <h4>Ainda não há avaliações para o produto</h4>
@@ -108,14 +117,14 @@
                                     <input type="hidden" name="id_produto" value="{{$produto->id}}">
 
                                     <div class="form-opcoes">
-                                        <input type="radio" name="gostou" value="1" >Adorei!
+                                        <input type="radio" name="gostou" value="1" >Sim!
                                     </div>
                                     <div class="form-opcoes">
-                                        <input type="radio" name="gostou" value="0" >Odiei!
+                                        <input type="radio" name="gostou" value="0" >Não
                                     </div>
 
                                     <label for="texto">Deixe sua avaliação: (máx. 100 caracteres)</label>
-                                    <textarea name="texto_avaliacao" id="texto" cols="80" rows="10" class="border-10"></textarea>
+                                    <textarea name="texto_avaliacao" id="texto" cols="80" rows="10" class="border-10" required></textarea>
                                     <button class="bt-red">Enviar</button>
 
                                 </form>
@@ -132,24 +141,26 @@
                         </div>
 
                         @if(count($avaliacao) > 0)
-
+                            <div class="campo-avaliacoes">
                             @foreach ($avaliacao as $avaliacao)
-                                <div class="grid-container detalhes-foto-nome">
-                                    <div>
+                                <div class="grid-container card-avaliacao">
+                                    <div class="grid-container grid-center">
 
                                         @if($avaliacao->gostou)
-                                            <i class="fa-solid fa-thumbs-up"></i>
+                                            <i class="fa-solid fa-thumbs-up ico-avaliacao red"></i>
                                         @else
-                                            <i class="fa-solid fa-thumbs-down"></i>
+                                            <i class="fa-solid fa-thumbs-down ico-avaliacao red"></i>
                                         @endif
 
                                     </div>
                                     <div>
                                         <h4>{{$avaliacao->nome}} {{$avaliacao->sobrenome}}</h4>
                                         <p>{{$avaliacao->texto_avaliacao}}</p>
+                                        <hr class="hr-white">
                                     </div>
                                 </div>
                             @endforeach
+                            </div>
 
                         @else
                             <h4>Ainda não há avaliações para o produto</h4>

@@ -12,10 +12,11 @@
                 <div class="flex-container detalhes-nome">
                     <h1>{{Auth::user()->nome}} {{Auth::user()->sobrenome}}</h1>
                     <div class="flex-container perfil-opcoes">
-                        <a class="no-deco font-black" href="/editar-perfil">Editar Cadastro</a>&nbsp;
-                        <a class="no-deco font-black" href="/alterar-senha">Alterar Senha</a>&nbsp;
-                        <a class="no-deco font-black" href="/meus-pedidos">Meus Pedidos</a>&nbsp;
+                        <a class="no-deco font-black" href="/editar-perfil">Editar Cadastro</a>
+                        <a class="no-deco font-black" href="/alterar-senha">Alterar Senha</a>
+                        <a class="no-deco font-black" href="/meus-pedidos">Meus Pedidos</a>
                         <a class="no-deco font-black" href="/adicionar-endereco">Meus Endereços</a>
+                        {{-- <a class="no-deco font-black" href="/adicionar-endereco">Adicionar Endereço</a> --}}
                     </div>
                     {{-- <hr>
                     <h3>Usuário desde: {{Auth::user()->created_at->format('d/m/Y')}}</h3>
@@ -25,6 +26,90 @@
                 </div>
             </div>
         </section>
+
+
+        {{-- PARA TESTES --
+            <div class="grid-container dash-pedido-produto margin-new">
+            <div class="ult-pedidos bg-gray border-10 padding-detalhes">
+                <div class="flex-container topo-secao">
+                    <i class="fa-solid fa-square red"></i>
+                    <h3>Pedidos Abertos</h3>
+                </div>
+
+                <div class="dashboard-tabela-pedidos">
+                    @if (count($pedidos) > 0)
+
+                        @foreach ($pedidos as $pedido)
+                            <table class="tabela-geral">
+                                <caption>Pedido: {{$pedido->id}}</caption>
+                                <tr class="black">
+                                    <th class="border-black padding-tabela-vh">Data e hora</th>
+                                    <th class="border-black padding-tabela-vh">Pagamento</th>
+                                    <th class="border-black padding-tabela-vh">Valor</th>
+                                    <th class="border-black padding-tabela-vh">Status</th>
+                                </tr>
+                                <tr class="bg-white">
+                                    <td class="border-black padding-tabela-vh">{{$pedido->created_at}}</td>
+                                    <td class="border-black padding-tabela-vh">{{$pedido->pagamento_tipo}}</td>
+                                    <td class="border-black padding-tabela-vh">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
+                                    <td class="border-black padding-tabela-vh">{{$pedido->status}}</td>
+                                </tr>
+                            </table>
+
+                        @endforeach
+
+                        <a href="/todos-pedidos">
+                            <button class="bt-red">Visualizar todos os Pedidos</button>
+                        </a>
+
+                    @else
+                        <i class="fa-solid fa-triangle-exclamation"></i>
+                        <h2>Ainda não foram realizados Pedidos</h2>
+                    @endif
+
+                </div>
+
+            </div>
+            <div class= "todos-produtos bg-gray border-10 padding-detalhes">
+                <div class="flex-container topo-secao">
+                    <i class="fa-solid fa-square red"></i>
+                    <h3>Produtos</h3>
+                </div>
+
+                <div class="dashboard-tabela-produtos">
+                    @if (count($pedidos) > 0)
+
+                    @foreach ($pedidos as $pedido)
+                        <table class="tabela-geral">
+                            <caption>Pedido: {{$pedido->id}}</caption>
+                            <tr class="black">
+                                <th class="border-black padding-tabela-vh">Data e hora</th>
+                                <th class="border-black padding-tabela-vh">Pagamento</th>
+                                <th class="border-black padding-tabela-vh">Valor</th>
+                                <th class="border-black padding-tabela-vh">Status</th>
+                            </tr>
+                            <tr class="bg-white">
+                                <td class="border-black padding-tabela-vh">{{$pedido->created_at}}</td>
+                                <td class="border-black padding-tabela-vh">{{$pedido->pagamento_tipo}}</td>
+                                <td class="border-black padding-tabela-vh">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
+                                <td class="border-black padding-tabela-vh">{{$pedido->status}}</td>
+                            </tr>
+                        </table>
+
+                    @endforeach
+
+                    <a href="/todos-pedidos">
+                        <button class="bt-red">Visualizar todos os Pedidos</button>
+                    </a>
+
+                @else
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <h2>Ainda não foram realizados Pedidos</h2>
+                @endif
+                </div>
+
+            </div>
+        </div> --}}
 
         <div class="detalhes-descricao bg-gray border-10 padding-detalhes margin-new">
             <div class="flex-container topo-secao">
@@ -36,15 +121,17 @@
                 @if (count($pedidos) > 0)
 
                 <table class="tabela-geral">
+                    <tr class="black">
+                        <th class="border-black padding-tabela-vh">Pedido</th>
+                        <th class="border-black padding-tabela-vh">Data e hora</th>
+                        <th class="border-black padding-tabela-vh">Pagamento</th>
+                        <th class="border-black padding-tabela-vh">Valor</th>
+                        <th class="border-black padding-tabela-vh">Status</th>
+                    </tr>
                     @foreach ($pedidos as $pedido)
-                            <caption>Pedido: {{$pedido->id}}</caption>
-                            <tr class="black">
-                                <th class="border-black padding-tabela-vh">Data e hora</th>
-                                <th class="border-black padding-tabela-vh">Pagamento</th>
-                                <th class="border-black padding-tabela-vh">Valor</th>
-                                <th class="border-black padding-tabela-vh">Status</th>
-                            </tr>
+
                             <tr class="bg-white">
+                                <td class="border-black padding-tabela-vh">{{$pedido->id}}</td>
                                 <td class="border-black padding-tabela-vh">{{$pedido->created_at}}</td>
                                 <td class="border-black padding-tabela-vh">{{$pedido->pagamento_tipo}}</td>
                                 <td class="border-black padding-tabela-vh">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
