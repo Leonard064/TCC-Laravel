@@ -122,7 +122,7 @@
 
                 <table class="tabela-geral">
                     <tr class="black">
-                        <th class="border-black padding-tabela-vh">Pedido</th>
+                        <th class="border-black padding-tabela-vh">Cod. Pedido</th>
                         <th class="border-black padding-tabela-vh">Data e hora</th>
                         <th class="border-black padding-tabela-vh">Pagamento</th>
                         <th class="border-black padding-tabela-vh">Valor</th>

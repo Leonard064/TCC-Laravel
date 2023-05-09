@@ -15,6 +15,7 @@
                 @if (count($pedido) > 0)
                     <table class="tabela-geral">
                         <tr class="black">
+                            <th class="border-black padding-tabela-vh">Cod. Pedido</th>
                             <th class="border-black padding-tabela-vh">Data e hora</th>
                             <th class="border-black padding-tabela-vh">Pagamento</th>
                             <th class="border-black padding-tabela-vh">Valor</th>
@@ -23,6 +24,7 @@
                         </tr>
                     @foreach ($pedido as $pedidos)
                         <tr class="bg-white">
+                            <td class="border-black padding-tabela-vh">{{$pedidos->id}}</td>
                             <td class="border-black padding-tabela-vh">{{$pedidos->created_at}}</td>
                             <td class="border-black padding-tabela-vh">{{$pedidos->pagamento_tipo}}</td>
                             <td class="border-black padding-tabela-vh">{{$pedidos->total_pedido}}</td>

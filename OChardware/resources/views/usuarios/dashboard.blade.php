@@ -31,26 +31,31 @@
                 <div class="dashboard-tabela-pedidos">
                     @if (count($pedidos) > 0)
 
-                        @foreach ($pedidos as $pedido)
-                            <table class="tabela-geral">
-                                <caption>Pedido: {{$pedido->id}}</caption>
-                                <tr class="black">
-                                    <th class="border-black padding-tabela-vh">Data e hora</th>
-                                    <th class="border-black padding-tabela-vh">Pagamento</th>
-                                    <th class="border-black padding-tabela-vh">Valor</th>
-                                    <th class="border-black padding-tabela-vh">Status</th>
-                                    <th class="border-black padding-tabela-vh">Opções</th>
-                                </tr>
+                        <table class="tabela-geral">
+                        {{-- <caption>Pedido: {{$pedido->id}}</caption> --}}
+                            <tr class="black">
+                                <th class="border-black padding-tabela-vh">Cod. Pedido</th>
+                                <th class="border-black padding-tabela-vh">Data e hora</th>
+                                <th class="border-black padding-tabela-vh">Pagamento</th>
+                                <th class="border-black padding-tabela-vh">Valor</th>
+                                <th class="border-black padding-tabela-vh">Status</th>
+                                <th class="border-black padding-tabela-vh">Opções</th>
+                            </tr>
+
+                            @foreach ($pedidos as $pedido)
                                 <tr class="bg-white">
+                                    <td class="border-black padding-tabela-vh">{{$pedido->id}}</td>
                                     <td class="border-black padding-tabela-vh">{{$pedido->created_at}}</td>
                                     <td class="border-black padding-tabela-vh">{{$pedido->pagamento_tipo}}</td>
                                     <td class="border-black padding-tabela-vh">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
                                     <td class="border-black padding-tabela-vh">{{$pedido->status}}</td>
                                     <td class="border-black padding-tabela-vh"><a href="/editar-pedido/{{$pedido->id}}">Editar Status</a></td>
                                 </tr>
-                            </table>
 
-                        @endforeach
+
+                            @endforeach
+
+                        </table>
 
                         <a href="/todos-pedidos">
                             <button class="bt-red">Visualizar todos os Pedidos</button>
