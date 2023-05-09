@@ -104,11 +104,11 @@
 
             <div class="grid-container carrinho-vazio">
                 <div class="vazio bg-gray padding-detalhes border-10">
-                    <i class="fa-solid fa-cart-arrow-down fa-2xl"></i>
+                    <i class="fa-solid fa-cart-arrow-down fa-2xl red"></i>
                     <h2>Seu carrinho está vazio!</h2>
                     <div>
                         <a href="/">Vá as compras</a>
-                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <i class="fa-solid fa-arrow-right-from-bracket red"></i>
                     </div>
 
                 </div>
