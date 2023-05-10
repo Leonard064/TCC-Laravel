@@ -114,21 +114,33 @@ class Prod_carrinhoController extends Controller
 
             //checa se o produto existe
             if(Produto::findOrFail($request->id)){
-                $prod_carrinho = new Prod_Carrinho;
 
-                $prod_carrinho->quantidade = 1;
-                $prod_carrinho->id_produto = $request->id;
-                $prod_carrinho->id_usuario = Auth::user()->id;
+                //checa se o item já está no carrinho
+                $query = Prod_Carrinho::where('id_produto', $request->id)
+                              ->where('id_usuario', Auth::user()->id)
+                              ->get();
 
-                try {
-
-                    $prod_carrinho->save();
-                    $request->session()->flash('ok','Produto adicionado ao carrinho');
+                if(count($query) > 0) {
+                    $request->session()->flash('err','ERRO - Produto já está no carrinho');
                     return redirect('/carrinho');
+                } else {
+                    $prod_carrinho = new Prod_Carrinho;
 
-                } catch (\Throwable $th) {
-                    echo $th->getMessage();
+                    $prod_carrinho->quantidade = 1;
+                    $prod_carrinho->id_produto = $request->id;
+                    $prod_carrinho->id_usuario = Auth::user()->id;
+
+                    try {
+
+                        $prod_carrinho->save();
+                        $request->session()->flash('ok','Produto adicionado ao carrinho');
+                        return redirect('/carrinho');
+
+                    } catch (\Throwable $th) {
+                        echo $th->getMessage();
+                    }
                 }
+
             }else{
 
                 $request->session()->flash('err','ERRO - Produto não existe');
