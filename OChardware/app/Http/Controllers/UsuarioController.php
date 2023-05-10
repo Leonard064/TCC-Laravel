@@ -297,7 +297,7 @@ class UsuarioController extends Controller
 
     public function updateSenha(Request $request){
         $valida = Validator::make($request->all(),[
-            'senha' => 'required|min:6',
+            'senha' => 'required',
             'senha-nova' => 'required|min:6',
         ],
         [
