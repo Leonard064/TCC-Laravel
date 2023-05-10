@@ -15,7 +15,7 @@
                         @if($marca)
 
                             @foreach ($marca as $marcas)
-                                <input type="radio" name="marca" id="{{$marcas->nome}}" value="{{$marcas->id}}">
+                                <input type="radio" name="marca" id="{{$marcas->nome}}" value="{{$marcas->id}}" required>
                                 <label for="{{$marcas->nome}}">{{$marcas->nome}}</label><br>
                             @endforeach
 
@@ -29,7 +29,7 @@
                             <h4>Não há categorias</h4>
                         @else
                             @foreach ($categoriaBE as $categorias)
-                                <input type="radio" name="categoria" id="{{$categorias->nome}}" value="{{$categorias->id}}">
+                                <input type="radio" name="categoria" id="{{$categorias->nome}}" value="{{$categorias->id}}" required>
                                 <label for="{{$categorias->nome}}">{{$categorias->nome}}</label><br>
                             @endforeach
                         @endif
@@ -37,10 +37,10 @@
                     <h3>Preço</h3>
 
                     <label for="valorMin">De:</label>
-                    <input type="number" name="valorMin" id="valorMin" min="1" class="number">
+                    <input type="number" name="valorMin" id="valorMin" min="1" class="number" required>
 
                     <label for="valorMax">Até:</label>
-                    <input type="number" name="valorMax" id="valorMax" min="1" class="number">
+                    <input type="number" name="valorMax" id="valorMax" min="1" class="number" required>
 
                     {{-- <input type="radio" name="valor" value="baixo"><label for="baixo">R$0,00 até R$100,00</label><br>
                     <input type="radio" name="valor" value="medio"><label for="medio">R$100,00 até R$500,00</label><br>

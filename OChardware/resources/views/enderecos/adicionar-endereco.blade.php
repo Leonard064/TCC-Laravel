@@ -45,85 +45,77 @@
                 <h2>Adicionar novo Endereço</h2>
             </div>
 
-            <div class="form-edit-endereco">
-                <form action="/endereco/create" method="POST" class="form-50">
+            <div>
+                <form action="/endereco/create" method="POST" class="grid-container form-edit-endereco">
                     @csrf
 
-                    <input type="text" name="cep" id="cep" placeholder="cep" class="input-full">
-                    <input type="text" name="endereco" id="endereco" placeholder="endereco" class="input-full">
-                    <input type="text" name="numero" id="numero" placeholder="numero" class="input-full">
-                    <input type="text" name="bairro" id="bairro" placeholder="bairro" class="input-full">
-                    <input type="text" name="estado" id="estado" placeholder="estado" class="input-full">
-                    <input type="text" name="municipio" id="municipio" placeholder="municipio" class="input-full">
+                    <div>
+                        <label for="cep">Cep:</label>
+                        <input type="text" name="cep" id="cep" placeholder="Sem traços" class="input-full">
+                        @if ($errors->get('cep'))
+                            @foreach ($errors->get('cep') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
 
-
-                    <button class="bt-red">Adicionar</button>
-
-                </form>
-            </div>
-
-        </div>
-
-        {{-- <section class="detalhes-topo">
-            <div class="grid-container detalhes-foto-nome margem">
-                <div class="flex-container detalhes-nome">
-                    <h2>Meus Endereços</h2>
-                    <hr>
-
-                        @if (count($enderecos) > 0)
-
-                            <table>
-                                <tr>
-                                    <th>Endereço</th>
-                                    <th>Estado</th>
-                                </tr>
-
-                                    @foreach ($enderecos as $endereco)
-
-                                        <td>{{$endereco->endereco}}</td>
-                                        <td>{{$endereco->estado}}</td>
-                                        <td><a href="/editar-endereco/{{$endereco->id}}">Editar</a></td>
-                                        <td><a href="/remover-endereco/{{$endereco->id}}">Excluir</a></td>
-
-                                    @endforeach
-                            </table>
-
-                        @else
-                            <h3>Você ainda não possui endereço cadastrado.</h3>
                         @endif
+                    </div>
+                    <div>
+                        <label for="endereço">Endereço:</label>
+                        <input type="text" name="endereco" id="endereco" placeholder="Sem números" class="input-full">
+                         @if ($errors->get('endereco'))
+                            @foreach ($errors->get('endereco') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
 
-                </div>
-            </div>
-        </section>
+                        @endif
+                    </div>
+                    <div>
+                        <label for="numero">Número:</label>
+                        <input type="text" name="numero" id="numero" placeholder="Número" class="input-full">
+                         @if ($errors->get('numero'))
+                            @foreach ($errors->get('numero') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
 
-        <div class="flex-container secao black">
-            <h3>Adicionar Novo Endereço</h3>
-        </div>
+                        @endif
+                    </div>
+                    <div>
+                        <label for="bairro">Bairro:</label>
+                        <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="input-full">
+                         @if ($errors->get('bairro'))
+                            @foreach ($errors->get('bairro') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
 
-        <div class="grid-container forms margem">
+                        @endif
+                    </div>
+                    <div>
+                        <label for="estado">Estado:</label>
+                        <input type="text" name="estado" id="estado" placeholder="Estado" class="input-full">
+                         @if ($errors->get('estado'))
+                            @foreach ($errors->get('estado') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
 
-            -- Endereços Salvos --
+                        @endif
+                    </div>
+                    <div>
+                        <label for="municipio">Município:</label>
+                        <input type="text" name="municipio" id="municipio" placeholder="municipio" class="input-full">
+                         @if ($errors->get('municipio'))
+                            @foreach ($errors->get('municipio') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
 
-            <div class="flex-container form">
-
-                <form action="/endereco/create" method="POST">
-                    @csrf
-
-                    <input type="text" name="cep" id="cep" placeholder="cep" class="input-full">
-                    <input type="text" name="endereco" id="endereco" placeholder="endereco" class="input-full">
-                    <input type="text" name="numero" id="numero" placeholder="numero" class="input-full">
-                    <input type="text" name="bairro" id="bairro" placeholder="bairro" class="input-full">
-                    <input type="text" name="estado" id="estado" placeholder="estado" class="input-full">
-                    <input type="text" name="municipio" id="municipio" placeholder="municipio" class="input-full">
-
-
-                    <button class="bt-red">Adicionar</button>
+                        @endif
+                    </div>
+                    <div>
+                        <button class="bt-red">Adicionar</button>
+                    </div>
 
                 </form>
             </div>
 
         </div>
-
-    </section> --}}
 
 @endsection

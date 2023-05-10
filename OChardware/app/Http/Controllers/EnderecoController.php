@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use App\Models\Endereco;
 use App\Http\Controllers\PedidoController;
 
@@ -33,43 +34,93 @@ class EnderecoController extends Controller
     //funções CRUD
 
     //criação de endereço
-    public function store(Request $request){
-        $valores = $request->all();
+    // public function store(Request $request){
 
-        $endereco = new Endereco;
-        $endereco->fill($valores);
+    //     $valida = Validator::make($request->all(),[
+    //         'cep' => 'required|min:8|max:8',
+    //         'endereco' => 'required|min:4|max:100',
+    //         'numero' => 'required|max:5',
+    //         'bairro' => 'required|min:3|max:50',
+    //         'estado' => 'required|min:3|max:50',
+    //         'municipio' => 'required|min:3|max:100',
+    //     ],[
+    //         'required' => 'Campo obrigatório',
+    //         'min' => 'O valor inserido é muito pequeno.',
+    //         'max' => 'O valor inserido é maior que o aceito.',
+    //     ]);
 
-        $endereco->id_usuario = \Auth::user()->id;
+    //     if($valida->fails()){
+    //         return redirect('/adicionar-endereco')
+    //                                 ->withErrors();
+    //     } else {
 
-        try {
-            \DB::beginTransaction();
-            $endereco->save();
-            \DB::commit();
+    //         $valores = $valida->validate();
 
-            $id_endereco = $endereco->id;
+    //         $endereco = new Endereco;
+    //         $endereco->fill($valores);
 
-            return $id_endereco;
+    //         $endereco->id_usuario = \Auth::user()->id;
 
-        } catch (\Throwable $th) {
-            echo $th->getMessage();
-            \DB::rollback();
-        }
-    }
+    //         try {
+    //             \DB::beginTransaction();
+    //             $endereco->save();
+    //             \DB::commit();
+
+    //             $id_endereco = $endereco->id;
+
+    //             return $id_endereco;
+
+    //         } catch (\Throwable $th) {
+    //             echo $th->getMessage();
+    //             \DB::rollback();
+    //         }
+    //     }
+
+    // }
 
 
     //criação de endereço
     public function addEnderecoPerfil(Request $request){
 
-        try {
-            $this->store($request);
+        $valida = Validator::make($request->all(),[
+            'cep' => 'required|min:8|max:8',
+            'endereco' => 'required|min:4|max:100',
+            'numero' => 'required|max:5',
+            'bairro' => 'required|min:3|max:50',
+            'estado' => 'required|min:3|max:50',
+            'municipio' => 'required|min:3|max:100',
+        ],[
+            'required' => 'Campo obrigatório',
+            'min' => 'O valor inserido é muito pequeno.',
+            'max' => 'O valor inserido é maior que o aceito.',
+        ]);
 
-            $request->session()->flash('ok','Endereço salvo com sucesso');
-            return redirect('/adicionar-endereco');
+        if($valida->fails()){
+            return redirect('/adicionar-endereco')
+                                    ->withErrors($valida);
+        } else {
 
-        } catch (\Throwable $th) {
-            echo $th->getMessage();
+            $valores = $valida->validate();
 
+            $endereco = new Endereco;
+            $endereco->fill($valores);
+
+            $endereco->id_usuario = \Auth::user()->id;
+
+            try {
+                \DB::beginTransaction();
+                $endereco->save();
+                \DB::commit();
+
+                $request->session()->flash('ok','Endereço salvo com sucesso');
+                return redirect('/adicionar-endereco');
+
+            } catch (\Throwable $th) {
+                echo $th->getMessage();
+                \DB::rollback();
+            }
         }
+
     }
 
 
