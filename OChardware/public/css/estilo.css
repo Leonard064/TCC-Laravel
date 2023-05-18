@@ -61,7 +61,7 @@ body{
 }
 
 /* fonte */
-.topo-secao h3{
+.topo-secao h3, .topo-secao h2, .topo-secao h1{
     margin: 10px;
 }
 
@@ -582,6 +582,13 @@ body{
 .perfil-opcoes a:hover{
     color: #e00009;
     text-decoration: underline;
+}
+
+/* Página Endereços*/
+.form-edit-endereco{
+    width: 70%;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-column-gap: 1vw;
 }
 
 /* Página Admin */

@@ -3,7 +3,7 @@
 @section('title', 'Overclock® Hardware - Compra Efetuada!')
 
 @section('conteudo')
-    <section class="flex-container corpo">
+    <section class="flex-container corpo-detalhes">
         <div class="pedido-concluido bg-gray border-10 margin-new padding-detalhes">
             <div class="flex-container topo-secao">
                 <i class="fa-solid fa-square red"></i>
