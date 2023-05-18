@@ -83,16 +83,18 @@ class EnderecoController extends Controller
     public function addEnderecoPerfil(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'cep' => 'required|min:8|max:8',
-            'endereco' => 'required|min:4|max:100',
-            'numero' => 'required|max:5',
-            'bairro' => 'required|min:3|max:50',
-            'estado' => 'required|min:3|max:50',
-            'municipio' => 'required|min:3|max:100',
+            'cep' => 'required|min:8|max:8|numeric',
+            'endereco' => 'required|min:4|max:100|alpha',
+            'numero' => 'required|max:5|numeric',
+            'bairro' => 'required|min:3|max:50|alpha',
+            'estado' => 'required|min:3|max:50|alpha',
+            'municipio' => 'required|min:3|max:100|alpha',
         ],[
             'required' => 'Campo obrigatório',
             'min' => 'O valor inserido é muito pequeno.',
             'max' => 'O valor inserido é maior que o aceito.',
+            'alpha' => 'Somente letras são aceitas',
+            'numeric' => 'Somente números são aceitos',
         ]);
 
         if($valida->fails()){

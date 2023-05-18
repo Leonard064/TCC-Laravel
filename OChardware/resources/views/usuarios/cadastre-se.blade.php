@@ -88,6 +88,12 @@
                     <div class="span-2">
                         <label for="foto">Imagem: (opcional)</label>
                         <input type="file" name="foto" id="foto">
+                        @if ($errors->first('foto'))
+                            @foreach ($errors->get('foto') as $err)
+                                <p class="err-form">{{$err}}</p><br>
+                            @endforeach
+
+                        @endif
                     </div>
 
                     <div class="span-2">
@@ -117,7 +123,7 @@
                     </div>
 
                     <div class="flex-container bt-auth span-2">
-                        <button class="bt-red">Entrar</button>
+                        <button class="bt-red">Cadastrar</button>
                     </div>
 
                 </form>

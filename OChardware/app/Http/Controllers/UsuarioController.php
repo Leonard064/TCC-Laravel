@@ -98,10 +98,11 @@ class UsuarioController extends Controller
 
         $valida = Validator::make($request->all(),[
             'login' => 'required|unique:usuarios|min:5',
-            'nome' => 'required|min:4',
-            'sobrenome' => 'required|min:4',
-            'cpf' => 'required|unique:usuarios|min:4|max:11',
-            'email' => 'required|unique:usuarios|min:7',
+            'nome' => 'required|min:4|alpha',
+            'sobrenome' => 'required|min:4|alpha',
+            'cpf' => 'required|unique:usuarios|numeric|cpf',
+            'email' => 'required|unique:usuarios|min:7|email',
+            'foto' => 'mimes:jpg,png,bmp,jpeg|max:10240',
             'senha' => 'required|unique:usuarios|min:6',
             'teste-senha' => 'required|same:senha',
         ],
@@ -111,6 +112,11 @@ class UsuarioController extends Controller
             'min' => 'Campo :attribute menor que o valor esperado.',
             'max' => 'Campo :attribute maior que o valor esperado.',
             'same' => 'Senhas digitadas não são iguais',
+            'alpha' => 'Apenas letras são aceitas.',
+            'numeric' => 'Apenas números são aceitos.',
+            'email' => 'Email inserido não é válido',
+            'foto.mimes' => 'Insira uma imagem válida',
+            'cpf' => 'CPF inserido não é valido',
         ]);
 
         // $this->validate($request,[
@@ -242,15 +248,19 @@ class UsuarioController extends Controller
 
         $valida = Validator::make($request->all(),[
             'login' => 'required|min:5',
-            'nome' => 'required|min:4',
-            'sobrenome' => 'required|min:4',
-            'email' => 'required|min:7',
+            'nome' => 'required|min:4|alpha',
+            'sobrenome' => 'required|min:4|alpha',
+            'email' => 'required|min:7|email',
+            'foto' => 'mimes:jpg,png,bmp,jpeg|max:10240',
         ],
         [
             'required' => 'Campo :attribute não pode estar vazio.',
             'unique' => ':attribute já está em uso. tente outro.',
             'min' => 'Campo :attribute menor que o valor esperado.',
             'max' => 'Campo :attribute maior que o valor esperado.',
+            'alpha' => 'Apenas letras são aceitas.',
+            'email' => 'Email inserido não é válido',
+            'foto.mimes' => 'Insira uma imagem válida',
         ]);
 
         if ($valida->fails()) {
