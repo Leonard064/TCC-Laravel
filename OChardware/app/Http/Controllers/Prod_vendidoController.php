@@ -56,8 +56,8 @@ class Prod_vendidoController extends Controller
         }
 
 
-        //Redireciona a pagina de sucesso
-        return redirect('/pedido-concluido');
+        //Redireciona à pagina de sucesso
+        return view('pedidos.pedido-concluido');
 
     }
 }

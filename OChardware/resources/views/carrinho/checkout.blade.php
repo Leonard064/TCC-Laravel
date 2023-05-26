@@ -107,21 +107,26 @@
                 {{-- <h2>Total</h2> --
                 <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2> --}}
 
-                <h2>Peso</h2>
-                <p>{{number_format($peso,2,',','.')}}Kg</p>
+                {{-- <h2>Peso</h2>
+                <p>{{number_format($peso,2,',','.')}}Kg</p> --}}
 
                 {{-- <input type="hidden" name="total_pedido" value="{{$total}}"> --}}
 
                 <h2>Pagamento</h2>
 
-                    <div class="form-opcoes">
+                <div class="checkout-pagamento">
+                    <div class="form-opcoes checkout-op">
                         <input type="radio" name="pagamento_tipo" value="boleto">Boleto
                     </div>
-                    <div class="form-opcoes">
+                    <div class="form-opcoes checkout-op">
                         <input type="radio" name="pagamento_tipo" value="pag_seguro">PagSeguro
                     </div>
+                    <div class="form-opcoes checkout-op">
+                        <input type="radio" name="pagamento_tipo" value="pix">Pix
+                    </div>
+                </div>
 
-                <div class="flex-container carrinho-preco bg-teste border-10">
+                <div class="flex-container carrinho-preco bg-teste border-10 total-bottom">
                     <h2>Total</h2>
                     <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2>
 

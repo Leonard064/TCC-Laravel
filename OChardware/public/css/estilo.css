@@ -257,7 +257,7 @@ body{
     background: #d6d6d6;
     padding: 10px;
     /* margin: 10px 5px; */
-    margin: 20px;
+    margin: 20px 25px;
 }
 
 .card-img{
@@ -483,6 +483,10 @@ body{
     margin: 5px 0;
 }
 
+.form-opcoes input[type=radio]{
+    cursor: pointer;
+}
+
 .detalhes-form textarea{
     resize: none;
     padding: 7px;
@@ -502,6 +506,10 @@ body{
 
 .ico-avaliacao{
     font-size: 45px;
+}
+
+.ico-concluido{
+    font-size: 90px;
 }
 
 .grid-center{
@@ -544,10 +552,25 @@ body{
 
 .checkout-total{
     grid-area: 1 / 2 / 3 / 3;
+    grid-template-rows: 0.2fr 1fr 1fr;
 }
 
 .carrinho-img{
     max-width: 70px;
+}
+
+.checkout-pagamento{
+    align-items: flex-start;
+}
+
+.checkout-op{
+    padding: 15px 0;
+    border: solid 2px #fff;
+    border-radius: 7px;
+}
+
+.checkout-op:hover{
+    background-color: #b9b9b9;
 }
 
 /* Página Sucesso */
@@ -747,7 +770,8 @@ body{
 }
 
 .bg-teste{
-    background: #3d3d3d;
+    border: solid 2px #fff;
+    /* padding: 5px; */
 }
 
 /* fontes */
@@ -837,21 +861,6 @@ body{
 
 /* ---------------------- */
 /* Tabelas */
-/* .tabela{
-    width: 100%;
-    border: 2px solid #212121;
-    border-collapse: collapse;
-}
-
-.tabela th, td{
-    padding: 5px 0;
-    text-align: center;
-    border: 1px solid #212121;
-}
-
-.tabela td{
-    background-color: #fff;
-} */
 
 .tabela-geral{
     width: 100%;

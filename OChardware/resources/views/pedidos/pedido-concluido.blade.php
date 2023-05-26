@@ -10,8 +10,9 @@
                 <h2>Sucesso</h2>
             </div>
             <div class="flex-container" id="pedido-concluido-corpo">
-                <h1>Compra Efetuada!</h1>
-                <h3>Agradecemos por nos escolher</h3>
+                <p><i class="fa-sharp fa-regular fa-circle-check ico-concluido red"></i></p>
+                <h1 class="red">Compra Efetuada</h1>
+                <h3>Agradecemos por nos escolher!</h3>
 
                 <a href="/perfil">Checar meus pedidos</a>
                 <a href="/">Comprar mais</a>

@@ -121,7 +121,7 @@ class Prod_carrinhoController extends Controller
                               ->get();
 
                 if(count($query) > 0) {
-                    $request->session()->flash('err','ERRO - Produto já está no carrinho');
+                    $request->session()->flash('err','Produto já está no carrinho');
                     return redirect('/carrinho');
                 } else {
                     $prod_carrinho = new Prod_Carrinho;

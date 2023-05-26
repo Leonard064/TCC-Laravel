@@ -97,7 +97,7 @@ Route::get('/remover-endereco/{id}', [EnderecoController::class, 'removerEnderec
    ====================*/
 Route::post('pedido/create', [PedidoController::class, 'store']);
 
-Route::get('/pedido-concluido', [Prod_vendidoController::class, 'showSucesso']);
+// Route::get('/pedido-concluido', [Prod_vendidoController::class, 'showSucesso']);
 
 /* ====================
     --- Avaliação ---
