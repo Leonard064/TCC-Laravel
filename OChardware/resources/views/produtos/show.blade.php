@@ -116,8 +116,15 @@
                                     <input type="hidden" name="id_usuario" value="{{Auth::user()->id}}">
                                     <input type="hidden" name="id_produto" value="{{$produto->id}}">
 
+                                    @if ($errors->get('gostou'))
+                                            @foreach ($errors->get('gostou') as $err)
+                                                <p class="err-form">{{$err}}</p><br>
+                                            @endforeach
+
+                                    @endif
+
                                     <div class="form-opcoes">
-                                        <input type="radio" name="gostou" value="1" >Sim!
+                                        <input type="radio" name="gostou" value="1" >Sim
                                     </div>
                                     <div class="form-opcoes">
                                         <input type="radio" name="gostou" value="0" >Não
@@ -125,6 +132,13 @@
 
                                     <label for="texto">Deixe sua avaliação: (máx. 100 caracteres)</label>
                                     <textarea name="texto_avaliacao" id="texto" cols="80" rows="10" class="border-10" required></textarea>
+                                    @if ($errors->get('texto_avaliacao'))
+                                        @foreach ($errors->get('texto_avaliacao') as $err)
+                                            <p class="err-form">{{$err}}</p><br>
+                                        @endforeach
+
+                                    @endif
+
                                     <button class="bt-red">Enviar</button>
 
                                 </form>
