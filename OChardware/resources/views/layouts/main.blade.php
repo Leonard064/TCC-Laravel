@@ -213,10 +213,10 @@
                         <div class="grid-container rodape-secao2-meio">
                             <div>
                                 <h4>Formas de Pagamento</h4>
-                                <img src="../img/boleto.png" alt="">
-                                <img src="../img/hipercard.png" alt="">
-                                <img src="../img/master.png" alt="">
-                                <!-- <img src="img/paypal.jpg" alt=""> -->
+                                <img src="../img/logo-pagseguro.png" alt="Pagseguro">
+                                <img src="../img/boleto.png" alt="Boleto">
+                                <img src="../img/logo-pix.png" alt="Pix">
+
                             </div>
                             <div>
                                 <h5>2022/2023 - Leonard064.</h5>
