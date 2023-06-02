@@ -32,6 +32,11 @@ class AvaliacaoController extends Controller
 
             $avaliacao->fill($valores);
 
+            // Por não passarem por nenhuma validacao acima, eles ficavam de fora
+            // na variavel valida
+            $avaliacao->id_usuario = $request->id_usuario;
+            $avaliacao->id_produto = $request->id_produto;
+
                 try {
                     \DB::beginTransaction();
                     $avaliacao->save();
