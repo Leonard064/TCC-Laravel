@@ -11,7 +11,13 @@
             <form action="/marcas/create" method="post">
                 @csrf
 
+                <label for="nome">Marca:</label>
                 <input type="text" name="nome" id="nome" placeholder="Nome da Marca" class="input-full">
+                @if ($errors->get('nome'))
+                    @foreach ($errors->get('nome') as $err)
+                        <p class="err-form">{{$err}}</p>
+                    @endforeach
+                @endif
 
                 <button class="bt-red">Adicionar</button>
             </form>

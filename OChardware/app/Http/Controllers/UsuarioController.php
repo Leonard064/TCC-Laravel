@@ -14,12 +14,15 @@ use DB;
 class UsuarioController extends Controller
 {
 
-    //chamadas de páginas
+    /* ==  CHAMADA DE PÁGINAS  == */
 
+    //TELA DE LOGIN
     public function showLogin(){
         return view('usuarios.login');
     }
 
+
+    //TELA DE CADASTRO
     public function showCadastre(){
 
         return view('usuarios.cadastre-se');
@@ -27,6 +30,7 @@ class UsuarioController extends Controller
     }
 
 
+    //PÁGINA PERFIL - USUARIO
     public function perfil(){
 
         $pedidos = Pedido::where('id_usuario', \Auth::user()->id)->take(5)->get();
@@ -43,6 +47,7 @@ class UsuarioController extends Controller
     }
 
 
+    //TELA DE ATUALIZAR PERFIL
     public function showEditPerfil(){
 
         try{
@@ -58,6 +63,8 @@ class UsuarioController extends Controller
 
     }
 
+
+    //TELA DE ALTERAR SENHA
     public function showAlterarSenha(){
         try{
             if(Usuario::findOrFail(\Auth::user()->id)){
@@ -73,14 +80,13 @@ class UsuarioController extends Controller
         }
     }
 
+
+    //PÁGINA ADMIN
     public function dashboard(){
         if(\Auth::user()->tipo == 'adm'){
 
             $pedidos = Pedido::orderBy('created_at', 'DESC')->get()->take(5);
             $produtos = Produto::orderBy('created_at', 'DESC')->get()->take(5);
-
-            // $pedidos = Pedido::all()->take(5);
-            // $produtos = Produto::all()->take(5);
 
             return view('usuarios.dashboard', ['pedidos' => $pedidos, 'produtos' => $produtos]);
 
@@ -91,16 +97,16 @@ class UsuarioController extends Controller
     }
 
 
-    //chamadas CRUD
+    /* ==  CHAMADAS CRUD  == */
 
     //cadastro de usuário
     public function store(Request $request){
 
         $valida = Validator::make($request->all(),[
             'login' => 'required|unique:usuarios|min:5',
-            'nome' => 'required|min:4|alpha',
-            'sobrenome' => 'required|min:4|alpha',
-            'cpf' => 'required|unique:usuarios|numeric|cpf',
+            'nome' => 'required|min:4',
+            'sobrenome' => 'required|min:4',
+            'cpf' => 'required|unique:usuarios|cpf',
             'email' => 'required|unique:usuarios|min:7|email',
             'foto' => 'mimes:jpg,png,bmp,jpeg|max:10240',
             'senha' => 'required|unique:usuarios|min:6',
@@ -112,21 +118,11 @@ class UsuarioController extends Controller
             'min' => 'Campo :attribute menor que o valor esperado.',
             'max' => 'Campo :attribute maior que o valor esperado.',
             'same' => 'Senhas digitadas não são iguais',
-            'alpha' => 'Apenas letras são aceitas.',
             'numeric' => 'Apenas números são aceitos.',
             'email' => 'Email inserido não é válido',
             'foto.mimes' => 'Insira uma imagem válida',
             'cpf' => 'CPF inserido não é valido',
         ]);
-
-        // $this->validate($request,[
-        //     'login' => 'required|unique:usuarios|min:5',
-        //     'nome' => 'required|min:4',
-        //     'sobrenome' => 'required|min:4',
-        //     'cpf' => 'required|unique:usuarios|min:4|max:11',
-        //     'email' => 'required|unique:usuarios|min:7',
-        //     'senha' => 'required|unique:usuarios|min:6',
-        // ]);
 
         if ($valida->fails()) {
             return redirect('/cadastre-se')
@@ -248,8 +244,8 @@ class UsuarioController extends Controller
 
         $valida = Validator::make($request->all(),[
             'login' => 'required|min:5',
-            'nome' => 'required|min:4|alpha',
-            'sobrenome' => 'required|min:4|alpha',
+            'nome' => 'required|min:4',
+            'sobrenome' => 'required|min:4',
             'email' => 'required|min:7|email',
             'foto' => 'mimes:jpg,png,bmp,jpeg|max:10240',
         ],
@@ -258,7 +254,6 @@ class UsuarioController extends Controller
             'unique' => ':attribute já está em uso. tente outro.',
             'min' => 'Campo :attribute menor que o valor esperado.',
             'max' => 'Campo :attribute maior que o valor esperado.',
-            'alpha' => 'Apenas letras são aceitas.',
             'email' => 'Email inserido não é válido',
             'foto.mimes' => 'Insira uma imagem válida',
         ]);

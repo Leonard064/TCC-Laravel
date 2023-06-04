@@ -83,18 +83,17 @@ class EnderecoController extends Controller
     public function addEnderecoPerfil(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'cep' => 'required|min:8|max:8|numeric',
-            'endereco' => 'required|min:4|max:100|alpha',
-            'numero' => 'required|max:5|numeric',
-            'bairro' => 'required|min:3|max:50|alpha',
-            'estado' => 'required|min:3|max:50|alpha',
-            'municipio' => 'required|min:3|max:100|alpha',
+            'cep' => 'required|between:8,8',
+            'endereco' => 'required|min:4|max:100',
+            'numero' => 'required|min:1|max:5',
+            'bairro' => 'required|min:3|max:50',
+            'estado' => 'required|min:3|max:50',
+            'municipio' => 'required|min:3|max:100',
         ],[
             'required' => 'Campo obrigatório',
             'min' => 'O valor inserido é muito pequeno.',
             'max' => 'O valor inserido é maior que o aceito.',
-            'alpha' => 'Somente letras são aceitas',
-            'numeric' => 'Somente números são aceitos',
+            'between' => 'Tamanho Inválido.',
         ]);
 
         if($valida->fails()){
@@ -147,28 +146,44 @@ class EnderecoController extends Controller
     //update de endereço
     public function updateEndereco(Request $request){
 
-        try {
-            $endereco = Endereco::find($request->id);
+        $valida = Validator::make($request->all(),[
+            'cep' => 'required|between:8,8',
+            'endereco' => 'required|min:4|max:100',
+            'numero' => 'required|min:1|max:5',
+            'bairro' => 'required|min:3|max:50',
+            'estado' => 'required|min:3|max:50',
+            'municipio' => 'required|min:3|max:100',
+        ],[
+            'required' => 'Campo obrigatório',
+            'min' => 'O valor inserido é muito pequeno.',
+            'max' => 'O valor inserido é maior que o aceito.',
+            'between' => 'Tamanho Inválido.',
+        ]);
 
-            // $endereco->cep = $request->cep;
-            // $endereco->endereco = $request->endereco;
-            // $endereco->numero = $request->numero;
-            // $endereco->bairro = $request->bairro;
-            // $endereco->estado = $request->estado;
-            // $endereco->municipio = $request->municipio;
+        if($valida->fails()){
+            return redirect()
+                        ->back()
+                        ->withErrors($valida);
 
-            $valores = $request->all();
+        }else{
+            try {
 
-            $endereco->fill($valores);
+                $endereco = Endereco::find($request->id);
 
-            $endereco->save();
+                $valores = $valida->validated();
 
-            $request->session()->flash('ok','Endereço atualizado com sucesso');
-            return redirect('/adicionar-endereco');
+                $endereco->fill($valores);
 
-        } catch (\Throwable $th) {
+                $endereco->save();
 
-            echo $th->getMessage();
+                $request->session()->flash('ok','Endereço atualizado com sucesso');
+                return redirect('/adicionar-endereco');
+
+            } catch (\Throwable $th) {
+
+                echo $th->getMessage();
+
+            }
 
         }
 
