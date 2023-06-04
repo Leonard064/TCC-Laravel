@@ -29,7 +29,7 @@ body{
     /* grid-template-rows: 80px 60px 1fr 130px; */
     grid-template-rows: 1fr;
     grid-template-areas: 'topo''navegacao''corpo''rodape';
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter','Inter Tight', sans-serif;
 }
 
 .flex-container{
@@ -324,6 +324,10 @@ body{
 
 .rodape-secao2-meio, .rodape-secao2-direita{
     grid-template-columns: 1fr;
+}
+
+.rodape-secao2-direita{
+    justify-items: end;
 }
 
 /* --------------------- */
@@ -776,7 +780,8 @@ body{
 
 /* fontes */
 .heading{
-    font-family: 'Passion One', cursive;
+    font-family: 'Inter Tight', sans-serif;
+    font-style: italic;
 }
 
 .banner-texto{
