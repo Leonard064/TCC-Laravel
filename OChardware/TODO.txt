@@ -1,29 +1,24 @@
+para servir o site localmente
+php artisan serve --host ip --port 8000
+
 A fazer:
 
+forms
+
+terminar validações de forms - (acho que já foi)
+
+checar calculo de frete
+
+adicionar stauts cancelado - pedidos
+
 front-end:
- páginas de autenticaçao (checar o vh do padding - muito grande)
-
- -estilizar tabelas (terminar)
  -timeout em msg flash
-
- ajustar página detalhes
-    - ajustar campo do botão
-
- ajustar carrinho
- ajustar checkout
- ajustar perfil
-    - criar funcao alterar senha
-
- ajustar Administrador
-
-
 
 
 alteração de status de compra para ADM - melhorar depois
 
 criar seeder para alguns produtos - baixa prioridade
 
-adicionar campo alterar senha - adm e user comum
 
 Carrinho e Checkout:
 

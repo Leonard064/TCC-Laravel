@@ -1,5 +1,5 @@
 // Página de scripts da aplicação
-console.log('entrou')
+// console.log('entrou')
 
 function funcao(){
         var x = document.getElementById('mobile-nav')
@@ -23,8 +23,10 @@ function fechaTeste(){
     --- ÁREA DA PÁG. CHECKOUT ---
 */
 
+//variáveis globais
 var totalPAC;
 var totalSEDEX;
+var valCheck;
 
         var selecionaPac = function(){
 
@@ -55,12 +57,12 @@ var totalSEDEX;
         }
 
         function mudaPreco(preco){
-            // let campo = document.getElementByClassName("label-preco")
-            let totalJS = document.querySelector(".label-preco").innerHTML
-            let t = totalJS.replace("R$","")
-            let t2 = t.replace(".", "")
-            let t3 = t2.replace(",", ".")
-            let soma = new Intl.NumberFormat().format(parseFloat(t3) + parseFloat(preco))
+
+            let parse = (parseFloat(valCheck) + parseFloat(preco)).toFixed(2)
+
+            let soma = parse.replace(".", ",")
+
+            // let soma2 = new Intl.NumberFormat().format(soma)
 
             document.querySelector(".label-preco").innerHTML = "R$" + soma
 
@@ -71,10 +73,14 @@ var totalSEDEX;
 
             document.getElementById('frete').appendChild(hiddValor)
 
+            // alert("soma2")
+
         }
 
 // função ajax para recuperar os valores de frete
-function ajax(id,peso){
+function ajax(id,peso,total){
+
+                valCheck = total;
 
                 document.getElementById('frete').innerHTML = "Carregando...";
 
@@ -116,6 +122,7 @@ function ajax(id,peso){
                         let radio1 = document.createElement('input')
                         radio1.type = 'radio'
                         radio1.name = 'frete_tipo'
+                        radio1.required = true
                         radio1.id = responseBody.tipoPac
                         radio1.value = responseBody.tipoPac
 
@@ -132,6 +139,7 @@ function ajax(id,peso){
                         let radio2 = document.createElement('input')
                         radio2.type = 'radio'
                         radio2.name = 'frete_tipo'
+                        radio2.required = true
                         radio2.id = responseBody.tipoSedex
                         radio2.value = responseBody.tipoSedex
 
@@ -149,6 +157,7 @@ function ajax(id,peso){
 
                         //chama os inputs na DOM
                         // document.getElementById('frete').appendChild(div)
+
                         div.appendChild(radio1)
                         div.appendChild(label1)
                         div.appendChild(nvLinha1)
