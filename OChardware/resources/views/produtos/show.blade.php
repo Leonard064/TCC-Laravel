@@ -58,11 +58,8 @@
             <p>{{$produto->descricao}}</p>
         </div>
 
-        {{-- <div class="detalhes-comentarios-avaliacao bg-gray border-10 padding-detalhes margin-new">
-            <i class="fa-solid fa-square red"></i> &nbsp;
-            <h3>Avaliações</h3> --}}
-
-            @if (Auth::check())
+            {{-- Se o usuário tiver realizado compras --}}
+            @if ($checaCompra == 1)
             <div class="grid-container grid-comentarios-avaliacao margin-new">
                 <div class="detalhes-comentarios bg-gray padding-detalhes border-10">
 

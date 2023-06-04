@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+
 use App\Models\Produto;
+use App\Models\Pedido;
 use App\Models\Usuario;
 use App\Models\Categoria;
 use App\Models\Marca;
@@ -13,7 +15,9 @@ use App\Models\Avaliacao;
 class ProdutoController extends Controller
 {
 
-    //chamada de páginas
+    /* -- chamada de páginas -- */
+
+    //PÁGINA INDEX
     public function index(){
 
         //Promoções do momento
@@ -58,21 +62,24 @@ class ProdutoController extends Controller
         $pesquisa = request('pesquisa');
         $marca = Marca::all();
 
+        //checa se foi inserido algo na pesquisa...
         if($pesquisa){
 
             $produto = Produto::where('nome','like','%'.$pesquisa.'%')->get();
             $categoria = Categoria::all();
             $categoriaBE = $categoria; //exclusivo para busca específica
 
-        }elseif($id_categoria){
+        //...caso não, checa se há categoria selecionada
+        }elseif($id_categoria != 0){
 
             $pesquisa = 0;
             $produto = Produto::where('id_categoria', $id_categoria)->get();
             $categoria = Categoria::where('id', $id_categoria)->get();
             $categoriaBE = Categoria::all();
 
+        //Caso nada, mantém na mesma página
         }else{
-            return 0;
+            return redirect()->back();
         }
 
         return view('produtos', ['produto' => $produto, 'marca' => $marca, 'categoriaBE' => $categoriaBE, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
@@ -90,14 +97,19 @@ class ProdutoController extends Controller
                                 ->select('avaliacoes.*','usuarios.nome','usuarios.sobrenome')
                                 ->get();
 
-        // $teste = [];
 
-        // foreach($avaliacao as $avaliacoes){
-        //     array_push($teste, Usuario::where('id', $avaliacoes->id_usuario)->pluck('nome'));
-        // }
+        $checaCompra = 0;
 
+        if(\Auth::check()){
+            // $checaCompra = Pedido::where('id_usuario', \Auth::user()->id)->get();
 
-        return view('produtos.show',['produto' => $produto, 'avaliacao' => $avaliacao]);
+            if(Pedido::where('id_usuario', \Auth::user()->id)->exists()){
+                $checaCompra = 1;
+            }
+
+        }
+
+        return view('produtos.show',['produto' => $produto, 'checaCompra'=> $checaCompra,'avaliacao' => $avaliacao]);
 
     }
 
@@ -208,31 +220,6 @@ class ProdutoController extends Controller
 
 
     }
-
-    // public function showPesquisa(){
-
-    //     $pesquisa = request('pesquisa');
-
-    //     if($pesquisa){
-    //         $produto = Produto::where('nome','like','%'.$pesquisa.'%')->get();
-    //     }else{
-    //         return 0;
-    //     }
-    //     return view('produtos',['produto' => $produto, 'pesquisa' => $pesquisa]);
-
-    // }
-
-    // public function showCat($categoria){
-
-    //     $pesquisa = 0;
-
-    //     if($categoria){
-    //         $produto = Produto::where('categoria', $categoria)->get();
-    //     }else{
-    //         $produto = Produto::all();
-    //     }
-    //     return view('produtos', ['produto' => $produto, 'categoria' => $categoria, 'pesquisa' => $pesquisa]);
-    // }
 
 
     //Remover Produtos (Dashboard ADM)
