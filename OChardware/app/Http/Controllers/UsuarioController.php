@@ -18,12 +18,19 @@ class UsuarioController extends Controller
 
     //TELA DE LOGIN
     public function showLogin(){
+        if(\Auth::check()){
+            return redirect('/');
+        }
+
         return view('usuarios.login');
     }
 
 
     //TELA DE CADASTRO
     public function showCadastre(){
+        if(\Auth::check()){
+            return redirect('/');
+        }
 
         return view('usuarios.cadastre-se');
 
@@ -33,66 +40,99 @@ class UsuarioController extends Controller
     //PÁGINA PERFIL - USUARIO
     public function perfil(){
 
-        $pedidos = Pedido::where('id_usuario', \Auth::user()->id)->take(5)->get();
+        if(\Auth::check()){
+            if(\Auth::user()->tipo == 'user'){
 
-        return view('usuarios.perfil', ['pedidos' => $pedidos]);
+                $pedidos = Pedido::where('id_usuario', \Auth::user()->id)->take(5)->get();
+
+                return view('usuarios.perfil', ['pedidos' => $pedidos]);
+            }else{
+                return redirect('/');
+            }
+
+        }
+
+        return redirect('/');
+
     }
 
     public function showUserPedidos(){
-        $pedidos = Pedido::where('id_usuario', \Auth::user()->id)
-                                                            ->orderBy('created_at', 'DESC')
-                                                            ->get();
+        if(\Auth::check()){
+            if(\Auth::user()->tipo == 'user'){
+                $pedidos = Pedido::where('id_usuario', \Auth::user()->id)
+                                                                    ->orderBy('created_at', 'DESC')
+                                                                    ->get();
 
-        return view('pedidos.showUserPedidos', ['pedidos' => $pedidos]);
+                return view('pedidos.showUserPedidos', ['pedidos' => $pedidos]);
+            }
+        }
+
+        return redirect('/');
     }
 
 
     //TELA DE ATUALIZAR PERFIL
     public function showEditPerfil(){
 
-        try{
-            $usuario = Usuario::findOrFail(\Auth::user()->id);
+        if(\Auth::check()){
+            try{
+                $usuario = Usuario::findOrFail(\Auth::user()->id);
 
-            return view('usuarios.editar-perfil', ['usuario' => $usuario]);
+                return view('usuarios.editar-perfil', ['usuario' => $usuario]);
 
-        }catch (\Throwable $th) {
+            }catch (\Throwable $th) {
 
-            echo $th->getMessage();
+                echo $th->getMessage();
+
+            }
 
         }
+
+        return redirect('/');
 
     }
 
 
     //TELA DE ALTERAR SENHA
     public function showAlterarSenha(){
-        try{
-            if(Usuario::findOrFail(\Auth::user()->id)){
-                return view('usuarios.alterar-senha');
-            }else{
-                return redirect('/');
+        if(\Auth::check()){
+            try{
+                if(Usuario::findOrFail(\Auth::user()->id)){
+                    return view('usuarios.alterar-senha');
+                }else{
+                    return redirect('/');
+                }
+
+            }catch (\Throwable $th) {
+
+                echo $th->getMessage();
+
             }
-
-        }catch (\Throwable $th) {
-
-            echo $th->getMessage();
-
         }
+
+        return redirect('/');
+
     }
 
 
     //PÁGINA ADMIN
     public function dashboard(){
-        if(\Auth::user()->tipo == 'adm'){
 
-            $pedidos = Pedido::orderBy('created_at', 'DESC')->get()->take(5);
-            $produtos = Produto::orderBy('created_at', 'DESC')->get()->take(5);
+        if(\Auth::check()){
 
-            return view('usuarios.dashboard', ['pedidos' => $pedidos, 'produtos' => $produtos]);
+            if(\Auth::user()->tipo == 'adm'){
 
-        }else{
-            return redirect('/');
+                $pedidos = Pedido::orderBy('created_at', 'DESC')->get()->take(5);
+                $produtos = Produto::orderBy('created_at', 'DESC')->get()->take(5);
+
+                return view('usuarios.dashboard', ['pedidos' => $pedidos, 'produtos' => $produtos]);
+
+            }else{
+                return redirect('/');
+            }
         }
+
+        return redirect('/');
 
     }
 
@@ -336,7 +376,13 @@ class UsuarioController extends Controller
                     $usuario->save();
 
                     $request->session()->flash('ok','Senha alterada com sucesso');
-                    return redirect('/perfil');
+
+                    if(\Auth::user()->tipo == 'user'){
+                        return redirect('/perfil');
+                    }else if(\Auth::user()->tipo == 'adm'){
+                        return redirect('/dashboard');
+                    }
+
 
                 } catch (\Throwable $e) {
                     echo $e->getMessage();
