@@ -11,6 +11,7 @@ use App\Models\Usuario;
 use App\Models\Categoria;
 use App\Models\Marca;
 use App\Models\Avaliacao;
+use App\Models\Prod_Vendido;
 
 class ProdutoController extends Controller
 {
@@ -31,12 +32,20 @@ class ProdutoController extends Controller
     }
 
 
+    //PÁGINA DE CRIAÇÃO DE PRODUTOS
     public function create(){
 
-        $categoria = Categoria::all();
-        $marca = Marca::all();
+        // somente Admin pode acessar a pág.
+        if(\Auth::user()->tipo == 'adm'){
+            $categoria = Categoria::all();
+            $marca = Marca::all();
 
-        return view('produtos.create', ['categoria' => $categoria ,'marca' => $marca]);
+            return view('produtos.create', ['categoria' => $categoria ,'marca' => $marca]);
+
+        }
+
+        return redirect('/');
+
     }
 
 
@@ -127,15 +136,6 @@ class ProdutoController extends Controller
     */
     public function pesquisaProdutos(Request $request){
 
-        // //pega o radio selecionado e limita um valor a ele
-        // if($request->valor == 'baixo'){
-        //     $valor = 100.0;
-        // }else if($request->valor == 'medio'){
-        //     $valor = 500.0;
-        // }else if($request->valor == 'alto' || $request->valor == 'caro'){
-        //     $valor = 1000.0;
-        // }
-
         $produto = Produto::where('id_marca' , '=' , $request->marca)
                             ->where('id_categoria', '=', $request->categoria)
                             ->where('preco', '>=', $request->valorMin)
@@ -160,20 +160,21 @@ class ProdutoController extends Controller
     public function store(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'nome' => 'required',
+            'nome' => 'required|min:5',
             'id_categoria' => 'required',
             'id_marca' => 'required',
-            'preco' => 'required',
-            'descricao' => 'required',
-            'foto' => 'required',
-            'largura' => 'required',
-            'altura' => 'required',
-            'peso' => 'required',
-            'comprimento' => 'required',
+            'preco' => 'required|min:3',
+            'descricao' => 'required|min:10',
+            'foto' => 'required|mimes:jpg,png,bmp,jpeg|max:10240',
+            'largura' => 'required|min:1',
+            'altura' => 'required|min:1',
+            'peso' => 'required|min:1',
+            'comprimento' => 'required|min:1',
             'quantidade' => 'required|min:1',
         ],[
             'required' => 'Campo :attribute não pode estar vazio.',
-            'min' => ':attribute não contempla valor mínimo.'
+            'min' => ':attribute não contempla valor mínimo.',
+            'foto.mimes' => 'Insira uma imagem válida'
         ]);
 
         if($valida->fails()){
@@ -225,18 +226,24 @@ class ProdutoController extends Controller
     //Remover Produtos (Dashboard ADM)
     public function removerProduto($id){
 
-        try {
+        $checa = Prod_Vendido::where('id_produto',$id)->get();
+        if(count($checa) > 0){
+            return redirect('/dashboard')->with('err','Produto não pode ser apagado - já foi comprado');
 
-            if(Produto::destroy($id)) {
-                return redirect('/dashboard')->session()->flash('ok','Item Excluído');
-            }else{
-                return redirect('/dashboard')->session()->flash('err','Item não foi excluído');
+        }else{
+            try {
+
+                if(Produto::destroy($id)) {
+                    return redirect('/dashboard')->with('ok','Item Excluído');
+                }else{
+                    return redirect('/dashboard')->with('err','Item não foi excluído');
+                }
+
+            } catch (\Throwable $th) {
+
+                echo $th->getMessage();
+
             }
-
-        } catch (\Throwable $th) {
-
-            echo $th->getMessage();
-
         }
     }
 
@@ -244,43 +251,73 @@ class ProdutoController extends Controller
     //Editar Produtos
     public function updateProduto(Request $request){
 
-        try {
+        $valida = Validator::make($request->all(),[
+            'nome' => 'required|min:5',
+            'id_categoria' => 'required',
+            'id_marca' => 'required',
+            'preco' => 'required|min:3',
+            'descricao' => 'required|min:10',
+            'foto' => 'required|mimes:jpg,png,bmp,jpeg|max:10240',
+            'largura' => 'required|min:1',
+            'altura' => 'required|min:1',
+            'peso' => 'required|min:1',
+            'comprimento' => 'required|min:1',
+            'quantidade' => 'required|min:1',
+        ],[
+            'required' => 'Campo :attribute não pode estar vazio.',
+            'min' => ':attribute não contempla valor mínimo.',
+            'foto.mimes' => 'Insira uma imagem válida'
+        ]);
 
-            $produto = Produto::find($request->id);
+        if($valida->fails()){
+            return redirect()
+                        ->back()
+                        ->withErrors($validator)
+                        ->withInput();
+        }else{
 
-            $produto->nome = $request->nome;
-            $produto->id_categoria = $request->id_categoria;
-            $produto->id_marca = $request->id_marca;
-            $produto->preco = $request->preco;
-            $produto->descricao = $request->descricao;
-            $produto->largura = $request->largura;
-            $produto->altura = $request->altura;
-            $produto->peso = $request->peso;
-            $produto->comprimento = $request->comprimento;
-            $produto->quantidade = $request->quantidade;
+            try {
+
+                $produto = Produto::find($request->id);
+
+                $valores = $valida->validated();
+
+                $produto->nome         = $valores['nome'];
+                $produto->id_categoria = $valores['id_categoria'];
+                $produto->id_marca     = $valores['id_marca'];
+                $produto->preco        = $valores['preco'];
+                $produto->descricao    = $valores['descricao'];
+                $produto->largura      = $valores['largura'];
+                $produto->altura       = $valores['altura'];
+                $produto->peso         = $valores['peso'];
+                $produto->comprimento  = $valores['comprimento'];
+                $produto->quantidade   = $valores['altura'];
 
 
-            if($request->hasFile('foto') && $request->file('foto')->isValid()){
+                if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
-                $requestImage = $request->foto;
-                $extensao = $requestImage->extension();
-                $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+                    $requestImage = $request->foto;
+                    $extensao = $requestImage->extension();
+                    $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
 
-                $requestImage->move(public_path('img/usuarios'),$nomeFoto);
+                    $requestImage->move(public_path('img/produtos'),$nomeFoto);
 
-                $produto->foto = $nomeFoto;
+                    $produto->foto = $nomeFoto;
+
+                }
+
+                $produto->save();
+
+                return redirect('/dashboard')->with('ok','Produto Atualizado com Sucesso.');
+
+            } catch (\Throwable $th) {
+
+                echo $th->getMessage();
 
             }
 
-            $produto->save();
-
-            return redirect('/dashboard');
-
-        } catch (\Throwable $th) {
-
-            echo $th->getMessage();
-
         }
+
 
     }
 

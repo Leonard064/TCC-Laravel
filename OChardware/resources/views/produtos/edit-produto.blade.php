@@ -8,7 +8,7 @@
         <div class="grid-container auth bg-gray border-10">
             <div class="flex-container form">
                 <h2>Editar Produto</h2>
-                <form action="/produtos/create" method="POST" enctype="multipart/form-data" class="grid-container form-cadastro">
+                <form action="/update-produto" method="POST" enctype="multipart/form-data" class="grid-container form-cadastro">
                     @csrf
                     <div class="span-2">
                         <label for="nome">Nome:</label>
