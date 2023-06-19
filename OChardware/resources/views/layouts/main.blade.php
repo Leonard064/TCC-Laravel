@@ -108,11 +108,26 @@
                             <img src="../img/logo.png" alt="OverClock">
                         </a>
                     </div>
-                    <div class="flex-container menu-dir">
+
+                    @if (Auth::user())
+                        @if(Auth::user()->tipo == 'user')
+                            <div class="flex-container menu-dir">
+                            <a href="/carrinho" class="no-deco white"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a>
+                            </div>
+
+                        @endif
+
+                    @endif
+                     <div class="flex-container menu-dir">
                         <i class="fa fa-bars fa-2xl" onclick="funcao()"></i>
                      </div>
                 </section>
                 <section id="mobile-nav" class="black">
+                    <form action="/produtos" method="GET" class="flex-container form-nav-mobile">
+                        <input type="text" name="pesquisa" placeholder="Pesquise por produtos...">
+                    </form>
+                    <hr>
+                    <h3>Categorias</h3>
                     <ul>
                         <li>
                             <a class="no-deco white" href="/produtos/1">Processadores</a>
@@ -138,6 +153,36 @@
                         <li>
                             <a class="no-deco white" href="/produtos/8">Fontes</a>
                         </li>
+                        <hr>
+                        @if (Auth::user())
+                            @if (Auth::user()->tipo == 'user')
+                                <h3>{{Auth::user()->login}}</h3>
+                                <li>
+                                    <a class="no-deco white" href="/perfil">Perfil</a>
+                                </li>
+                                <li>
+                                    <a class="no-deco white" href="/logout">Sair</a>
+                                </li>
+                            @endif
+                            @if (Auth::user()->tipo == 'adm')
+                                <h3>Administrador</h3>
+                                <li>
+                                    <a class="no-deco white" href="/dashboard">Configurações</a>
+                                </li>
+                                <li>
+                                    <a class="no-deco white" href="/logout">Sair</a>
+                                </li>
+                            @endif
+
+                        @else
+                            <h3>Bem-vindo!</h3>
+                            <li>
+                                <a class="no-deco white" href="/login">Entrar</a>
+                            </li>
+                            <li>
+                                <a class="no-deco white" href="/cadastre-se">Cadastrar</a>
+                            </li>
+                        @endif
                     </ul>
                 </section>
         </header>

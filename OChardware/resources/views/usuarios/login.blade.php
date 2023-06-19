@@ -48,7 +48,11 @@
                     <div class="flex-container bt-auth span-2">
                         <button class="bt-red">Entrar</button>
                     </div>
-                    <p>Não possui cadastro? <a href="/cadastre-se">Cadastrar</a></p>
+                    <div class="desk-only">
+                        <p>Não possui cadastro? <a href="/cadastre-se">Cadastrar</a></p>
+                    </div>
+                    <p class="center-mb-only span-2-mb-only">Não possui cadastro?</p>
+                    <a class="center-mb-only span-2-mb-only" href="/cadastre-se">Cadastrar</a>
                 </form>
             </div>
 

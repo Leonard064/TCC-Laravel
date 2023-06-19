@@ -20,7 +20,7 @@
                 <h2>Cadastre-se</h2>
                 <form action="/registrar" method="POST" enctype="multipart/form-data" class="grid-container form-cadastro">
                     @csrf
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="nome">Nome:</label>
                         <input type="text" name="nome" id="nome" placeholder="Insira seu nome" class="teste-form">
 
@@ -33,7 +33,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="sobrenome">Sobrenome:</label><br>
                         <input type="text" name="sobrenome" id="sobrenome" placeholder="Sobrenome" class="teste-form">
 
@@ -46,7 +46,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="login">Login:</label>
                         <input type="text" name="login" id="login" placeholder="Login" class="teste-form" value="{{old('nome')}}">
 
@@ -59,7 +59,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="cpf">CPF:</label><br>
                         <input type="text" name="cpf" id="cpf" placeholder="CPF (sem pontos e traços)" class="teste-form">
 
@@ -72,7 +72,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="email">Email:</label>
                         <input type="email" name="email" id="email-logon" placeholder="Email" class="teste-form">
 

@@ -12,7 +12,7 @@
                 <form action="/update-endereco" method="POST" class="grid-container form-cadastro">
                     @csrf
 
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="cep">Cep:</label>
                         <input type="text" name="cep" id="cep" placeholder="Sem traços" class="input-full" value="{{$endereco->cep}}">
                         @if ($errors->get('cep'))
@@ -22,7 +22,7 @@
 
                         @endif
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="endereço">Endereço:</label>
                         <input type="text" name="endereco" id="endereco" placeholder="Sem números" class="input-full"value="{{$endereco->endereco}}">
                          @if ($errors->get('endereco'))
@@ -32,7 +32,7 @@
 
                         @endif
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="numero">Número:</label>
                         <input type="text" name="numero" id="numero" placeholder="Número" class="input-full" value="{{$endereco->numero}}">
                          @if ($errors->get('numero'))
@@ -42,7 +42,7 @@
 
                         @endif
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="bairro">Bairro:</label>
                         <input type="text" name="bairro" id="bairro" placeholder="Bairro" class="input-full" value="{{$endereco->bairro}}">
                          @if ($errors->get('bairro'))
@@ -52,7 +52,7 @@
 
                         @endif
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="estado">Estado:</label>
                         <input type="text" name="estado" id="estado" placeholder="Estado" class="input-full" value="{{$endereco->estado}}">
                          @if ($errors->get('estado'))
@@ -62,7 +62,7 @@
 
                         @endif
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="municipio">Município:</label>
                         <input type="text" name="municipio" id="municipio" placeholder="municipio" class="input-full" value="{{$endereco->municipio}}">
                          @if ($errors->get('municipio'))

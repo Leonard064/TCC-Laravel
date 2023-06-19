@@ -72,7 +72,7 @@
                             @endif
                     </div>
 
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="preco">Preço:</label>
                         <input type="text" name="preco" id="preco" placeholder="Preço" class="input-full"><br>
                         @if ($errors->get('preco'))
@@ -108,7 +108,7 @@
 
                     </div>
 
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="largura">Largura (em cm):</label>
                         <input type="text" name="largura" id="largura" placeholder="largura (cm)" class="input-full">
                         @if ($errors->get('largura'))
@@ -119,7 +119,7 @@
                         @endif
 
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="altura">Altura (em cm):</label>
                         <input type="text" name="altura" id="altura" placeholder="altura (cm)" class="input-full">
                         @if ($errors->get('altura'))
@@ -130,7 +130,7 @@
                         @endif
 
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="peso">Peso (em Kgs):</label>
                         <input type="text" name="peso" id="peso" placeholder="peso (kg)" class="input-full">
                         @if ($errors->get('peso'))
@@ -141,7 +141,7 @@
                         @endif
 
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="comprimento">Comprimento (em cm):</label>
                         <input type="text" name="comprimento" id="comprimento" placeholder="comprimento (cm)" class="input-full">
                         @if ($errors->get('comprimento'))
@@ -152,7 +152,7 @@
                         @endif
 
                     </div>
-                    <div>
+                    <div class="span-2-mb-only">
                         <label for="quantidade">Quantidade:</label>
                         <input type="text" name="quantidade" id="quantidade" placeholder="quantidade" class="input-full">
                         @if ($errors->get('quantidade'))

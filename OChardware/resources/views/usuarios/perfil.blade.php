@@ -4,7 +4,7 @@
 
 @section('conteudo')
     <section class="flex-container corpo">
-        <section class="detalhes-topo bg-gray border-10 margin-new">
+        <section class="detalhes-topo bg-gray border-10 margin-new no-border-sm">
             <div class="grid-container detalhes-foto-nome">
                 <div class="flex-container perfil-foto">
                     <img src="img/usuarios/{{Auth::user()->foto}}" class="border-10" alt="Perfil">
@@ -111,7 +111,7 @@
             </div>
         </div> --}}
 
-        <div class="detalhes-descricao bg-gray border-10 padding-detalhes margin-new">
+        <div class="detalhes-descricao bg-gray border-10 padding-detalhes margin-new no-border-sm">
             <div class="flex-container topo-secao">
                 <i class="fa-solid fa-square red"></i>
                 <h3>Últimos Pedidos</h3>
@@ -120,7 +120,7 @@
             <div class="perfil-tabela">
                 @if (count($pedidos) > 0)
 
-                    <table class="tabela-geral">
+                    <table class="tabela-geral md-only">
                         <tr class="black">
                             <th class="border-black padding-tabela-vh">Cod. Pedido</th>
                             <th class="border-black padding-tabela-vh">Data e hora</th>

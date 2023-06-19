@@ -13,6 +13,18 @@ function funcao(){
         }
     }
 
+function funcaoUser(){
+    var x = document.getElementById('mobile-nav-user')
+
+    // alert(x)
+
+    if(x.style.display === "block"){
+        x.style.display = "none"
+    }else{
+        x.style.display = "block"
+    }
+}
+
 // função para fechar as msgs de aviso
 function fechaTeste(){
     document.getElementById('msg').setAttribute('style', 'display:none')

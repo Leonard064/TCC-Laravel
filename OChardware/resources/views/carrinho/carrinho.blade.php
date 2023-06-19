@@ -5,15 +5,15 @@
 @section('conteudo')
     <div class="flex-container corpo-detalhes margin-new">
 
-        <div class="flex-container topo-secao bg-gray border-10 secao-carrinho-checkout">
+        <div class="flex-container topo-secao bg-gray border-10 secao-carrinho-checkout no-border-sm">
             <i class="fa-solid fa-square red"></i>
             <h2>Carrinho</h2>
         </div>
 
         @if (count($prod_carrinho) > 0)
 
-            <div class="grid-container carrinho">
-                <div class="grid-container carrinho-lista bg-gray border-10 padding-detalhes">
+            <div class="grid-container carrinho no-border-sm">
+                <div class="grid-container carrinho-lista bg-gray border-10 padding-detalhes no-border-sm">
 
                     {{-- <i class="fa-solid fa-square red"></i> &nbsp; --}}
                     <h2>Itens</h2>
@@ -75,7 +75,7 @@
                     </div>{{-- fim div tabela--}}
                 </div>{{-- fim div lista--}}
 
-                <div class="grid-container carrinho-total bg-gray border-10 padding-detalhes">
+                <div class="grid-container carrinho-total bg-gray border-10 padding-detalhes no-border-sm">
 
                     <h2>Total</h2>
 
@@ -103,7 +103,7 @@
         @else{{-- Mensagem de carrinho vazio--}}
 
             <div class="grid-container carrinho-vazio">
-                <div class="vazio bg-gray padding-detalhes border-10">
+                <div class="vazio bg-gray padding-detalhes border-10 no-border-sm">
                     <i class="fa-solid fa-cart-arrow-down fa-2xl red"></i>
                     <h2>Seu carrinho está vazio!</h2>
                     <div>

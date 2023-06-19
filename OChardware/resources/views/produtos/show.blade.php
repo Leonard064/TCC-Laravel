@@ -4,8 +4,8 @@
 
 @section('conteudo')
     <section class="flex-container corpo-detalhes">
-        <section class="detalhes-topo bg-gray border-10 margin-new">
-            <div class="grid-container detalhes-foto-nome">
+        <section class="detalhes-topo bg-gray border-10 margin-new no-border-sm">
+            <div class="grid-container detalhes-foto-nome margin-btm-sm">
                 <div class="flex-container detalhes-foto">
                     <img src="../img/produtos/{{$produto->foto}}" class="border-10" alt="OverClock">
                 </div>
@@ -48,7 +48,7 @@
         </section>
 
         {{-- FIXME - Acertar as divs - precisam ser separadas --}}
-        <div class="detalhes-descricao bg-gray border-10 padding-detalhes margin-new">
+        <div class="detalhes-descricao bg-gray border-10 padding-detalhes margin-new no-border-sm">
 
             <div class="flex-container topo-secao">
                 <i class="fa-solid fa-square red"></i>
@@ -61,7 +61,7 @@
             {{-- Se o usuário tiver realizado compras --}}
             @if ($checaCompra == 1)
             <div class="grid-container grid-comentarios-avaliacao margin-new">
-                <div class="detalhes-comentarios bg-gray padding-detalhes border-10">
+                <div class="detalhes-comentarios bg-gray padding-detalhes border-10 no-border-sm">
 
                     <div class="flex-container topo-secao">
                         <i class="fa-solid fa-square red"></i>
@@ -99,7 +99,7 @@
                 </div>
 
 
-                    <div class="detalhes-avaliacao bg-gray padding-detalhes border-10">
+                    <div class="detalhes-avaliacao bg-gray padding-detalhes border-10 no-border-sm">
 
                         <div class="flex-container topo-secao">
                             <i class="fa-solid fa-square red"></i>
@@ -128,7 +128,7 @@
                                     </div>
 
                                     <label for="texto">Deixe sua avaliação: (máx. 100 caracteres)</label>
-                                    <textarea name="texto_avaliacao" id="texto" cols="80" rows="10" class="border-10" required></textarea>
+                                    <textarea name="texto_avaliacao" id="texto" class="border-10" required></textarea>
                                     @if ($errors->get('texto_avaliacao'))
                                         @foreach ($errors->get('texto_avaliacao') as $err)
                                             <p class="err-form">{{$err}}</p><br>
@@ -144,7 +144,7 @@
 
             @else
                 <div class="grid-container grid-comentarios margin-new">
-                    <div class="detalhes-comentarios bg-gray padding-detalhes border-10">
+                    <div class="detalhes-comentarios bg-gray padding-detalhes border-10 no-border-sm">
 
                         <div class="flex-container topo-secao">
                             <i class="fa-solid fa-square red"></i>

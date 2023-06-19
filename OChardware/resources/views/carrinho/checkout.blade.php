@@ -5,13 +5,13 @@
 @section('conteudo')
     <div class="flex-container corpo margin-new">
 
-        <div class="flex-container topo-secao bg-gray border-10 secao-carrinho-checkout">
+        <div class="flex-container topo-secao bg-gray border-10 secao-carrinho-checkout no-border-sm">
             <i class="fa-solid fa-square red"></i>
             <h2>Checkout</h2>
         </div>
 
         <div class="grid-container carrinho checkout">
-            <div class="grid-container carrinho-lista checkout-lista bg-gray border-10 padding-detalhes">
+            <div class="grid-container carrinho-lista checkout-lista bg-gray border-10 padding-detalhes no-border-sm">
 
                 <h2>Itens</h2>
 
@@ -57,7 +57,7 @@
 
             </div>
 
-            <div class="grid-container frete bg-gray border-10 padding-detalhes">
+            <div class="grid-container frete bg-gray border-10 padding-detalhes no-border-sm">
 
 
                 <h2>Endereço de Entrega</h2>
@@ -100,7 +100,7 @@
 
             </div>
 
-            <div class="grid-container carrinho-total checkout-total bg-gray border-10 padding-detalhes">
+            <div class="grid-container carrinho-total checkout-total bg-gray border-10 padding-detalhes no-border-sm">
 
                 {{-- <h2>Total</h2>
 

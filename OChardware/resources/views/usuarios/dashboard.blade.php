@@ -4,7 +4,7 @@
 
 @section('conteudo')
     <div class="flex-container corpo-detalhes">
-        <div class="detalhes-topo bg-gray border-10 margin-new padding-detalhes">
+        <div class="detalhes-topo bg-gray border-10 margin-new padding-detalhes no-border-sm">
 
             <div class="flex-container topo-secao">
                 <i class="fa-solid fa-square red"></i>
@@ -22,7 +22,7 @@
         </div>
 
         <div class="grid-container dash-pedido-produto margin-new">
-            <div class="ult-pedidos bg-gray border-10 padding-detalhes">
+            <div class="ult-pedidos bg-gray border-10 padding-detalhes no-border-sm">
                 <div class="flex-container topo-secao">
                     <i class="fa-solid fa-square red"></i>
                     <h3>Pedidos Abertos</h3>
@@ -31,7 +31,7 @@
                 <div class="dashboard-tabela-pedidos">
                     @if (count($pedidos) > 0)
 
-                        <table class="tabela-geral">
+                        <table class="tabela-geral md-only-dash">
                         {{-- <caption>Pedido: {{$pedido->id}}</caption> --}}
                             <tr class="black">
                                 <th class="border-black padding-tabela-vh">Cod. Pedido</th>
@@ -69,7 +69,7 @@
                 </div>
 
             </div>
-            <div class= "todos-produtos bg-gray border-10 padding-detalhes">
+            <div class= "todos-produtos bg-gray border-10 padding-detalhes no-border-sm">
                 <div class="flex-container topo-secao">
                     <i class="fa-solid fa-square red"></i>
                     <h3>Produtos</h3>
@@ -78,7 +78,7 @@
                 <div class="dashboard-tabela-produtos">
                     @if (count($produtos) > 0)
 
-                        <table class="tabela-geral">
+                        <table class="tabela-geral md-only-dash">
                             <tr class="black">
                                 <th class="border-black padding-tabela-vh">Nome</th>
                                 <th class="border-black padding-tabela-vh">Opções</th>
