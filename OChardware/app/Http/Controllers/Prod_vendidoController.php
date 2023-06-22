@@ -33,10 +33,10 @@ class Prod_vendidoController extends Controller
 
                 //(por enquanto) O resultado está voltando em um array dentro de array
                 //por isso o [0]
+                $prod_vendido->nome_produto = $produto->nome;
                 $prod_vendido->valor_unitario = $produto->preco;
                 $prod_vendido->quantidade = $produto->quantidade;
                 $prod_vendido->id_pedido = $id_pedido;
-                $prod_vendido->id_produto = $produto->id_produto;
 
 
                     \DB::beginTransaction();

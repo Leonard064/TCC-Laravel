@@ -226,24 +226,18 @@ class ProdutoController extends Controller
     //Remover Produtos (Dashboard ADM)
     public function removerProduto($id){
 
-        $checa = Prod_Vendido::where('id_produto',$id)->get();
-        if(count($checa) > 0){
-            return redirect('/dashboard')->with('err','Produto não pode ser apagado - já foi comprado');
+        try {
 
-        }else{
-            try {
-
-                if(Produto::destroy($id)) {
-                    return redirect('/dashboard')->with('ok','Item Excluído');
-                }else{
-                    return redirect('/dashboard')->with('err','Item não foi excluído');
-                }
-
-            } catch (\Throwable $th) {
-
-                echo $th->getMessage();
-
+            if(Produto::destroy($id)) {
+                return redirect('/dashboard')->with('ok','Item excluído com sucesso');
+            }else{
+                return redirect('/dashboard')->with('err','Item não foi excluído');
             }
+
+        } catch (\Throwable $th) {
+
+            echo $th->getMessage();
+
         }
     }
 
@@ -272,7 +266,7 @@ class ProdutoController extends Controller
         if($valida->fails()){
             return redirect()
                         ->back()
-                        ->withErrors($validator)
+                        ->withErrors($valida)
                         ->withInput();
         }else{
 

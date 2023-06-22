@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\Pedido;
+use App\Models\Endereco;
 use App\Http\Controllers\Prod_vendidosController;
 
 class PedidoController extends Controller
@@ -12,16 +13,24 @@ class PedidoController extends Controller
     //Função de salvar Pedidos - Endereço criado em Checkout
     public static function store(Request $request){
 
-        $valores = $request->all();
+        $endereco = Endereco::where('id',$request->id_endereco)->first();
 
-        //devido a propriedade "Fillable" todos os campos precisam ir na mesma ordem declarada no Model
         $pedido = new Pedido;
-        $pedido->fill($valores);
 
         // $pedido->total_pedido += $request->frete_valor;
 
+        $pedido->total_pedido = $request->total_pedido;
+        $pedido->frete_tipo = $request->frete_tipo;
+        $pedido->frete_valor = $request->frete_valor;
+        $pedido->pagamento_tipo = $request->pagamento_tipo;
         $pedido->status = 'Em Análise'; //por padrão, não há confirmação de pagamento
         $pedido->id_usuario = \Auth::user()->id;
+        $pedido->cep = $endereco->cep;
+        $pedido->endereco = $endereco->endereco;
+        $pedido->numero = $endereco->numero;
+        $pedido->bairro = $endereco->bairro;
+        $pedido->municipio = $endereco->municipio;
+        $pedido->estado = $endereco->estado;
 
             // começa a salvar pedido
             try {
