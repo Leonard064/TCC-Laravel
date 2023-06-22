@@ -10,6 +10,18 @@ use App\Http\Controllers\Prod_vendidosController;
 
 class PedidoController extends Controller
 {
+
+    //chamada de páginas
+    //página Todos os Pedidos (Dashboard ADM)
+    public function showAdmPedidos(){
+        // $pedido = Pedido::all();
+        $pedido = Pedido::orderBy('created_at', 'DESC')->get();
+
+        return view('pedidos.showAdmPedidos', ['pedido' => $pedido]);
+    }
+
+
+    //chamadas CRUD
     //Função de salvar Pedidos - Endereço criado em Checkout
     public static function store(Request $request){
 
@@ -75,14 +87,5 @@ class PedidoController extends Controller
             }
         }
     }
-
-    //página Todos os Pedidos (Dashboard ADM)
-    public function showAdmPedidos(){
-        // $pedido = Pedido::all();
-        $pedido = Pedido::orderBy('created_at', 'DESC')->get();
-
-        return view('pedidos.showAdmPedidos', ['pedido' => $pedido]);
-    }
-
 
 }
