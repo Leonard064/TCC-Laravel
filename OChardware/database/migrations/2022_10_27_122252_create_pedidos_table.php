@@ -21,17 +21,18 @@ return new class extends Migration
             $table->decimal('frete_valor',5,2);
             $table->string('pagamento_tipo',10);
             $table->string('status',50);
+            $table->string('cep',8);
+            $table->string('endereco',100);
+            $table->string('numero',5);
+            $table->string('bairro',50);
+            $table->string('municipio',100);
+            $table->string('estado',50);
 
             $table->unsignedBigInteger('id_usuario');
-            $table->unsignedBigInteger('id_endereco');
 
             $table->foreign('id_usuario')
                                 ->references('id')
                                 ->on('usuarios');
-
-            $table->foreign('id_endereco')
-                                ->references('id')
-                                ->on('enderecos');
 
         });
     }
