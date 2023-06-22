@@ -112,7 +112,6 @@ body{
 .menu-dir{
     flex-direction: column;
     justify-content: center;
-    margin: 0 20px;
 }
 
 .form-nav-mobile{
@@ -124,6 +123,11 @@ body{
     height: 5px;
     background: #fff;
     margin: 2px 10px;
+}
+
+/* Busca Específica Mobile*/
+.pesquisa-mobile, .form-pesquisa-mobile{
+    display: none;
 }
 
 /* ----------------- */
@@ -650,6 +654,11 @@ body{
     grid-column-gap: 1vw;
 }
 
+/* Página Aviso*/
+.center{
+    display: flex;
+    justify-content: center;
+}
 
 /* hr */
 .hr-white{
@@ -735,7 +744,21 @@ body{
     cursor: pointer;
 }
 
-.bt-red:hover{
+.bt-aviso{
+    display: flex;
+    justify-content: center;
+    width: 50%;
+    padding: 15px 0;
+    font-size: 1em;
+    background: #e00009;
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 10px;
+}
+
+.bt-red:hover, .bt-aviso:hover{
     background: #b40208;
 }
 
@@ -881,10 +904,7 @@ body{
 
     .topo-mobile{
         display: flex;
-    }
-
-    .logo-mobile img{
-        margin: 2vh 0 2vh 2vw;
+        padding: 2vh;
     }
 
     .itens{
@@ -899,6 +919,17 @@ body{
         flex-direction: column;
     }
 
+    .pesquisa-mobile{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 2vh;
+    }
+
+    .margin-form-mb{
+        padding: 0 2vh 2vh 2vh;
+    }
+
     .grid-comentarios-avaliacao{
         display: grid;
     }
@@ -911,6 +942,11 @@ body{
 
     .margin-new{
         margin: 2vh 0;
+    }
+
+    .message{
+        margin: 0;
+        border-radius: 0;
     }
 
     /* Página LOGIN */
@@ -974,11 +1010,6 @@ body{
         grid-column: 1/ span 2;
     }
 
-    .message{
-        margin: 0;
-        border-radius: 0;
-    }
-
     .detalhes-foto, .detalhes-nome{
         margin: 0;
     }
@@ -992,6 +1023,14 @@ body{
         grid-template-columns: 1fr;
         grid-column-gap: 0;
         grid-row-gap: 2vh;
+    }
+
+    .aviso{
+        text-align: center;
+    }
+
+    .bt-aviso{
+        width: 100%;
     }
 
     .checkout-total{

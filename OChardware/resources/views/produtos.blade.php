@@ -3,6 +3,50 @@
 @section('title', 'OC Hardware - Produtos')
 
 @section('conteudo')
+    <section class="flex-container pesquisa-mobile black" onclick="showBEMobile()">
+        <h3>Busca Específica</h3>
+        <i class="fa-solid fa-caret-down fa-2xl"></i>
+    </section>
+    <section class="form-pesquisa-mobile black" id="form-pesquisa-mobile">
+        <form action="/pesquisa-produtos" method="POST" class="margin-new margin-form-mb">
+            @csrf
+
+            <h3>Marcas</h3>
+
+                @if($marca)
+
+                    @foreach ($marca as $marcas)
+                        <input type="radio" name="marca" id="{{$marcas->nome}}" value="{{$marcas->id}}" required>
+                        <label for="{{$marcas->nome}}">{{$marcas->nome}}</label><br>
+                    @endforeach
+
+                @else
+
+                    <h4>Não há marcas</h4>
+                @endif
+
+            <h3>Seção</h3>
+                @if (count($categoriaBE)<=0)
+                    <h4>Não há categorias</h4>
+                @else
+                    @foreach ($categoriaBE as $categorias)
+                        <input type="radio" name="categoria" id="{{$categorias->nome}}" value="{{$categorias->id}}" required>
+                        <label for="{{$categorias->nome}}">{{$categorias->nome}}</label><br>
+                    @endforeach
+                @endif
+
+            <h3>Preço</h3>
+
+            <label for="valorMin">De:</label>
+            <input type="number" name="valorMin" id="valorMin" min="1" class="number" required>
+
+            <label for="valorMax">Até:</label>
+            <input type="number" name="valorMax" id="valorMax" min="1" class="number" required>
+
+            <button class="bt-red">Filtrar</button>
+
+        </form>
+    </section>
     <section class="grid-container corpo-produtos margin-new">
         <div class="lateral">
             <div class="flex-container nav-lateral bg-gray border-10">

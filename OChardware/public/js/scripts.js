@@ -16,13 +16,21 @@ function funcao(){
 function funcaoUser(){
     var x = document.getElementById('mobile-nav-user')
 
-    // alert(x)
-
     if(x.style.display === "block"){
         x.style.display = "none"
     }else{
         x.style.display = "block"
     }
+}
+
+function showBEMobile(){
+        var mb = document.getElementById('form-pesquisa-mobile')
+
+        if(mb.style.display === "flex"){
+            mb.style.display = "none"
+        }else{
+            mb.style.display = "flex"
+        }
 }
 
 // função para fechar as msgs de aviso
