@@ -3,26 +3,11 @@ php artisan serve --host ip --port 8000
 
 A fazer:
 
-forms
+validar funcionamento
 
-terminar validações de forms - (acho que já foi)
-
-checar calculo de frete
-
-adicionar stauts cancelado - pedidos
-
-front-end:
- -timeout em msg flash
-
-
-alteração de status de compra para ADM - melhorar depois
+responsividade - tabelas User e Adm
 
 criar seeder para alguns produtos - baixa prioridade
 
 
-Carrinho e Checkout:
-
-- pagamento (carrinho) -> funcional parcial
-    - funcionar com gateway de pagamento
-
-- gerador de boleto
+senha admin - admin
