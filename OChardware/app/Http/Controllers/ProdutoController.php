@@ -31,6 +31,18 @@ class ProdutoController extends Controller
         return view('index',['produtoValor' => $produtoValor , 'produto' => $produtoTempo]);
     }
 
+    public function showAlertaRemove($id){
+
+        if(\Auth::check()){
+            if(\Auth::user()->tipo == 'adm'){
+                return view('produtos.aviso-remove',['id_produto' => $id]);
+
+            }
+        }
+
+        return redirect('/');
+
+    }
 
     //PÁGINA DE CRIAÇÃO DE PRODUTOS
     public function create(){

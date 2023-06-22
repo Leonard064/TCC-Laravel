@@ -87,7 +87,7 @@
                                     <tr class="bg-white">
                                         <td class="border-black padding-tabela-vh">{{$produto->nome}}</td>
                                         <td class="border-black padding-tabela-vh"><a href="/editar-produto/{{$produto->id}}">Editar</a>
-                                        <a href="/remover-produto/{{$produto->id}}">Excluir</a></td>
+                                        <a href="/pag-remover-produto/{{$produto->id}}">Excluir</a></td>
                                     </tr>
 
                             @endforeach
