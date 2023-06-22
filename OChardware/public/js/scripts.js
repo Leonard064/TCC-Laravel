@@ -81,7 +81,8 @@ var valCheck;
             let hiddValor = document.createElement('input')
             hiddValor.type = 'hidden'
             hiddValor.name = 'total_pedido'
-            hiddValor.value = parseFloat(t3) + parseFloat(preco)
+            // hiddValor.value = parseFloat(t3) + parseFloat(preco)
+            hiddValor.value = parseFloat(parse)
 
             document.getElementById('frete').appendChild(hiddValor)
 

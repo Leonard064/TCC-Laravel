@@ -62,7 +62,6 @@
                         </a>
 
                     @else
-                        <i class="fa-solid fa-triangle-exclamation"></i>
                         <h2>Ainda não foram realizados Pedidos</h2>
                     @endif
 
