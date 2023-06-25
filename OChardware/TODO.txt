@@ -3,11 +3,11 @@ php artisan serve --host ip --port 8000
 
 A fazer:
 
-validar funcionamento
-
-responsividade - tabelas User e Adm
+checar frete
 
 criar seeder para alguns produtos - baixa prioridade
 
 
 senha admin - admin
+
+teste02 - senha123
