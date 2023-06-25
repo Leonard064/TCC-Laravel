@@ -11,14 +11,14 @@
                 <p><i class="fa-solid fa-regular fa-circle-exclamation ico-concluido red"></i></p>
                 <h1 class="red aviso">Você está prestes a excluir um produto</h1>
                 <h3 class="aviso">Isso significa que todas as avaliações pertinentes a eles
-                    serão APAGADAS, assim como qualquer carrinho que o possua.
+                    serão APAGADAS, assim como qualquer CARRINHO que o possua.
                 </h3>
                 <h3>Deseja prosseguir?</h3>
 
             </div>
             <div class="padding-detalhes">
                 <a href="/remover-produto/{{$id_produto}}" class="center no-deco"><button class="bt-aviso">Sim</button></a>
-                <a href="/" class="center no-deco"><button class="bt-aviso">Não</button></a>
+                <a href="/todos-produtos" class="center no-deco"><button class="bt-aviso">Não</button></a>
             </div>
         </div>
     </section>
