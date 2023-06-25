@@ -15,7 +15,7 @@
                 @if(count($produto) > 0)
                 <table class="tabela-geral">
                     <tr class="black">
-                        <th class="border-black padding-tabela-vh">Foto</th>
+                        <th class="border-black padding-tabela-vh md-only">Foto</th>
                         <th class="border-black padding-tabela-vh">Nome</th>
                         <th class="border-black padding-tabela-vh">Quantidade</th>
                         <th class="border-black padding-tabela-vh">Valor</th>
@@ -24,12 +24,14 @@
 
                     @foreach ($produto as $produtos)
                         <tr class="bg-white">
-                            <td class="border-black padding-tabela-vh">{{$produtos->foto}}</td>
+                            <td class="border-black padding-tabela-vh md-only">
+                                <img src="../img/produtos/{{$produtos->foto}}" class="carrinho-img border-10">
+                            </td>
                             <td class="border-black padding-tabela-vh">{{$produtos->nome}}</td>
                             <td class="border-black padding-tabela-vh">{{$produtos->quantidade}}</td>
                             <td class="border-black padding-tabela-vh">{{$produtos->preco}}</td>
                             <td class="border-black padding-tabela-vh"><a href="/editar-produto/{{$produtos->id}}">Editar</a>
-                            <a href="/remover-produto/{{$produtos->id}}">Excluir</a></td>
+                            <a href="/pag-remover-produto/{{$produtos->id}}">Excluir</a></td>
                         </tr>
                     @endforeach
 

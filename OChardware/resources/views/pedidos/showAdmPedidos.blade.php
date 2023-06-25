@@ -3,7 +3,7 @@
 @section('title','todos os pedidos')
 
 @section('conteudo')
-    <section class="flex-container corpo">
+    <section class="flex-container corpo-detalhes">
 
         <div class="todos-pedidos bg-gray border-10 margin-new padding-detalhes">
             <div class="flex-container topo-secao">
@@ -16,7 +16,7 @@
                     <table class="tabela-geral">
                         <tr class="black">
                             <th class="border-black padding-tabela-vh">Cod. Pedido</th>
-                            <th class="border-black padding-tabela-vh">Data e hora</th>
+                            <th class="border-black padding-tabela-vh md-only">Data e hora</th>
                             <th class="border-black padding-tabela-vh">Pagamento</th>
                             <th class="border-black padding-tabela-vh">Valor</th>
                             <th class="border-black padding-tabela-vh">Status</th>
@@ -25,7 +25,7 @@
                     @foreach ($pedido as $pedidos)
                         <tr class="bg-white">
                             <td class="border-black padding-tabela-vh">{{$pedidos->id}}</td>
-                            <td class="border-black padding-tabela-vh">{{$pedidos->created_at}}</td>
+                            <td class="border-black padding-tabela-vh md-only">{{$pedidos->created_at}}</td>
                             <td class="border-black padding-tabela-vh">{{$pedidos->pagamento_tipo}}</td>
                             <td class="border-black padding-tabela-vh">{{$pedidos->total_pedido}}</td>
                             <td class="border-black padding-tabela-vh" class="border-black">{{$pedidos->status}}</td>

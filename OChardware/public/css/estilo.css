@@ -95,7 +95,7 @@ body{
 }
 
 #mobile-nav li{
-    margin-left: 2vw;
+    margin: 2vw;
 }
 
 #mobile-nav h3{
@@ -114,6 +114,10 @@ body{
     justify-content: center;
 }
 
+.menu-dir-cart{
+    padding: 0 3vh;
+}
+
 .form-nav-mobile{
     justify-content: center;
 }
@@ -123,6 +127,11 @@ body{
     height: 5px;
     background: #fff;
     margin: 2px 10px;
+}
+
+.a-mobile{
+    display: flex;
+    width: 100%;
 }
 
 /* Busca Específica Mobile*/
@@ -268,6 +277,10 @@ body{
     margin: 0 15%;
 }
 
+.ico-index{
+    padding-right: 1vh;
+}
+
 .produtos{
     flex-direction: column;
 }
@@ -353,6 +366,10 @@ body{
 
 .rodape-secao2-direita{
     justify-items: end;
+}
+
+.logo-rodape{
+    padding: 0 1vh;
 }
 
 /* --------------------- */
@@ -824,6 +841,7 @@ body{
     width: 100%;
     text-align: center;
     border-collapse: collapse;
+    margin-bottom: 1vh;
 }
 
 .padding-tabela-vh{
@@ -1038,12 +1056,17 @@ body{
     }
 
     .form-edit-endereco{
+        width: 100%;
         grid-template-columns: 1fr;
     }
 
     .center-mb-only{
         display: block;
         text-align: center;
+    }
+
+    .md-only{
+        display: none;
     }
 
     .md-only-dash{

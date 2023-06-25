@@ -111,7 +111,7 @@
 
                     @if (Auth::user())
                         @if(Auth::user()->tipo == 'user')
-                            <div class="flex-container menu-dir">
+                            <div class="flex-container menu-dir menu-dir-cart">
                             <a href="/carrinho" class="no-deco white"><i class="fa-solid fa-cart-shopping fa-2xl"></i></a>
                             </div>
 
@@ -130,57 +130,57 @@
                     <h3>Categorias</h3>
                     <ul>
                         <li>
-                            <a class="no-deco white" href="/produtos/1">Processadores</a>
+                            <a class="no-deco white a-mobile" href="/produtos/1">Processadores</a>
                         </li>
                         <li>
-                            <a class="no-deco white" href="/produtos/2">Placas-Mãe</a>
+                            <a class="no-deco white a-mobile" href="/produtos/2">Placas-Mãe</a>
                         </li>
                         <li>
-                            <a class="no-deco white" href="/produtos/3">Placas de Vídeo</a>
+                            <a class="no-deco white a-mobile" href="/produtos/3">Placas de Vídeo</a>
                         </li>
                         <li>
-                            <a class="no-deco white" href="/produtos/4">Memórias</a>
+                            <a class="no-deco white a-mobile" href="/produtos/4">Memórias</a>
                         </li>
                         <li>
-                            <a class="no-deco white" href="/produtos/5">Monitores</a>
+                            <a class="no-deco white a-mobile" href="/produtos/5">Monitores</a>
                         </li>
                         <li>
-                            <a class="no-deco white" href="/produtos/6">Mouse e Teclado</a>
+                            <a class="no-deco white a-mobile" href="/produtos/6">Mouse e Teclado</a>
                         </li>
                         <li>
-                            <a class="no-deco white" href="/produtos/7">HDs e SSDs</a>
+                            <a class="no-deco white a-mobile" href="/produtos/7">HDs e SSDs</a>
                         </li>
                         <li>
-                            <a class="no-deco white" href="/produtos/8">Fontes</a>
+                            <a class="no-deco white a-mobile" href="/produtos/8">Fontes</a>
                         </li>
                         <hr>
                         @if (Auth::user())
                             @if (Auth::user()->tipo == 'user')
                                 <h3>{{Auth::user()->login}}</h3>
                                 <li>
-                                    <a class="no-deco white" href="/perfil">Perfil</a>
+                                    <a class="no-deco white a-mobile" href="/perfil">Perfil</a>
                                 </li>
                                 <li>
-                                    <a class="no-deco white" href="/logout">Sair</a>
+                                    <a class="no-deco white a-mobile" href="/logout">Sair</a>
                                 </li>
                             @endif
                             @if (Auth::user()->tipo == 'adm')
                                 <h3>Administrador</h3>
                                 <li>
-                                    <a class="no-deco white" href="/dashboard">Configurações</a>
+                                    <a class="no-deco white a-mobile" href="/dashboard">Configurações</a>
                                 </li>
                                 <li>
-                                    <a class="no-deco white" href="/logout">Sair</a>
+                                    <a class="no-deco white a-mobile" href="/logout">Sair</a>
                                 </li>
                             @endif
 
                         @else
                             <h3>Bem-vindo!</h3>
                             <li>
-                                <a class="no-deco white" href="/login">Entrar</a>
+                                <a class="no-deco white a-mobile" href="/login">Entrar</a>
                             </li>
                             <li>
-                                <a class="no-deco white" href="/cadastre-se">Cadastrar</a>
+                                <a class="no-deco white a-mobile" href="/cadastre-se">Cadastrar</a>
                             </li>
                         @endif
                     </ul>
@@ -246,9 +246,9 @@
                     <section class="flex-container rodape-secao1">
                         <div class="rodape-secao1-info">
                             <h4>Siga nossos perfis</h4>
-                            <span class="fa-brands fa-facebook fa-2xl"></span>&nbsp;
-                            <span class="fa-brands fa-instagram fa-2xl"></span>&nbsp;
-                            <span class="fa-brands fa-twitter fa-2xl"></span>
+                            <span class="fa-brands fa-facebook fa-2xl logo-rodape"></span>
+                            <span class="fa-brands fa-instagram fa-2xl logo-rodape"></span>
+                            <span class="fa-brands fa-twitter fa-2xl logo-rodape"></span>
                         </div>
                     </section>
                     <section class="grid-container rodape-secao2">

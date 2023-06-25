@@ -5,7 +5,7 @@
 @section('conteudo')
     <section class="flex-container corpo">
 
-        <div class="detalhes-topo bg-gray border-10 margin-new padding-detalhes">
+        <div class="detalhes-topo bg-gray border-10 margin-new padding-detalhes no-border-sm">
             <div class="flex-container topo-secao">
                 <i class="fa-solid fa-square red"></i>
                 <h2>Meus Endereços</h2>
@@ -39,7 +39,7 @@
 
         </div>
 
-        <div class="edit-endereco bg-gray margin-new padding-detalhes border-10">
+        <div class="edit-endereco bg-gray margin-new padding-detalhes border-10 no-border-sm">
             <div class="flex-container topo-secao">
                 <i class="fa-solid fa-square red"></i>
                 <h2>Adicionar novo Endereço</h2>
