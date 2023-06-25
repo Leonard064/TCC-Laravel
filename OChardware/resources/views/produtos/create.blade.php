@@ -16,7 +16,7 @@
                     @csrf
                     <div class="span-2">
                         <label for="nome">Nome:</label>
-                        <input type="text" name="nome" id="nome" placeholder="nome" class="input-full"><br>
+                        <input type="text" name="nome" id="nome" placeholder="Nome" class="input-full"><br>
                         @if ($errors->get('nome'))
                             @foreach ($errors->get('nome') as $err)
                                 <p class="err-form">{{$err}}</p><br>
@@ -110,7 +110,7 @@
 
                     <div class="span-2-mb-only">
                         <label for="largura">Largura (em cm):</label>
-                        <input type="text" name="largura" id="largura" placeholder="largura (cm)" class="input-full">
+                        <input type="text" name="largura" id="largura" placeholder="Largura (cm)" class="input-full">
                         @if ($errors->get('largura'))
                             @foreach ($errors->get('largura') as $err)
                                 <p class="err-form">{{$err}}</p><br>
@@ -121,7 +121,7 @@
                     </div>
                     <div class="span-2-mb-only">
                         <label for="altura">Altura (em cm):</label>
-                        <input type="text" name="altura" id="altura" placeholder="altura (cm)" class="input-full">
+                        <input type="text" name="altura" id="altura" placeholder="Altura (cm)" class="input-full">
                         @if ($errors->get('altura'))
                             @foreach ($errors->get('altura') as $err)
                                 <p class="err-form">{{$err}}</p><br>
@@ -132,7 +132,7 @@
                     </div>
                     <div class="span-2-mb-only">
                         <label for="peso">Peso (em Kgs):</label>
-                        <input type="text" name="peso" id="peso" placeholder="peso (kg)" class="input-full">
+                        <input type="text" name="peso" id="peso" placeholder="Peso (kg)" class="input-full">
                         @if ($errors->get('peso'))
                             @foreach ($errors->get('peso') as $err)
                                 <p class="err-form">{{$err}}</p><br>
@@ -143,7 +143,7 @@
                     </div>
                     <div class="span-2-mb-only">
                         <label for="comprimento">Comprimento (em cm):</label>
-                        <input type="text" name="comprimento" id="comprimento" placeholder="comprimento (cm)" class="input-full">
+                        <input type="text" name="comprimento" id="comprimento" placeholder="Comprimento (cm)" class="input-full">
                         @if ($errors->get('comprimento'))
                             @foreach ($errors->get('comprimento') as $err)
                                 <p class="err-form">{{$err}}</p><br>
@@ -154,7 +154,7 @@
                     </div>
                     <div class="span-2-mb-only">
                         <label for="quantidade">Quantidade:</label>
-                        <input type="text" name="quantidade" id="quantidade" placeholder="quantidade" class="input-full">
+                        <input type="text" name="quantidade" id="quantidade" placeholder="Quantidade" class="input-full">
                         @if ($errors->get('quantidade'))
                             @foreach ($errors->get('quantidade') as $err)
                                 <p class="err-form">{{$err}}</p><br>

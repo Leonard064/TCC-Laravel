@@ -642,6 +642,7 @@ body{
 
 .perfil-foto img{
     max-height: 150px;
+    max-width: 150px;
 }
 
 .perfil-opcoes{
@@ -1090,6 +1091,10 @@ body{
 @media(max-width: 375px){
     .margin-new{
         margin: 0;
+    }
+
+    .message{
+        background-color: #fff;
     }
 
     .grid-comentarios-avaliacao{

@@ -97,7 +97,6 @@ Route::get('/remover-endereco/{id}', [EnderecoController::class, 'removerEnderec
    ====================*/
 Route::post('pedido/create', [PedidoController::class, 'store']);
 
-// Route::get('/pedido-concluido', [Prod_vendidoController::class, 'showSucesso']);
 
 /* ====================
     --- Avaliação ---
@@ -150,9 +149,9 @@ Route::post('/update-produto', [ProdutoController::class, 'updateProduto']);
 
 Route::get('remover-produto/{id}', [ProdutoController::class, 'removerProduto']);
 
-Route::get('/todos-produtos', [ProdutoController::class, 'showAdmProdutos']);
+Route::get('/todos-produtos', [UsuarioController::class, 'showAdmProdutos']);
 
-Route::get('/todos-pedidos', [PedidoController::class, 'showAdmPedidos']);
+Route::get('/todos-pedidos', [UsuarioController::class, 'showAdmPedidos']);
 
 Route::get('pag-remover-produto/{id}', [ProdutoController::class, 'showAlertaRemove']);
 

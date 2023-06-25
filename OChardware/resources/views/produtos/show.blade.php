@@ -23,15 +23,13 @@
                         <div class="flex-container reverso">
                             <div id="detalhes-preco">
                                 @if($produto->quantidade < 500)
-                                    <h3>{{$produto->quantidade}} Peças disponíveis, corra!</h3>
+                                    <h3>{{$produto->quantidade}} Peça(s) disponível(is), corra!</h3>
 
                                 @else
                                     <h3>Valor Unitário:</h3>
 
                                 @endif
                                 <h1 class="label-preco red">R$ {{number_format($produto->preco,2,',','.')}}</h1>
-                                {{-- <h4>Valor em pix/ à vista no cartão</h4>
-                                <h4>10x de 99,90 sem juros</h4> --}}
                                 <form action="/addCarrinho" method="post">
                                     @csrf
                                     <input type="hidden" name="id" value="{{$produto->id}}">

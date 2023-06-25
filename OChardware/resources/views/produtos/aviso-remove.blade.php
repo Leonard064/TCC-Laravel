@@ -18,7 +18,7 @@
             </div>
             <div class="padding-detalhes">
                 <a href="/remover-produto/{{$id_produto}}" class="center no-deco"><button class="bt-aviso">Sim</button></a>
-                <a href="/todos-produtos" class="center no-deco"><button class="bt-aviso">Não</button></a>
+                <a href="/dashboard" class="center no-deco"><button class="bt-aviso">Não</button></a>
             </div>
         </div>
     </section>

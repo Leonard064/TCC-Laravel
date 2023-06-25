@@ -46,6 +46,17 @@
                                 <tr class="bg-white">
                                     <td class="border-black padding-tabela-vh">{{$pedido->id}}</td>
                                     <td class="border-black padding-tabela-vh">{{$pedido->created_at}}</td>
+                                    @php
+                                        if($pedido->pagamento_tipo == 'boleto'){
+                                            $pedido->pagamento_tipo = 'Boleto';
+                                        }
+                                        if($pedido->pagamento_tipo == 'pag_seguro'){
+                                            $pedido->pagamento_tipo = 'PagSeguro';
+                                        }
+                                        if($pedido->pagamento_tipo == 'pix'){
+                                            $pedido->pagamento_tipo = 'Pix';
+                                        }
+                                    @endphp
                                     <td class="border-black padding-tabela-vh">{{$pedido->pagamento_tipo}}</td>
                                     <td class="border-black padding-tabela-vh">R$ {{number_format($pedido->total_pedido,2,',','.')}}</td>
                                     <td class="border-black padding-tabela-vh">{{$pedido->status}}</td>
