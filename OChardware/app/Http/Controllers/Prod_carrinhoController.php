@@ -23,18 +23,6 @@ class Prod_carrinhoController extends Controller
                                             ->get();
 
 
-            // //isso aqui tudo é só jesus na causa
-            // $prod_carrinho = Prod_Carrinho::where('id_usuario', Auth::user()->id)->get(); //pega todos os itens do carrinho do usuário
-
-            //     $carrinho = []; //inicia um array vazio.
-
-            //     //pra cada item do carrinho ele busca o produto especifico...
-            //     foreach($prod_carrinho as $item_carrinho){
-
-            //         //...e tranforma o resultado em array(e coloca dentro de outro array)
-            //         array_push($carrinho, Produto::where('id', $item_carrinho->id_produto)->get()->toArray());
-            //     }
-
 
              return ['prod_carrinho' => $prod_carrinho];
 
@@ -76,20 +64,6 @@ class Prod_carrinhoController extends Controller
             try {
 
                 $enderecos = Endereco::where('id_usuario', \Auth::user()->id)->get();
-
-                //$total = $request->total;
-
-                // $frete = $request->frete;
-
-                // if($frete == 'sedex'){
-                //     $valor_frete = 27.00;
-                //     $total = $request->total + $valor_frete;
-                // }else{
-                //     $valor_frete = 14.90;
-                //     $total = $request->total + $valor_frete;
-                // }
-
-                // dd($frete);
 
                 return view('carrinho.checkout',$this->carrinhoItens(),['enderecos' => $enderecos]);
 
@@ -157,62 +131,81 @@ class Prod_carrinhoController extends Controller
 
     //adiciona uma (1) quantidade ao item selecionado
     public function addQtdCarrinho($id){
-        try {
-            $carrinhoItem = Prod_Carrinho::find($id);
 
-            $carrinhoItem->quantidade += 1;
+        if(Auth::check()){
+            try {
+                $carrinhoItem = Prod_Carrinho::find($id);
 
-            $carrinhoItem->save();
-
-            return redirect('/carrinho');
-
-        } catch (\Throwable $th) {
-
-            echo $th->getMessage();
-        }
-    }
-
-
-    //remove uma (1) quantidade ao item selecionado
-    public function removeQtdCarrinho($id){
-        try {
-            $carrinhoItem = Prod_Carrinho::find($id);
-
-            if($carrinhoItem->quantidade > 1){ //checa se há quantidade a ser removida
-
-                $carrinhoItem->quantidade -= 1;
+                $carrinhoItem->quantidade += 1;
 
                 $carrinhoItem->save();
 
                 return redirect('/carrinho');
 
-            }else{ //caso não, remove o item do carrinho
+            } catch (\Throwable $th) {
 
-                $this->removerCarrinho($id);
+                echo $th->getMessage();
+            }
+        }
 
+        return redirect('/');
+
+    }
+
+
+    //remove uma (1) quantidade ao item selecionado
+    public function removeQtdCarrinho($id){
+
+        if(Auth::check()){
+            try {
+                $carrinhoItem = Prod_Carrinho::find($id);
+
+                if($carrinhoItem->quantidade > 1){ //checa se há quantidade a ser removida
+
+                    $carrinhoItem->quantidade -= 1;
+
+                    $carrinhoItem->save();
+
+                    return redirect('/carrinho');
+
+                }else{ //caso não, remove o item do carrinho
+
+                    $this->removerCarrinho($id);
+
+                }
+
+
+            } catch (\Throwable $th) {
+
+                echo $th->getMessage();
             }
 
-
-        } catch (\Throwable $th) {
-
-            echo $th->getMessage();
         }
+
+        return redirect('/');
+
     }
 
 
     public function removerCarrinho($id){
 
-        try {
-            if(Prod_Carrinho::destroy($id)) {
-                return redirect('/carrinho')->with('ok','Item removido do carrinho');
+        if(Auth::check()){
+            try {
+                if(Prod_Carrinho::destroy($id)) {
+                    return redirect('/carrinho')->with('ok','Item removido do carrinho');
 
-            }else{
-                dd('Não foi possível deletar o item');
+                }else{
+                    return redirect('/carrinho')->with('err','Não foi possível deletar o item');
+                }
+
+            } catch (\Throwable $th) {
+                echo $th->getMessage();
+
             }
 
-        } catch (\Throwable $th) {
-            echo $th->getMessage();
-
         }
+
+        return redirect('/');
+
     }
 }

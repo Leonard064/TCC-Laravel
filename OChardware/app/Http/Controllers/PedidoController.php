@@ -8,18 +8,10 @@ use App\Models\Pedido;
 use App\Models\Endereco;
 use App\Http\Controllers\Prod_vendidosController;
 
+use Auth;
+
 class PedidoController extends Controller
 {
-
-    //chamada de páginas
-    //página Todos os Pedidos (Dashboard ADM)
-    public function showAdmPedidos(){
-        // $pedido = Pedido::all();
-        $pedido = Pedido::orderBy('created_at', 'DESC')->get();
-
-        return view('pedidos.showAdmPedidos', ['pedido' => $pedido]);
-    }
-
 
     //chamadas CRUD
     //Função de salvar Pedidos - Endereço criado em Checkout
@@ -72,20 +64,33 @@ class PedidoController extends Controller
 
     public function editPedidoStat($id){
 
-        if($pedido = Pedido::find($id)){
+        if(Auth::check()){
+            if(Auth::user()->tipo == 'adm'){
+                if($pedido = Pedido::find($id)){
 
-            $pedido->status = "Aprovado";
+                    if($pedido->status == 'Aprovado'){
+                        return redirect('/dashboard')->with('err','Atenção - Pedido já está Aprovado');
+                    }
 
-            try {
-                $pedido->save();
+                        $pedido->status = "Aprovado";
 
-                return redirect('/dashboard');
+                        try {
+                            $pedido->save();
 
-            } catch (\Throwable $th) {
-                echo $th->getMessage();
+                            return redirect('/dashboard')->with('ok','Pedido atualizado - Status Aprovado');
+
+                        } catch (\Throwable $th) {
+                            echo $th->getMessage();
+
+                        }
+
+                }
 
             }
         }
+
+        return redirect('/');
+
     }
 
 }

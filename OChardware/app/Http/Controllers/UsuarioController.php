@@ -37,6 +37,10 @@ class UsuarioController extends Controller
     }
 
 
+    /**
+     *  PÁGINAS NÍVEL USUÁRIO
+     */
+
     //PÁGINA PERFIL - USUARIO
     public function perfil(){
 
@@ -56,6 +60,7 @@ class UsuarioController extends Controller
 
     }
 
+    //PÁGINA TODOS-PEDIDOS -> USUARIO
     public function showUserPedidos(){
         if(\Auth::check()){
             if(\Auth::user()->tipo == 'user'){
@@ -114,6 +119,9 @@ class UsuarioController extends Controller
 
     }
 
+    /**
+     * PÁGINAS NÍVEL ADM
+     */
 
     //PÁGINA ADMIN
     public function dashboard(){
@@ -130,6 +138,36 @@ class UsuarioController extends Controller
             }else{
                 return redirect('/');
             }
+        }
+
+        return redirect('/');
+
+    }
+
+    //página Todos os Pedidos (Dashboard ADM)
+    public function showAdmPedidos(){
+
+        if(\Auth::check()){
+            if(\Auth::user()->tipo == 'adm'){
+                $pedido = Pedido::orderBy('created_at', 'DESC')->get();
+
+                return view('pedidos.showAdmPedidos', ['pedido' => $pedido]);
+            }
+        }
+
+        return redirect('/');
+
+    }
+
+
+    //página Todos os Produtos (Dashboard ADM)
+    public function showAdmProdutos(){
+
+        if(\Auth::check()){
+            if(\Auth::user()->tipo == 'adm')
+            $produto = Produto::all();
+
+            return view('produtos.showAdmProdutos', ['produto' => $produto]);
         }
 
         return redirect('/');
@@ -272,10 +310,16 @@ class UsuarioController extends Controller
     //logout de usuário
     public function logout(Request $request){
 
-        Auth::logout();
+        if(Auth::check()){
+            Auth::logout();
 
-        $request->session()->flash('ok','Usuário deslogado com sucesso');
+            $request->session()->flash('ok','Usuário deslogado com sucesso');
+            return redirect('/');
+
+        }
+
         return redirect('/');
+
     }
 
 

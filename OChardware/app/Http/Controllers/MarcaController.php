@@ -6,11 +6,20 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 use App\Models\Marca;
+use Auth;
 
 class MarcaController extends Controller
 {
     public function create(){
-        return view('produtos.marcas.create-marca');
+        if(Auth::check()){
+            if(Auth::user()->tipo == 'adm'){
+                return view('produtos.marcas.create-marca');
+
+            }
+        }
+
+        return redirect('/');
+
     }
 
     public function store(Request $request){

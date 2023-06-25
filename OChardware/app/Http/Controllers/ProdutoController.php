@@ -13,6 +13,8 @@ use App\Models\Marca;
 use App\Models\Avaliacao;
 use App\Models\Prod_Vendido;
 
+use Auth;
+
 class ProdutoController extends Controller
 {
 
@@ -47,13 +49,15 @@ class ProdutoController extends Controller
     //PÁGINA DE CRIAÇÃO DE PRODUTOS
     public function create(){
 
-        // somente Admin pode acessar a pág.
-        if(\Auth::user()->tipo == 'adm'){
-            $categoria = Categoria::all();
-            $marca = Marca::all();
+        if(Auth::check()){
+            // somente Admin pode acessar a pág.
+            if(\Auth::user()->tipo == 'adm'){
+                $categoria = Categoria::all();
+                $marca = Marca::all();
 
-            return view('produtos.create', ['categoria' => $categoria ,'marca' => $marca]);
+                return view('produtos.create', ['categoria' => $categoria ,'marca' => $marca]);
 
+            }
         }
 
         return redirect('/');
@@ -63,17 +67,24 @@ class ProdutoController extends Controller
 
     public function showEditProduto($id){
 
-        try{
-            $produto = Produto::findOrFail($id);
-            $categoria = Categoria::all();
-            $marca = Marca::all();
+        if(Auth::check()){
+            if(Auth::user()->tipo == 'adm'){
+                try{
+                    $produto = Produto::findOrFail($id);
+                    $categoria = Categoria::all();
+                    $marca = Marca::all();
 
-            return view('produtos.edit-produto', ['produto' => $produto , 'categoria' => $categoria ,'marca' => $marca]);
+                    return view('produtos.edit-produto', ['produto' => $produto , 'categoria' => $categoria ,'marca' => $marca]);
 
-        } catch (\Throwable $th) {
+                } catch (\Throwable $th) {
 
-            echo $th->getMessage();
+                    echo $th->getMessage();
+                }
+
+            }
         }
+
+        return redirect('/');
 
     }
 
@@ -135,16 +146,8 @@ class ProdutoController extends Controller
     }
 
 
-    //página Todos os Produtos (Dashboard ADM)
-    public function showAdmProdutos(){
-        $produto = Produto::all();
-
-        return view('produtos.showAdmProdutos', ['produto' => $produto]);
-    }
-
-
-    /*pesquisa os itens que se encaixam na seleção do usuário
-        ---- em construção ----
+    /*
+        pesquisa os itens que se encaixam na seleção do usuário
     */
     public function pesquisaProdutos(Request $request){
 
@@ -240,94 +243,110 @@ class ProdutoController extends Controller
     //Remover Produtos (Dashboard ADM)
     public function removerProduto($id){
 
-        try {
+        if(Auth::check()){
+            if(Auth::user()->tipo == 'adm'){
+                try {
 
-            if(Produto::destroy($id)) {
-                return redirect('/dashboard')->with('ok','Item excluído com sucesso');
-            }else{
-                return redirect('/dashboard')->with('err','Item não foi excluído');
+                    if(Produto::destroy($id)) {
+                        return redirect('/dashboard')->with('ok','Item excluído com sucesso');
+                    }else{
+                        return redirect('/dashboard')->with('err','Item não foi excluído');
+                    }
+
+                } catch (\Throwable $th) {
+
+                    echo $th->getMessage();
+
+                }
+
             }
-
-        } catch (\Throwable $th) {
-
-            echo $th->getMessage();
-
         }
+
+        return redirect('/');
+
     }
 
 
     //Editar Produtos
     public function updateProduto(Request $request){
 
-        $valida = Validator::make($request->all(),[
-            'nome' => 'required|min:5',
-            'id_categoria' => 'required',
-            'id_marca' => 'required',
-            'preco' => 'required|numeric|between:0.10,99999999.99', //até 99 milhões
-            'descricao' => 'required|min:10',
-            'foto' => 'required|mimes:jpg,png,bmp,jpeg|max:10240',
-            'largura' => 'required|numeric|between:0.1,10000', //até 100 metros
-            'altura' => 'required|numeric|between:0.1,10000', //até 100 metros
-            'peso' => 'required|numeric|between:0.1,999', //até 999 kilos
-            'comprimento' => 'required|numeric|between:0.1,10000', //até 100 metros
-            'quantidade' => 'required|numeric|between:1,9999999', // até 9.99 milhões
-        ],[
-            'required' => 'Campo :attribute não pode estar vazio.',
-            'min' => ':attribute não contempla valor mínimo.',
-            'foto.mimes' => 'Insira uma imagem válida',
-            'between'       => 'Valor inserido não aceito',
-            'numeric'       => 'Apenas números são aceitos'
-        ]);
+        if(Auth::check()){
+            if(Auth::user()->tipo == 'adm'){
+                $valida = Validator::make($request->all(),[
+                    'nome' => 'required|min:5',
+                    'id_categoria' => 'required',
+                    'id_marca' => 'required',
+                    'preco' => 'required|numeric|between:0.10,99999999.99', //até 99 milhões
+                    'descricao' => 'required|min:10',
+                    'foto' => 'mimes:jpg,png,bmp,jpeg|max:10240',
+                    'largura' => 'required|numeric|between:0.1,10000', //até 100 metros
+                    'altura' => 'required|numeric|between:0.1,10000', //até 100 metros
+                    'peso' => 'required|numeric|between:0.1,999', //até 999 kilos
+                    'comprimento' => 'required|numeric|between:0.1,10000', //até 100 metros
+                    'quantidade' => 'required|numeric|between:1,9999999', // até 9.99 milhões
+                ],[
+                    'required' => 'Campo :attribute não pode estar vazio.',
+                    'min' => ':attribute não contempla valor mínimo.',
+                    'foto.mimes' => 'Insira uma imagem válida',
+                    'between'       => 'Valor inserido não aceito',
+                    'numeric'       => 'Apenas números são aceitos'
+                ]);
 
-        if($valida->fails()){
-            return redirect()
-                        ->back()
-                        ->withErrors($valida)
-                        ->withInput();
-        }else{
+                if($valida->fails()){
+                    return redirect()
+                                ->back()
+                                ->withErrors($valida)
+                                ->withInput();
+                }else{
 
-            try {
+                    try {
 
-                $produto = Produto::find($request->id);
+                        $produto = Produto::find($request->id);
 
-                $valores = $valida->validated();
+                        $valores = $valida->validated();
 
-                $produto->nome         = $valores['nome'];
-                $produto->id_categoria = $valores['id_categoria'];
-                $produto->id_marca     = $valores['id_marca'];
-                $produto->preco        = $valores['preco'];
-                $produto->descricao    = $valores['descricao'];
-                $produto->largura      = $valores['largura'];
-                $produto->altura       = $valores['altura'];
-                $produto->peso         = $valores['peso'];
-                $produto->comprimento  = $valores['comprimento'];
-                $produto->quantidade   = $valores['altura'];
+                        $produto->nome         = $valores['nome'];
+                        $produto->id_categoria = $valores['id_categoria'];
+                        $produto->id_marca     = $valores['id_marca'];
+                        $produto->preco        = $valores['preco'];
+                        $produto->descricao    = $valores['descricao'];
+
+                        if($request->hasFile('foto') && $request->file('foto')->isValid()){
+
+                            $requestImage = $request->foto;
+                            $extensao = $requestImage->extension();
+                            $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+
+                            $requestImage->move(public_path('img/produtos'),$nomeFoto);
+
+                            $produto->foto = $nomeFoto;
+
+                        }
+
+                        $produto->largura      = $valores['largura'];
+                        $produto->altura       = $valores['altura'];
+                        $produto->peso         = $valores['peso'];
+                        $produto->comprimento  = $valores['comprimento'];
+                        $produto->quantidade   = $valores['altura'];
 
 
-                if($request->hasFile('foto') && $request->file('foto')->isValid()){
 
-                    $requestImage = $request->foto;
-                    $extensao = $requestImage->extension();
-                    $nomeFoto = md5($requestImage->getClientOriginalName().strtotime('now')).'.'.$extensao;
+                        $produto->save();
 
-                    $requestImage->move(public_path('img/produtos'),$nomeFoto);
+                        return redirect('/dashboard')->with('ok','Produto Atualizado com Sucesso.');
 
-                    $produto->foto = $nomeFoto;
+                    } catch (\Throwable $th) {
+
+                        echo $th->getMessage();
+
+                    }
 
                 }
 
-                $produto->save();
-
-                return redirect('/dashboard')->with('ok','Produto Atualizado com Sucesso.');
-
-            } catch (\Throwable $th) {
-
-                echo $th->getMessage();
-
             }
-
         }
 
+        return redirect('/');
 
     }
 

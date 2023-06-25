@@ -5,10 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Categoria;
 
+use Auth;
+
 class CategoriaController extends Controller
 {
     public function create(){
-        return view('produtos.categorias.create-categoria');
+        if(Auth::check()){
+            if(Auth::user()->tipo == 'adm'){
+                return view('produtos.categorias.create-categoria');
+
+            }
+        }
+
+        return redirect('/');
+
     }
 
     public function store(Request $request){
