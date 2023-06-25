@@ -175,18 +175,20 @@ class ProdutoController extends Controller
             'nome' => 'required|min:5',
             'id_categoria' => 'required',
             'id_marca' => 'required',
-            'preco' => 'required|min:3',
+            'preco' => 'required|numeric|between:0.10,99999999.99', //até 99 milhões
             'descricao' => 'required|min:10',
             'foto' => 'required|mimes:jpg,png,bmp,jpeg|max:10240',
-            'largura' => 'required|min:1',
-            'altura' => 'required|min:1',
-            'peso' => 'required|min:1',
-            'comprimento' => 'required|min:1',
-            'quantidade' => 'required|min:1',
+            'largura' => 'required|numeric|between:0.1,10000', //até 100 metros
+            'altura' => 'required|numeric|between:0.1,10000', //até 100 metros
+            'peso' => 'required|numeric|between:0.1,999', //até 999 kilos
+            'comprimento' => 'required|numeric|between:0.1,10000', //até 100 metros
+            'quantidade' => 'required|numeric|between:1,9999999', // até 9.99 milhões
         ],[
-            'required' => 'Campo :attribute não pode estar vazio.',
-            'min' => ':attribute não contempla valor mínimo.',
-            'foto.mimes' => 'Insira uma imagem válida'
+            'required'      => 'Campo :attribute não pode estar vazio.',
+            'min'           => ':attribute não contempla valor mínimo.',
+            'foto.mimes'    => 'Insira uma imagem válida',
+            'between'       => 'Valor inserido não aceito',
+            'numeric'       => 'Apenas números são aceitos'
         ]);
 
         if($valida->fails()){
@@ -261,18 +263,20 @@ class ProdutoController extends Controller
             'nome' => 'required|min:5',
             'id_categoria' => 'required',
             'id_marca' => 'required',
-            'preco' => 'required|min:3',
+            'preco' => 'required|numeric|between:0.10,99999999.99', //até 99 milhões
             'descricao' => 'required|min:10',
             'foto' => 'required|mimes:jpg,png,bmp,jpeg|max:10240',
-            'largura' => 'required|min:1',
-            'altura' => 'required|min:1',
-            'peso' => 'required|min:1',
-            'comprimento' => 'required|min:1',
-            'quantidade' => 'required|min:1',
+            'largura' => 'required|numeric|between:0.1,10000', //até 100 metros
+            'altura' => 'required|numeric|between:0.1,10000', //até 100 metros
+            'peso' => 'required|numeric|between:0.1,999', //até 999 kilos
+            'comprimento' => 'required|numeric|between:0.1,10000', //até 100 metros
+            'quantidade' => 'required|numeric|between:1,9999999', // até 9.99 milhões
         ],[
             'required' => 'Campo :attribute não pode estar vazio.',
             'min' => ':attribute não contempla valor mínimo.',
-            'foto.mimes' => 'Insira uma imagem válida'
+            'foto.mimes' => 'Insira uma imagem válida',
+            'between'       => 'Valor inserido não aceito',
+            'numeric'       => 'Apenas números são aceitos'
         ]);
 
         if($valida->fails()){

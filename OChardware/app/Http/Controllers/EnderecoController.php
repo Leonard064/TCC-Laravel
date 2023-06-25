@@ -83,9 +83,9 @@ class EnderecoController extends Controller
     public function addEnderecoPerfil(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'cep' => 'required|between:8,8',
+            'cep' => 'required|digits:8',
             'endereco' => 'required|min:4|max:100',
-            'numero' => 'required|min:1|max:5',
+            'numero' => 'required|numeric|digits_between:1,5',
             'bairro' => 'required|min:3|max:50',
             'estado' => 'required|min:3|max:50',
             'municipio' => 'required|min:3|max:100',
@@ -93,7 +93,9 @@ class EnderecoController extends Controller
             'required' => 'Campo obrigatório',
             'min' => 'O valor inserido é muito pequeno.',
             'max' => 'O valor inserido é maior que o aceito.',
-            'between' => 'Tamanho Inválido.',
+            'numeric' => 'Apenas números são aceitos',
+            'cep.digits' => 'Insira CEP sem Traços',
+            'digits_between' => 'Tamanho Inválido.'
         ]);
 
         if($valida->fails()){
@@ -147,9 +149,9 @@ class EnderecoController extends Controller
     public function updateEndereco(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'cep' => 'required|between:8,8',
+            'cep' => 'required|digits:8',
             'endereco' => 'required|min:4|max:100',
-            'numero' => 'required|min:1|max:5',
+            'numero' => 'required|numeric|digits_between:1,5',
             'bairro' => 'required|min:3|max:50',
             'estado' => 'required|min:3|max:50',
             'municipio' => 'required|min:3|max:100',
@@ -157,7 +159,9 @@ class EnderecoController extends Controller
             'required' => 'Campo obrigatório',
             'min' => 'O valor inserido é muito pequeno.',
             'max' => 'O valor inserido é maior que o aceito.',
-            'between' => 'Tamanho Inválido.',
+            'numeric' => 'Apenas números são aceitos',
+            'cep.digits' => 'Insira CEP sem Traços',
+            'digits_between' => 'Tamanho Inválido.'
         ]);
 
         if($valida->fails()){
