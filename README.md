@@ -6,7 +6,7 @@
 <p>Projeto final criado por Leonardo do Nascimento Barbosa e Fernando Amorim. Defendido em 01 de Julho de 2023, com o status de **APROVADO** </p>
 
 <p align="center">
-<img src="OChardware/public/img/logo2.png"/>
+<img src="OChardware/public/img/index.png"/>
 </p>
 
 <p>O projeto em questão é um sistema web, voltado para a venda online de produtos de informática, especificamente peças *(hardware)* de computador.<p>
