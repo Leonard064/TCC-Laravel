@@ -56,11 +56,11 @@
 
                     </div>
                     <div class="span-2">
-                        <p>Deseja trocar de senha?</p>
-                        <a href="/alterar-senha">Faça Aqui</a>
+                        <p>Deseja trocar de senha? <a href="/alterar-senha">Faça Aqui</a></p>
                     </div>
                     <div class="span-2">
-                        <label for="foto">Imagem: (Padrão: {{$usuario->foto}})</label><br>
+                        <label for="foto">Imagem Atual: </label><br>
+                        <img src="img/usuarios/{{Auth::user()->foto}}" class="img-edit" alt="foto">
                         <input type="file" name="foto" id="foto">
                     </div>
                     <div class="flex-container bt-auth span-2">

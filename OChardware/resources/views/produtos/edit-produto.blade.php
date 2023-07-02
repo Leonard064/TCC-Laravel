@@ -93,7 +93,9 @@
                     </div>
 
                     <div class="span-2">
-                        <label for="foto">Imagem: (Foto Atual: {{$produto->foto}})</label>
+                        <label for="foto">Imagem: </label>
+                        <p>Atual:</p>
+                        <img src="../img/produtos/{{$produto->foto}}" class="img-edit" alt="foto">
                         <input type="hidden" name="fotoAtual" value="{{$produto->foto}}">
                         <input type="file" name="foto" id="foto">
                         @if ($errors->get('foto'))

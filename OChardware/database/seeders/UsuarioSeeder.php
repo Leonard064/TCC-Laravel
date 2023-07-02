@@ -26,7 +26,7 @@ class UsuarioSeeder extends Seeder
             'login' => 'Admin',
             'nome' => 'Usuario',
             'sobrenome' => 'Administrador',
-            'cpf' => 00000000000,
+            'cpf' => 26632589030,
             'email' => 'admin@admin.com',
             'foto' => 'foto-padrao.png',
             'senha' => bcrypt('admin'),

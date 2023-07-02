@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('cpf',11)->unique();
             $table->string('email',100)->unique();
             $table->string('foto');
-            $table->string('senha',100);
+            $table->string('senha',100); //tamanho por causa do hash
             $table->string('tipo',5);
         });
     }

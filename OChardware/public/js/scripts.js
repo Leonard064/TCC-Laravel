@@ -99,7 +99,7 @@ var valCheck;
         }
 
 // função ajax para recuperar os valores de frete
-function ajax(id,peso,total){
+function ajax(id,peso,total,raiz){
 
                 valCheck = total;
 
@@ -107,7 +107,7 @@ function ajax(id,peso,total){
 
                 // let corpo = document.querySelector('div.corpo');
 
-                let url = '/api/frete/'+id+'/'+peso;
+                let url = '/api/frete/'+id+'/'+peso+'/'+raiz;
                 // let idCep = id;
 
                 fetch(url,{

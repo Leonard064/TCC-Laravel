@@ -38,10 +38,10 @@
             <h3>Preço</h3>
 
             <label for="valorMin">De:</label>
-            <input type="number" name="valorMin" id="valorMin" min="1" class="number" required>
+            <input type="number" name="valorMin" id="valorMin" min="1" class="number">
 
             <label for="valorMax">Até:</label>
-            <input type="number" name="valorMax" id="valorMax" min="1" class="number" required>
+            <input type="number" name="valorMax" id="valorMax" min="1" class="number">
 
             <button class="bt-red">Filtrar</button>
 
@@ -73,7 +73,7 @@
                             <h4>Não há categorias</h4>
                         @else
                             @foreach ($categoriaBE as $categorias)
-                                <input type="radio" name="categoria" id="{{$categorias->nome}}" value="{{$categorias->id}}" required>
+                                <input type="radio" name="categoria" id="{{$categorias->nome}}" value="{{$categorias->id}}">
                                 <label for="{{$categorias->nome}}">{{$categorias->nome}}</label><br>
                             @endforeach
                         @endif
@@ -81,10 +81,10 @@
                     <h3>Preço</h3>
 
                     <label for="valorMin">De:</label>
-                    <input type="number" name="valorMin" id="valorMin" min="1" class="number" required>
+                    <input type="number" name="valorMin" id="valorMin" min="1" class="number">
 
                     <label for="valorMax">Até:</label>
-                    <input type="number" name="valorMax" id="valorMax" min="1" class="number" required>
+                    <input type="number" name="valorMax" id="valorMax" min="1" class="number">
 
                     {{-- <input type="radio" name="valor" value="baixo"><label for="baixo">R$0,00 até R$100,00</label><br>
                     <input type="radio" name="valor" value="medio"><label for="medio">R$100,00 até R$500,00</label><br>

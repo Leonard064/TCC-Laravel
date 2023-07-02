@@ -98,7 +98,7 @@
 
                     <div class="span-2">
                         <label for="senha">Senha:</label>
-                        <input type="password" name="senha" id="senha-logon" placeholder="Senha (min. 6 digitos)" class="teste-form">
+                        <input type="password" name="senha" id="senha-logon" placeholder="Senha (min. 5 digitos)" class="teste-form">
 
                         @if ($errors->first('senha'))
                             @foreach ($errors->get('senha') as $err)

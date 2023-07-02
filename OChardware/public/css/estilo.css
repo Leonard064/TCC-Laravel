@@ -72,6 +72,11 @@ body{
     height: 100%;
 }
 
+.img-edit{
+    max-width: 150px;
+    max-height: 70px;
+}
+
 /* TOPO MOBILE */
 
 .topo-mobile{
@@ -864,6 +869,21 @@ body{
     }
 }
 
+@media(max-width: 1220px){
+    .card{
+        margin: 20px 10px;
+    }
+}
+
+@media(max-width: 1150px){
+    .detalhes-nome h1{
+        font-size: 1.5em;
+    }
+    .card{
+        margin: 20px 5px;
+    }
+}
+
 @media(max-width: 1024px){
     /* GERAL */
     .margem{
@@ -924,6 +944,10 @@ body{
     .topo-mobile{
         display: flex;
         padding: 2vh;
+    }
+
+    .produtos{
+        grid-column-end: span 2;
     }
 
     .itens{
@@ -1006,8 +1030,11 @@ body{
         height: 270px;
     }
     .detalhes-nome h1{
-        font-size: 1.5em;
+        font-size: 1.2em;
         text-align: center;
+    }
+    #detalhes-preco h1{
+        font-size: 2em;
     }
     .reverso{
         align-items: center;
@@ -1015,10 +1042,6 @@ body{
 }
 
 @media(max-width: 425px){
-    .produtos{
-        grid-column-end: span 2;
-    }
-
     .auth{
         width: auto;
         margin: 3vh;

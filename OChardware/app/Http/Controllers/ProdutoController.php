@@ -24,7 +24,7 @@ class ProdutoController extends Controller
     public function index(){
 
         //Promoções do momento
-        $produtoValor = Produto::orderBy('preco' , 'ASC')->get();
+        $produtoValor = Produto::orderBy('preco' , 'ASC')->take(8)->get();
 
         //Acabaram de Chegar
         $produtoTempo = Produto::orderBy('created_at', 'DESC')->take(4)->get();
@@ -151,11 +151,34 @@ class ProdutoController extends Controller
     */
     public function pesquisaProdutos(Request $request){
 
-        $produto = Produto::where('id_marca' , '=' , $request->marca)
-                            ->where('id_categoria', '=', $request->categoria)
-                            ->where('preco', '>=', $request->valorMin)
-                            ->where('preco', '<=', $request->valorMax)
-                            ->get();
+        if(is_null($request->valorMin) && is_null($request->valorMax)){
+            $produto = Produto::where('id_marca' , '=' , $request->marca)
+                                ->where('id_categoria', '=', $request->categoria)
+                                ->get();
+
+        }else{
+            if(!is_null($request->valorMin) && !is_null($request->valorMax)){
+                $valMin = $request->valorMin;
+                $valMax = $request->valorMax;
+            }
+
+            if(is_null($request->valorMin) && !is_null($request->valorMax)){
+                $valMin = 0;
+                $valMax = $request->valorMax;
+            }
+
+            if(is_null($request->valorMax) && !is_null($request->valorMin)){
+                $valMax = 0;
+                $valMin = $request->valorMin;
+            }
+
+            $produto = Produto::where('id_marca' , '=' , $request->marca)
+                                ->where('id_categoria', '=', $request->categoria)
+                                ->where('preco', '>=', $valMin)
+                                ->where('preco', '<=', $valMax)
+                                ->get();
+
+         }
 
 
         //para evitar crashes, marca e categoria precisam ser enviados
@@ -175,7 +198,7 @@ class ProdutoController extends Controller
     public function store(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'nome' => 'required|min:5',
+            'nome' => 'required|min:5|max:255',
             'id_categoria' => 'required',
             'id_marca' => 'required',
             'preco' => 'required|numeric|between:0.10,99999999.99', //até 99 milhões
@@ -273,7 +296,7 @@ class ProdutoController extends Controller
         if(Auth::check()){
             if(Auth::user()->tipo == 'adm'){
                 $valida = Validator::make($request->all(),[
-                    'nome' => 'required|min:5',
+                    'nome' => 'required|min:5|max:255',
                     'id_categoria' => 'required',
                     'id_marca' => 'required',
                     'preco' => 'required|numeric|between:0.10,99999999.99', //até 99 milhões

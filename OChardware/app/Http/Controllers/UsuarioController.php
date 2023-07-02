@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 use App\Models\Usuario;
 use App\Models\Pedido;
 use App\Models\Produto;
@@ -181,13 +182,13 @@ class UsuarioController extends Controller
     public function store(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'login' => 'required|unique:usuarios|min:5',
-            'nome' => 'required|min:4',
-            'sobrenome' => 'required|min:4',
+            'login' => 'required|unique:usuarios|min:5|max:20',
+            'nome' => 'required|min:4|max:50',
+            'sobrenome' => 'required|min:4|max:50',
             'cpf' => 'required|unique:usuarios|cpf|numeric',
-            'email' => 'required|unique:usuarios|min:7|email',
+            'email' => 'required|unique:usuarios|min:7|max:100|email',
             'foto' => 'mimes:jpg,png,bmp,jpeg|max:10240',
-            'senha' => 'required|unique:usuarios|min:6',
+            'senha' => 'required|unique:usuarios|min:5|max:20',
             'teste-senha' => 'required|same:senha',
         ],
         [
@@ -269,10 +270,12 @@ class UsuarioController extends Controller
     public function authenticate(Request $request){
 
         $valida = Validator::make($request->all(),[
-            'login' => 'required',
-            'senha' => 'required',
+            'login' => 'required|min:5|max:20',
+            'senha' => 'required|min:5|max:20',
         ],[
             'required' => 'Campo :attribute está vazio.',
+            'min' => 'Campo :attribute menor que o valor esperado.',
+            'max' => 'Campo :attribute maior que o valor esperado.'
         ]);
 
         if ($valida->fails()) {
@@ -290,7 +293,7 @@ class UsuarioController extends Controller
             if(Auth::attempt($credential)){
 
                 if(Auth::user()->tipo == 'user'){
-                    $request->session()->flash('ok','Usuário logado com sucesso');
+                    $request->session()->flash('ok','Login realizado com sucesso');
                     return redirect('/');
 
                 }elseif(Auth::user()->tipo == 'adm') {
@@ -313,7 +316,7 @@ class UsuarioController extends Controller
         if(Auth::check()){
             Auth::logout();
 
-            $request->session()->flash('ok','Usuário deslogado com sucesso');
+            $request->session()->flash('ok','Você foi deslogado');
             return redirect('/');
 
         }
@@ -326,16 +329,20 @@ class UsuarioController extends Controller
     //Editar Cadastro
     public function updatePerfil(Request $request){
 
+        $id = \Auth::user()->id;
+
+        // ignora login e email caso sejam inalterados - e forem os já cadastrados
+        // àquele usuario
         $valida = Validator::make($request->all(),[
-            'login' => 'required|min:5',
-            'nome' => 'required|min:4',
-            'sobrenome' => 'required|min:4',
-            'email' => 'required|min:7|email',
+            'login' => 'required|min:5|max:20',Rule::unique('usuarios')->ignore($id),
+            'nome' => 'required|min:4|max:50',
+            'sobrenome' => 'required|min:4|max:50',
+            'email' => 'required|min:7|max:100|email',Rule::unique('usuarios')->ignore($id),
             'foto' => 'mimes:jpg,png,bmp,jpeg|max:10240',
         ],
         [
             'required' => 'Campo :attribute não pode estar vazio.',
-            'unique' => ':attribute já está em uso. tente outro.',
+            'unique' => ':attribute inserido já existe no sistema.',
             'min' => 'Campo :attribute menor que o valor esperado.',
             'max' => 'Campo :attribute maior que o valor esperado.',
             'email' => 'Email inserido não é válido',
@@ -370,6 +377,8 @@ class UsuarioController extends Controller
                 }
 
                 $usuario->save();
+
+                Auth::login($usuario);
 
                 $request->session()->flash('ok','Dados alterados com sucesso');
                 return redirect('/perfil');
