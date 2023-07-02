@@ -26,6 +26,8 @@
                         @php
                             $total = 0;
                             $peso  = 0;
+                            $totalquadr = 0;
+                            $raiz = 0;
                         @endphp
 
                         @foreach ($prod_carrinho as $itens)
@@ -46,6 +48,11 @@
                             </tr>
 
                             @php
+                                //faz uma raiz cubica para o calculo de tamanho de caixa
+                                $totalquadr += ($itens->altura * $itens->largura * $itens->comprimento) * $itens->quantidade;
+
+                                $raiz = round(pow($totalquadr, 1/3),2);
+
                                 $total += $itens->preco * $itens->quantidade;
                                 $peso  += $itens->peso * $itens->quantidade;
                             @endphp
@@ -73,7 +80,7 @@
 
                             @foreach ($enderecos as $endereco)
 
-                                <input type="radio" name="id_endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}}, {{$peso}}, {{$total}})" required>
+                                <input type="radio" name="id_endereco" id="{{$endereco->id}}" value="{{$endereco->id}}" onclick="ajax({{$endereco->id}}, {{$peso}}, {{$total}}, {{$raiz}})" required>
                                 <label for="{{$endereco->id}}">{{$endereco->endereco}}</label><br>
 
                             @endforeach
@@ -86,11 +93,6 @@
                                     <p>Selecione um endereço</p>
                                 </div>
 
-                                @php
-                                    $sedex = 27.00;
-                                    $pac = 14.90;
-                                @endphp
-
                     @else
 
                         <h3>Você ainda não possui endereço cadastrado. Insira um agora</h3>
@@ -101,16 +103,6 @@
             </div>
 
             <div class="grid-container carrinho-total checkout-total bg-gray border-10 padding-detalhes no-border-sm">
-
-                {{-- <h2>Total</h2>
-
-                {{-- <h2>Total</h2> --
-                <h2 class="label-preco red">R${{number_format($total,2,',','.')}}</h2> --}}
-
-                {{-- <h2>Peso</h2>
-                <p>{{number_format($peso,2,',','.')}}Kg</p> --}}
-
-                {{-- <input type="hidden" name="total_pedido" value="{{$total}}"> --}}
 
                 <h2>Pagamento</h2>
 

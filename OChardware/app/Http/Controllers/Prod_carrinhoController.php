@@ -19,7 +19,7 @@ class Prod_carrinhoController extends Controller
 
             $prod_carrinho = Prod_Carrinho::where('id_usuario', Auth::user()->id)
                                             ->join('produtos','prod__carrinhos.id_produto', '=','produtos.id')
-                                            ->select('prod__carrinhos.*','produtos.nome','produtos.preco','produtos.foto','produtos.peso')
+                                            ->select('prod__carrinhos.*','produtos.nome','produtos.preco','produtos.foto','produtos.peso','produtos.comprimento','produtos.altura','produtos.largura')
                                             ->get();
 
 

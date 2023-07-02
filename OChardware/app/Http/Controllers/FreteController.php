@@ -14,21 +14,26 @@ class FreteController extends Controller
 {
 
     //API de retorno de fretes
-    public function calculoFrete($id, $peso){
+    public function calculoFrete($id, $peso, $raiz){
 
         try {
             $frete = Endereco::findOrFail($id);
 
+            //checa se raiz cubica é maior que limite minimo do Correios
+            $comprimento = $raiz < 16 ? 16 : $raiz;
+            $altura = $raiz < 2 ? 2 : $raiz;
+            $largura = $raiz < 11 ? 11 : $raiz;
+            //dimensoes baseadas na Caixa de Encomenda Convencional - CE-03 - Correios
             $calculoFrete = new PrecoPrazo();
             $calculoFrete->setCodigoServico([Data::PAC])
                     ->setCodigoEmpresa('08082650')
                     ->setSenha('564321')
                     ->setCepOrigem('07500000')
                     ->setCepDestino($frete->cep)
-                    ->setComprimento(30)
-                    ->setAltura(30)
-                    ->setLargura(30)
-                    ->setDiametro(30)
+                    ->setComprimento($comprimento)
+                    ->setAltura($altura)
+                    ->setLargura($largura)
+                    ->setDiametro(27)
                     ->setPeso($peso);
 
                 try {
