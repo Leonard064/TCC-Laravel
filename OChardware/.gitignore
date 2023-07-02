@@ -2,7 +2,8 @@
 /public/build
 /public/hot
 /public/storage
-/public/img
+/public/img/produtos
+/public/img/usuarios
 /storage/*.key
 /vendor
 TODO.txt
